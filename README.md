@@ -18,7 +18,8 @@ Install [uv](https://docs.astral.sh/uv/), then from the repository root:
 ```bash
 uv sync --locked --extra dev --extra plots --python 3.12
 uv run --locked python scripts/check_manifest.py
-uv run --locked pytest snapshots/comparator/tests
+OMP_NUM_THREADS=1 OPENBLAS_NUM_THREADS=1 MKL_NUM_THREADS=1 VECLIB_MAXIMUM_THREADS=1 \
+  uv run --locked pytest snapshots/comparator/tests
 ```
 
 `pyproject.toml` and `uv.lock` are copied from the frozen comparator source; do not regenerate the lock. Paper workers used Python 3.12.14, NumPy 2.5.2, SciPy 1.18.1 and scikit-learn 1.9.0. `results/*/environment.json` records actual per-study hardware/software; the local calibration cohort differs from cluster cohorts. The portable setup is tested separately, not claimed to recreate an OS/BLAS image.
@@ -32,7 +33,7 @@ uv run --locked python scripts/verify_raw.py --assets downloads
 uv run --locked python scripts/plot_paper.py --out reproduced-figures
 ```
 
-The raw verifier checks asset checksums, full expected keys/denominators, seed domains, independent permutation tails where archived, every published rejection count, and paired discordance counts. It refuses missing/duplicate/failed records. It does not infer validity from a favorable subset. The plotting command saves PDF+PNG from all archived plot inputs. Exact published TeX tables and CSVs are in `results/`; numbered figure/table references may change during final editing, so `REPRODUCING.md` maps by caption/topic and source fragment.
+The raw verifier checks asset checksums, full expected keys/denominators, seed domains, independent permutation tails where archived, every published rejection count, and paired discordance counts. It refuses missing/duplicate/failed records. It does not infer validity from a favorable subset. The plotting command saves PDF+PNG from all archived empirical plot inputs and two analytic illustrations. A third analytic Gaussian-copula illustration is supplied as its original rendered PDF; its original plotting source is unavailable. Exact published TeX tables and CSVs are in `results/`; numbered figure/table references may change during final editing, so `REPRODUCING.md` maps by caption/topic and source fragment.
 
 ### Rerun the protected experiments
 

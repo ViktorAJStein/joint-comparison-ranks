@@ -20,6 +20,7 @@ Upload all five `*-raw.tar.gz` assets described by `release-assets.json` to the 
 - [ ] Approve licensing of new overlays/scripts/data, preserving upstream notice.
 - [ ] Bind exact title, full final author list, arXiv ID/version and verified `CITATION.cff`.
 - [ ] Inspect files/links/PDF metadata for secrets and unintended material; automated scans are not human legal/security clearance.
+- [ ] Decide whether supplying the original Gaussian-copula illustration PDF without its unavailable plotting source is sufficient; do not claim all analytic figures can be regenerated from source.
 - [ ] Verify clean install, tests, manifests, all raw assets and plotting commands; archive verification receipts.
 - [ ] Check release URLs signed out and download/verify all assets before any availability claim.
 - [ ] Create immutable `arxiv-v1` tag only after the final binding.

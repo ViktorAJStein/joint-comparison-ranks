@@ -66,6 +66,12 @@ def check(study,rows):
         else:
             case=next(c for c in p['cases'] if c['id']==row['case'])
             assert row['data_seed']==seed_for(p,case,row['d'],rep,1)
+            if study=='generator':domain=10
+            elif study=='comparator':
+                name=row['method'];domain=10 if name.startswith('Rank') else 11 if name.startswith('SCF') else 12 if name.startswith('MMD') else 13
+            else:
+                name=row['method'];domain=10 if name.startswith('Rank') else 11 if name.startswith('SCF_Gaussian') else 12 if name.startswith('MMD') else 13 if name.startswith('C2ST') else 14 if name.startswith('ME_') else 15
+            assert row['method_seed']==seed_for(p,case,row['d'],rep,domain)
             group=(row['case'],row['d'],row.get('orientation','raw'))
             values=row['results'] if study=='generator' else {row['method']:row}
         for method,value in values.items():
@@ -79,33 +85,50 @@ def check(study,rows):
                 assert value['pvalue']==(1+tail)/(b+1)
             add((*group,method),rep,value['reject'])
     # The published group list defines all retained groups, never a survivor subset.
-    refs=[];contrasts=[]
+    refs=[];contrasts=[];reference_rows=[]
     if study=='calibration':
         for r in csv.DictReader((ROOT/'results/calibration/summary.csv').open()):
+            reference_rows.append(r)
             refs.append(((r['case'],int(r['alternative']),r['method'],r['orientation']),int(r['R']),int(r['rejections'])))
     elif study=='comparator':
         a=read_json(ROOT/'plot-inputs/comparator/d50.json')
         for r in a['rates']:
-            if r['d']==50 and r['complete']:refs.append(((r['case'],50,r['orientation'],r['method']),4000 if r['case'].startswith('null') else 500,r['rejections']))
+            if r['d']==50 and r['complete']:
+                reference_rows.append(r)
+                refs.append(((r['case'],50,r['orientation'],r['method']),4000 if r['case'].startswith('null') else 500,r['rejections']))
         for r in read_json(ROOT/'plot-inputs/comparator/d20.json')['rates']:
             refs.append(((r['case'],20,r['orientation'],r['method']),r['repetitions'],r['rejections']))
         contrasts=[c for c in a['paired_contrasts'] if c['d']==50 and c['complete']]
     elif study=='generator':
         a=read_json(ROOT/'plot-inputs/generator/analysis.json')
         refs=[((r['case'],r['d'],r['orientation'],r['generator']),r['expected_blocks'],r['rejections']) for r in a['summary']]
-        contrasts=a['paired_contrasts']
+        contrasts=a['paired_contrasts'];reference_rows=a['summary']
     elif study=='axis':
         a=read_json(ROOT/'plot-inputs/axis/results.json')
         refs=[((r['case'],r['d'],'raw',r['method']),r['n'],r['rejections']) for r in a['summary']]
-        contrasts=a['paired_contrasts']
+        contrasts=a['paired_contrasts'];reference_rows=a['summary']
     else:
         a=read_json(ROOT/'plot-inputs/dependence/results.json')
         refs=[((r['stratum']['id'],r['method']),r['repetitions'],r['rejections']) for r in a['rates']]
-        contrasts=a['contrasts']
+        contrasts=a['contrasts'];reference_rows=a['rates']
     assert set(groups)=={g for g,n,k in refs},'Missing/extra scientific groups'
     for group,n,k in refs:
         assert set(groups[group])==set(range(n)),('Incomplete repetitions',group)
         assert sum(groups[group].values())==k,('Rejection-count discrepancy',group)
+    for r in reference_rows:
+        if study=='calibration':n=int(r['R']);k=int(r['rejections']);interval=[float(r['lo95']),float(r['hi95'])]
+        else:
+            k=r['rejections'];n=r.get('n',r.get('expected_blocks',r.get('repetitions',4000 if r.get('case','').startswith('null') else 500)))
+            interval=r.get('ci95',r.get('pointwise_exact_95_interval',r.get('interval95',[r.get('lo'),r.get('hi')])))
+        actual=[0. if k==0 else float(beta.ppf(.025,k,n-k+1)),1. if k==n else float(beta.ppf(.975,k+1,n-k))]
+        assert np.allclose(actual,interval,rtol=1e-12,atol=1e-14),'Exact interval mismatch'
+        if study!='calibration':
+            upper=r.get('simultaneous_upper',r.get('simultaneous_null_upper'))
+            if upper is not None:
+                family=p['analysis']['null_family_size']
+                expected=1. if k==n else float(beta.ppf(1-.05/family,k+1,n-k))
+                assert np.isclose(upper,expected,rtol=1e-12,atol=1e-14),'Size-screen bound mismatch'
+    raw_ps=[]
     for c in contrasts:
         if study=='dependence':ga=(c['stratum']['id'],c['method_a']);gb=(c['stratum']['id'],c['method_b'])
         else:
@@ -117,6 +140,13 @@ def check(study,rows):
         pv=binomtest(plus,plus+minus,.5).pvalue if plus+minus else 1.
         expected=c.get('exact_mcnemar_pvalue',c.get('exact_pvalue',c.get('pvalue')))
         assert np.isclose(pv,expected,rtol=1e-11,atol=1e-300)
+        raw_ps.append(float(pv))
+    if contrasts:
+        family=p['analysis']['primary_power_family_size'];maximum=0.;adjusted={}
+        for rank,index in enumerate(np.argsort(raw_ps)):
+            maximum=max(maximum,min(1.,(family-rank)*raw_ps[index]));adjusted[int(index)]=maximum
+        for index,c in enumerate(contrasts):
+            assert np.isclose(adjusted[index],c['holm_pvalue'],rtol=1e-11,atol=1e-300),'Holm family/inference mismatch'
     # Coupled identity check from independent actual rows, not the displayed certificate.
     if study=='calibration':
         for alternative,n in ((0,8000),(1,500)):
