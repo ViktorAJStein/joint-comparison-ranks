@@ -16,5 +16,6 @@ jobs:
       - run: uv sync --locked --extra dev --extra plots
       - run: uv run --locked python scripts/check_manifest.py
       - run: uv run --locked pytest snapshots/comparator/tests
+      - run: PYTHONPATH=snapshots/calibration/src uv run --locked pytest snapshots/calibration/tests
       - run: uv run --locked python scripts/run_paper.py --study comparator --mode smoke --out runs/ci-smoke --wall-seconds 600
       - run: uv run --locked python scripts/plot_paper.py --out reproduced-figures

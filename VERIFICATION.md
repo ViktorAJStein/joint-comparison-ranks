@@ -3,7 +3,7 @@
 This is a local preparation record, not an upload or submission-readiness certificate.
 
 - Locked clean `uv sync --locked --extra dev --extra plots --python 3.12`: passed on macOS/ARM64, Python3.12.13. This is a portable test environment, not the original Linux worker cohort.
-- Source regression suite: **79 passed**, with one BLAS/OpenMP thread. The initial unthreaded invocation failed an expected thread-cohort guard; the documented command and CI environment were corrected, not the scientific test.
+- Source regression suites: **79 comparator tests + 29 calibration tests passed**, with one BLAS/OpenMP thread. The initial unthreaded invocation failed an expected thread-cohort guard; the documented command and CI environment were corrected, not the scientific test.
 - Frozen source/configuration parity: **98 files byte-identical** to the two recorded base sources and three scientific overlays.
 - Five full raw release assets verified: **203000 calibration rows, 288000 comparator rows, 36000 generator groups, 99000 axis calls, 46000 dependence blocks**; **878000 method results** in total. All **359 published rate groups** and **125 published paired contrasts** match. Seeds, actual fixed permutation budgets/tails where archived, pointwise exact intervals, null simultaneous bounds, paired discordances/exact p-values and original Holm family sizes checked. d20 comparator remains descriptive; no statistical guard was relaxed.
 - Seven intentionally bad raw fixtures (missing/duplicate coverage, corrupted data/method seed, decision, budget, nonfinite score): rejected.

@@ -6,7 +6,7 @@ Research code and reproducibility material for the current synthetic-experiment 
 
 There are two distinct workflows:
 
-1. **Reconstruct the recorded results:** use the supplied numerical tables, complete per-repetition release assets, and plotting scripts. This preserves the paper's seeds, outcomes and recorded hardware-specific timings without rerunning ~57 CPU-core-hours of experiments.
+1. **Reconstruct the recorded results:** use the supplied numerical tables, complete per-repetition release assets, and plotting scripts. This preserves the paper's seeds, outcomes and recorded hardware-specific timings without rerunning ~61 CPU-core-hours of experiments.
 2. **Rerun the experiments:** generate the same seeded datasets and execute the same numerical routines, using the immutable protocols. Floating-point libraries/CPU architecture can affect bitwise results; measured timings cannot be reproduced exactly on different hardware. Reruns are labelled separately and never overwrite paper evidence.
 
 The five retained studies are calibration/PCA, matched modern comparators, generator ablation, nine coordinate-aligned mixtures, and dependence power. No external dataset or GPU is needed. CIFAR and superseded low-repetition experiments are **not part of this manuscript snapshot**. Historical entry points in frozen source are not paper reproduction commands.
@@ -20,6 +20,8 @@ uv sync --locked --extra dev --extra plots --python 3.12
 uv run --locked python scripts/check_manifest.py
 OMP_NUM_THREADS=1 OPENBLAS_NUM_THREADS=1 MKL_NUM_THREADS=1 VECLIB_MAXIMUM_THREADS=1 \
   uv run --locked pytest snapshots/comparator/tests
+OMP_NUM_THREADS=1 OPENBLAS_NUM_THREADS=1 MKL_NUM_THREADS=1 VECLIB_MAXIMUM_THREADS=1 \
+  PYTHONPATH=snapshots/calibration/src uv run --locked pytest snapshots/calibration/tests
 ```
 
 `pyproject.toml` and `uv.lock` are copied from the frozen comparator source; do not regenerate the lock. Paper workers used Python 3.12.14, NumPy 2.5.2, SciPy 1.18.1 and scikit-learn 1.9.0. `results/*/environment.json` records actual per-study hardware/software; the local calibration cohort differs from cluster cohorts. The portable setup is tested separately, not claimed to recreate an OS/BLAS image.
