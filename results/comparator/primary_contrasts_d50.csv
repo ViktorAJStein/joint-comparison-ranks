@@ -1,0 +1,13 @@
+cohort,case,d,orientation,comparator,calibration_eligible,complete,rank_only,comparator_only,difference,lo,hi,pvalue,holm_pvalue,controlled_size_superiority
+cpu-d50,alt_locshift,50,raw,SCF_GaussianWindow_TrainGrid,False,True,91,39,0.104,0.004658179077541916,0.2000562054214643,5.876389856455311e-06,0.00011165140727265091,False
+cpu-d50,alt_locshift,50,raw,MMD_RFF_TrainGrid,False,True,38,129,-0.182,-0.2838805608806901,-0.07443087709447326,8.682686424142268e-13,1.8233641490698764e-11,False
+cpu-d50,alt_locshift,50,raw,C2ST_RBF_Hypergeometric,True,True,73,105,-0.064,-0.1760678004781045,0.050050908663090476,0.01989186079812236,0.3580534943662025,False
+cpu-d50,alt_sparse_scale,50,raw,SCF_GaussianWindow_TrainGrid,True,True,181,29,0.304,0.19279827352904944,0.40573820369073044,4.752221568238574e-28,1.0454887450124862e-26,True
+cpu-d50,alt_sparse_scale,50,raw,MMD_RFF_TrainGrid,True,True,181,12,0.338,0.23766713784396504,0.4276161560063142,6.7060930089941445e-40,1.6094623221585945e-38,True
+cpu-d50,alt_sparse_scale,50,raw,C2ST_RBF_Hypergeometric,True,True,185,26,0.318,0.20793053879580897,0.41815593618940317,9.477349752473e-31,2.1797904430687902e-29,True
+cpu-d50,alt_sparse_scale,50,rotated,SCF_GaussianWindow_TrainGrid,True,True,44,38,0.012,-0.0706275825308049,0.09423555198786775,0.581114454176647,1.0,False
+cpu-d50,alt_sparse_scale,50,rotated,MMD_RFF_TrainGrid,True,True,47,37,0.02,-0.06352311276380036,0.10287114411960022,0.3261341711919829,1.0,False
+cpu-d50,alt_sparse_scale,50,rotated,C2ST_RBF_Hypergeometric,True,True,38,103,-0.13,-0.22788572788323108,-0.028022003074950688,4.09804793129638e-08,8.19609586259276e-07,False
+cpu-d50,alt_gmm_matched,50,raw,SCF_GaussianWindow_TrainGrid,True,True,26,32,-0.012,-0.08251025268520452,0.05892024084152417,0.5118423084381691,1.0,False
+cpu-d50,alt_gmm_matched,50,raw,MMD_RFF_TrainGrid,True,True,26,21,0.01,-0.05456559388243708,0.07421144744647426,0.5600646295802106,1.0,False
+cpu-d50,alt_gmm_matched,50,raw,C2ST_RBF_Hypergeometric,True,True,25,25,0.0,-0.06628563326718383,0.06628563326718383,1.0,1.0,False

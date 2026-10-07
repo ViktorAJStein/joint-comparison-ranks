@@ -1,0 +1,17 @@
+{
+  "id": "dependence-power-v1-20261007",
+  "base_source_commit": "8f2de62a8c4aebe286872fb1ccd81eb73f83772d",
+  "base_seed": 2026100723,
+  "alpha": 0.05,
+  "B": 100,
+  "null_repetitions": 4000,
+  "power_repetitions": 500,
+  "pilot_rep_start": 100000,
+  "copula": {"dimensions": [4,20], "sample_sizes": [1000], "rho_reference": 0.6, "K": 4, "L": 64, "generators": ["gaussian", "clayton", "gumbel"], "methods": ["Rank_G_pairs", "ME", "Fourier_unsmoothed", "MMD_exact_median_grid"], "marginals": "Beta(2,5)"},
+  "gaussian": {"dimensions": [2], "sample_sizes": [250,500,1000,2000], "rho_reference": 0.0, "rho_alternatives": [0.2,0.4], "K": 2, "L": 1, "methods": ["Rank_Pearson_joint", "Rank_Pearson_coordinate0"], "marginals": "uniform"},
+  "rank": {"alpha0": 0.1, "engine": "auto", "tie": "jitter", "jitter_scale": 1e-12, "decision": "pvalue", "stop_ci": "none", "antithetic": false, "gpu": "off", "reference_mode": "shared_pool", "use_fullY_for_HY": true, "chunk": 512},
+  "features": {"J": 10, "ridge": 1e-6, "bandwidth_scale": 1.0, "median_subsample": 1000},
+  "mmd": {"estimator": "unbiased", "num_scales": 5, "base": 2.0, "median_subsample": 1000},
+  "analysis": {"null_family_size": 32, "null_family_alpha": 0.05, "null_upper_margin": 0.015, "primary_power_family_size": 20, "power_family_alpha": 0.05, "failure_policy": "missing/failed/warning strata NA, no survivor rates", "cohort_policy": "within-study fixed CPU/exact Python-build/library cohort; full platform and kernel recorded, effects/timings stratified; no alteration of old campaign policy"},
+  "execution": {"cpus_per_task": 1, "gpus": 0, "memory_gib": 4, "maximum_total_cpu_core_hours": 14.0, "preparation_reserve_cpu_core_hours": 0.25, "analysis_reserve_cpu_core_hours": 0.5, "automatic_retries": false}
+}

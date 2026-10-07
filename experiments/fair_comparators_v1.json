@@ -1,0 +1,31 @@
+{
+  "id": "fair-comparators-v1-20261006",
+  "decision_scale_authorized": false,
+  "alpha": 0.05,
+  "dimensions": [20, 50],
+  "training_per_class": 200,
+  "evaluation_per_class": 500,
+  "evaluation_permutations": 199,
+  "training_permutations_per_candidate": 49,
+  "scale_multipliers": [0.25, 0.5, 1.0, 2.0, 4.0],
+  "null_repetitions": 4000,
+  "power_repetitions": 500,
+  "base_seed": 20261006,
+  "pilot_rep_start": 100000,
+  "cohort_dimensions": {"tu-cpu": [20], "lrz-cpu": [50]},
+  "methods": ["Rank_Singleton_Conservative", "Rank_Pairs_Conservative", "SCF_GaussianWindow_Median", "SCF_GaussianWindow_TrainGrid", "MMD_RFF_Median", "MMD_RFF_TrainGrid", "C2ST_Logistic_Hypergeometric", "C2ST_RBF_Hypergeometric"],
+  "rank": {"K_ref": 4, "alpha0": 0.1, "L": 64, "engine": "auto", "tie": "jitter", "jitter_scale": 1e-12, "decision": "pvalue", "stop_ci": "none", "antithetic": false, "stat": "gtest", "gpu": "off", "reference_mode": "shared_pool", "use_fullY_for_HY": true, "chunk": 512},
+  "scf": {"J": 10, "ridge": 0.000001},
+  "rff": {"features": 256},
+  "classifier": {"C": 1.0, "logistic_max_iter": 1000, "rbf_gamma": "scale", "class_weight": "balanced"},
+  "method_timeout_seconds": 60,
+  "cases": [
+    {"id": "null_gaussian", "family": "sparse-scale", "params": {"sigma": 1.5, "sparse_dims": 1}, "null": true, "rounded": false, "orientations": ["raw", "rotated"]},
+    {"id": "null_rounded", "family": "sparse-scale", "params": {"sigma": 1.5, "sparse_dims": 1}, "null": true, "rounded": true, "orientations": ["raw"]},
+    {"id": "null_ar1", "family": "locshift", "params": {"rho": 0.6, "delta": 0.4}, "null": true, "rounded": false, "orientations": ["raw"]},
+    {"id": "alt_locshift", "family": "locshift", "params": {"rho": 0.6, "delta": 0.4}, "null": false, "rounded": false, "orientations": ["raw"], "matched_null": "null_ar1"},
+    {"id": "alt_sparse_scale", "family": "sparse-scale", "params": {"sigma": 1.5, "sparse_dims": 1}, "null": false, "rounded": false, "orientations": ["raw", "rotated"], "matched_null": "null_gaussian"},
+    {"id": "alt_gmm_matched", "family": "gmm-matched", "params": {"delta": 0.8, "sparse_dims": 2}, "null": false, "rounded": false, "orientations": ["raw"], "matched_null": "null_gaussian"}
+  ],
+  "analysis": {"null_family_size": 64, "null_family_alpha": 0.05, "null_upper_margin": 0.015, "primary_rank": "Rank_Pairs_Conservative", "primary_comparators": ["SCF_GaussianWindow_TrainGrid", "MMD_RFF_TrainGrid", "C2ST_RBF_Hypergeometric"], "primary_power_family_size": 24, "power_family_alpha": 0.05}
+}

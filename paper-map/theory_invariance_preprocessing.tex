@@ -1,0 +1,145 @@
+% All new theory text is purple; oracle and implementation scopes are explicit.
+{\color{purple}
+\subsection{Invariance, preprocessing, and representation averaging}
+\label{app:invariance-preprocessing}
+
+A \emph{view} in this appendix means a selected coordinate subspace after a specified transformation; an informative view is one with positive population rank divergence at the chosen resolution.
+
+These statements distinguish the exact comparison map, the population rank law, a coupled empirical histogram statistic, and a permutation decision. Population identification does not automatically establish empirical-reference consistency. In particular, the iid oracle rank law averages over a fresh reference batch per query. A shared batch $b$ instead induces conditional partition laws $\pi_b(\mathbf n)=\Pr_P(R(X;b)=\mathbf n)$ and $q_b(\mathbf n)=\Pr_{\widetilde P}(R(Y;b)=\mathbf n)$. Equality of the batch-averaged laws need not imply equality for a realized batch: for $K=1$, centered Gaussian scale alternatives have the same averaged Bernoulli law, but $F_P(b)\ne F_{\widetilde P}(b)$ at a nonzero cutoff. Thus fixed-$K$ blindness examples for the iid oracle cannot automatically be transferred to the shared-pool implementation or its asymptotic power. Likewise, a representation symmetry does not automatically apply to a seeded subset-selection or numerical tie-breaking implementation.
+
+\begin{proposition}[Comparison-rank symmetries and their limits]\label{prop:rank-symmetries}
+For a fixed batch $b^{(1:K)}$, let $R_j(x;b)=\sum_{k=1}^K\mathbf1\{b_j^{(k)}\le x_j\}$.
+\begin{enumerate}[label=\textup{(\roman*)},leftmargin=*]
+\item If $g_j$ is strictly increasing for each $j$, applying $g(x)=(g_j(x_j))_j$ to the query and batch leaves $R$ exactly unchanged, even with ties. If $g_j$ is strictly decreasing, the transformed right-continuous count is
+\[
+R'_j=K-R_j+E_j,\qquad E_j=\sum_{k=1}^K\mathbf1\{b_j^{(k)}=x_j\}.
+\]
+With no tied query--reference pairs, it is the cell reversal $R'_j=K-R_j$. A mixture of increasing and decreasing coordinate maps induces the corresponding coordinatewise reversal. Independent queries and batches with continuous reference marginals have no ties almost surely. With ties, midranks $R^{\rm mid}_j=\#\{b_j<x_j\}+\tfrac12\#\{b_j=x_j\}$ obey $R'^{\rm mid}_j=K-R^{\rm mid}_j$, on their half-integer grid; this is a different tie convention, not a claim about the current integer right-rank implementation.
+\item Reordering the $K$ reference points leaves the rank vector unchanged. A coordinate permutation permutes its components. Any common bijection of cell labels in \emph{both} rank laws or histograms preserves their $f$-divergence, including the extended zero-cell convention. Consequently, the full population rank divergence is invariant to coordinate permutations and, under the no-tie condition, coordinate reversals. Nonzero coordinatewise affine maps are special cases; positive scales require no no-tie condition.
+\item For an empirical subspace statistic, coordinate-permutation equivariance requires transporting the subset list and all coordinate-attached random choices. Uniform subset selection gives invariance \emph{in distribution}, not necessarily equality for an unchanged finite random draw or numerical seed. The analogous reference-pool exchangeability requires transporting selected indices; permuting one already selected batch is an exact symmetry.
+\item Arbitrary rotations need not preserve comparison ranks, histogram divergences or power. Nor do non-strict monotone maps, which can merge distinct values. No invariance claim is made for a fixed additive-jitter scale applied afresh after nonlinear transformations or rescaling.
+\end{enumerate}
+\end{proposition}
+\begin{proof}
+Increasing maps preserve each weak inequality. Decreasing maps change $b_j\le x_j$ into $b_j\ge x_j$, whose count is $K-\#\{b_j<x_j\}=K-R_j+E_j$; the midrank identity follows similarly. Batch reordering is a reordering of a sum. Coordinate transformations act on rank components, and a cell bijection is a change of summation index in $D_f$. Subset equivariance follows by transforming each selected coordinate index. Mixing coordinates need not preserve any individual inequality: for instance $b=(0,1)$ and $x=(1,0)$ have ranks $(1,0)$ at $K=1$, whereas a suitable common $60$-degree rotation gives $(1,1)$. A population counterexample also changes divergence: take $K=1$, reference $\mathcal N(0,I_2)$ and target $\mathcal N(0,\operatorname{diag}(4,1))$. Before rotation, independent symmetric target coordinates yield a uniform rank law, so $D_1=0$. After a common $45$-degree rotation, the target coordinates have nonzero covariance while the reference remains isotropic. The query-minus-reference vector is a correlated centered Gaussian, so its positive quadrant probability differs from $1/4$ (condition on one coordinate and use strict monotonicity of the conditional Gaussian cdf). Therefore the rotated rank law is not uniform and $D_1>0$. This counterexample has no tied pairs.
+\end{proof}
+
+\paragraph{Self-comparisons, jitter, and reference PIT.}
+Even with continuous observations, a reference observation ranked against a batch containing itself has $E_j\ge1$. Thus the no-tie reversal identity cannot simply be applied to the empirical reference-side histogram. Strictly increasing transformations still preserve those comparisons. To claim a decreasing-map symmetry one must either exclude such pairs or use a reversal-equivariant tie convention. Fixed numerical jitter may also perturb close but unequal values; its effect is not restricted mathematically to exact ties. An order-based auxiliary tie rule carried with the observations can preserve increasing-map equivariance; independently adding Gaussian jitter after each transformation need not. No such implementation change is made here.
+
+For independent population query/batch pairs and continuous reference marginal cdfs, applying the common reference PIT $S(x)=(\widetilde F_j(x_j))_j$ to \emph{both} query and batch preserves comparison ranks almost surely. Indeed, for fixed $x_j$ the two threshold events differ only on a reference-CDF level set of reference probability zero; condition on the query and then integrate. Strictly increasing cdfs give pointwise order preservation. Continuous but non-injective cdfs still need not allow recovery of the original target law from $S_\#P$; identification requires the injectivity conditions stated earlier. Applying each distribution's \emph{own} PIT instead is not this common-map invariance and can remove marginal differences. For discrete reference marginals the ordinary PIT is not uniform and can merge values; randomized distributional transforms or midranks require an explicit new convention and corresponding analysis.
+
+\begin{proposition}[Label-symmetric preprocessing and conditional permutation validity]\label{prop:pooled-preprocess-valid}
+Let $n=N+M$ observations be i.i.d. under $H_0$. Given their unlabeled pooled cloud and auxiliary randomness independent of the labels, compute a preprocessing rule $\Phi$ without using the allocation to target/reference roles. It must be a measurable function of the unlabeled cloud, with transformed observations carried along with their original identities; equivalently, it is row-permutation equivariant, including any attached random priorities. Keep this rule and all chosen transformations fixed. For each allocation $a\in\Omega=\{a\subseteq\{1,\ldots,n\}:|a|=N\}$, let $T(a)$ be the same well-defined allocation-to-statistic map, including any regularization and auxiliary reference-batch construction. Conditional on the unlabeled cloud and the permitted auxiliary randomness,
+\[
+p_{\rm exact}=\frac{\#\{a\in\Omega:T(a)\ge T(a_0)\}}{|\Omega|}
+\quad\text{satisfies}\quad
+\Pr_{H_0}(p_{\rm exact}\le\alpha\mid\text{cloud, auxiliary randomness})\le\alpha.
+\]
+The fixed-budget Monte Carlo plus-one p-value using $B$ independent uniform allocations also is super-uniform. This includes pooled centering, pooled covariance/PCA/whitening with a deterministic eigenbasis rule independent of sample labels, and fixed label-independent rotation/projection ensembles. It does not assert exact validity of mid-$p$, unproved sequential stopping, or antithetic permutation pairs: the Monte Carlo argument here uses independent uniform allocations.
+\end{proposition}
+\begin{proof}
+Conditional on the cloud and allowed auxiliary randomness, $a_0$ is uniform on $\Omega$ and the vector $(T(a))_{a\in\Omega}$ is fixed. At most an $\alpha$ fraction of its entries can have upper-tail ranks at most $\alpha|\Omega|$, with ties counted conservatively. For Monte Carlo, $a_0,a_1,\ldots,a_B$ are conditionally i.i.d. uniform allocations. Thus their scores are exchangeable and the conservative rank of score zero among $B+1$ scores is super-uniform, giving the plus-one rule. No independence between component statistics is used.
+\end{proof}
+
+A fixed auxiliary field can select fresh empirical reference batches from the current reference role for \emph{every} allocation using the same rule; the reference pool itself must still change with the allocation. Keeping the observed reference pool frozen would test a different statistic. The reference-selection rule must be well-defined on each allocation, using label-independent indexing/priorities; a position-based implementation with ordered reference roles requires its own ordering/exchangeability audit. An abstract fixed-allocation proof does not automatically certify every reference-position or RNG path in the code. Label-dependent feature selection, tuning or class-specific normalization fitted on the observed allocation cannot simply be frozen: either repeat that complete selection procedure for each allocation, or use independent training data. Pooled PCA computed by a row-order-dependent tie-breaking routine also needs a label-independent, equivariant specification, rather than an unspecified solver convention. Invertibility is not required for validity, but information lost by a projection can hurt power.
+
+\begin{proposition}[Pooled PCA equivariance and the whitening identity]\label{prop:pca-equivariance}
+Let $Z\in\mathbb R^{n\times d}$ be the pooled data, $Z_c$ its centered version, and $C=Z_c^\top Z_c/(n-1)$. Suppose the retained eigenvalues $\lambda_1>\cdots>\lambda_r>0$ are simple, with eigenvectors $V_r$, ordered by eigenvalue. If both samples are transformed by a common orthogonal matrix $Q$, then corresponding pooled-PCA scores satisfy
+\[
+Z_c Q\,V'_r=Z_cV_r D,\qquad D=\operatorname{diag}(\pm1).
+\]
+Whitened scores $Z_cV_r\operatorname{diag}(\lambda_i^{-1/2})$ obey the same sign equivariance. For a rank histogram/statistic with the no-tie reversal convention of Proposition~\ref{prop:rank-symmetries}, or an appropriate reversal-equivariant midrank convention, transporting the subset choices therefore makes the PCA-based statistic rotation invariant in this setting. This is not an unconditional claim for the right-rank/self-comparison/jitter implementation.
+
+On any fixed PCA score matrix with positive retained eigenvalues, common pooled whitening is positive coordinatewise rescaling. Thus it leaves exact comparison ranks unchanged, including right-rank self-comparisons, when auxiliary choices are coupled and no new fixed-scale jitter is inserted after rescaling. Whitening cannot improve or change the population rank divergence solely through these positive scales.
+\end{proposition}
+\begin{proof}
+The rotated covariance is $Q^\top C Q$. Simplicity implies $V'_r=Q^\top V_rD$; multiplying by $Z_cQ$ gives the first identity. Eigenvalues are unchanged, so whitening commutes with the diagonal sign matrix. The stated rank-statistic invariance then follows from the cell-reversal argument under its tie hypotheses. The final identity uses only the exact strictly increasing-map invariance, since all whitening scales are positive.
+\end{proof}
+
+\paragraph{When PCA can align a covariance difference.}
+For reference $\mathcal N(0,I_d)$ and target $\mathcal N(0,I_d+(\sigma^2-1)vv^\top)$ with $\|v\|=1$, $\sigma>1$, and pooled target fraction $\eta\in(0,1)$, the population pooled covariance is
+\[
+C_*=I_d+\eta(\sigma^2-1)vv^\top.
+\]
+Its top eigenvector is $v$ up to sign, with gap $\Delta=\eta(\sigma^2-1)$. Thus PCA can expose this covariance-visible direction as one meaningful coordinate even after a common rotation. More quantitatively, if $\widehat C=C_*+E$ and $\|E\|_{\rm op}<\Delta/2$, a unit top eigenvector $\widehat v$ satisfies
+\[
+\|(I-vv^\top)\widehat v\|\le
+\frac{\|E\|_{\rm op}}{\Delta-\|E\|_{\rm op}}.
+\]
+To see this, the variational bound gives $\widehat\lambda\ge1+\Delta-\|E\|_{\rm op}$; projecting the eigenvector equation onto $v^\perp$ gives $(\widehat\lambda-1)(I-vv^\top)\widehat v=(I-vv^\top)E\widehat v$. This alignment is not a power bound: the selected coordinates must still have positive rank divergence at the chosen $K$ and be sampled. For instance, a centered symmetric scale change has zero univariate rank divergence at $K=1$ relative to a centered symmetric reference.
+
+\paragraph{Failure cases and the meaning of whitening.}
+Repeated eigenvalues determine only an eigenspace. Bases within it can differ by a general orthogonal matrix, not just signs; coordinate ranks need not be invariant within that block. With spherical covariance no principal direction is selected by second moments. A covariance-only rule cannot generally align a higher-order alternative with matched first two moments; the requested matched-moment GMM is an example of this limitation. Small eigengaps, vanishing eigenvalues, dimension reduction and numerical tie/jitter handling create additional restrictions. An eigengap or representation average can justify a specific remedy, but does not yield universal high-dimensional power.
+
+Common invertible pooled whitening cannot erase a distributional difference as a measure-level matter. After PCA it cannot change the coordinate-rank divergence either, because it is positive rescaling. By contrast, separately whitening target and reference Gaussian samples can erase a scale/covariance alternative in the population and is label-dependent preprocessing; it is not the pooled procedure covered above. Whitening can also change statistics based on Euclidean distances, without implying the same change for ranks.
+
+Appendix~\ref{app:seeded-calibration} reports a fully seeded, conservatively calibrated coupled representation study: all 17000 PCA/whitening pairs agree. This finite-case equality supports the implementation check but does not extend the no-post-jitter rescaling identity to arbitrary inputs with fixed-scale jitter added after transformation. It is not an independent power gain from whitening.
+
+\begin{proposition}[Representation ensembles]\label{prop:representation-ensemble}
+Fix label-independent maps $g_1,\ldots,g_A$ (orthogonal rotations/projections, pooled preprocessing maps, or combinations thereof), coordinate subsets $J_\ell$, and nonnegative weights $w_a$ summing to one. Define
+\[
+T_{\rm ens}=\sum_{a=1}^A w_a\,\operatorname{Agg}_{\ell=1}^L
+T_{a,\ell},
+\]
+where each component compares target/reference rank histograms in the transformed selected coordinates. Any fixed measurable aggregation, including a maximum, is conditionally permutation-valid under Proposition~\ref{prop:pooled-preprocess-valid} when the \emph{whole} statistic is recalculated for every allocation. Components may overlap and share observations; their separate p-values cannot be combined under a false independence assumption.
+
+For a deterministic base statistic $t$, the full group average
+\[
+\bar t(Z,a)=\int_{O(d)}t(ZQ,a)\,d\nu(Q)
+\]
+is exactly invariant to common orthogonal rotations whenever the integral exists, where $\nu$ is Haar probability measure. An average over finitely many i.i.d. Haar rotations is instead rotation invariant in distribution over the random ensemble; holding the sampled matrices fixed generally loses exact invariance. Finite signed-coordinate/permutation ensembles add no new ideal full-grid rank discrepancy under the symmetry hypotheses above, though they can alter a non-equivariant numerical pipeline or a restricted subset list.
+\end{proposition}
+\begin{proof}
+Validity follows by treating the entire ensemble as the fixed allocation-to-statistic map. Haar invariance gives $\bar t(ZR,a)=\int t(ZRQ,a)\,d\nu(Q)=\bar t(Z,a)$ for fixed orthogonal $R$. The vector $(RQ_a)_a$ has the same joint law as $(Q_a)_a$ for independent Haar draws, but is not usually the identical realized ensemble. Signed/permutation transforms only relabel the ideal full-grid rank cells.
+\end{proof}
+
+\paragraph{PCA ensembles and repeated eigenspaces.}
+Label-independent bootstrap PCA bases or random orthonormal bases within a repeated-eigenvalue block are admissible ensemble components if their pooled resampling/rotation choices are fixed across allocations. Averaging over the entire orthogonal group of a repeated block removes basis-choice ambiguity by the same Haar argument; a finite random ensemble supplies only distributional invariance. Such ensembles do not recover a higher-order distributional difference automatically and do not justify whitening as a separate source of coordinate-rank power.
+
+\paragraph{Population rank divergence, finite ensembles, and cost.}
+For fixed \emph{non-data-adaptive} transforms and finitely many selected subspaces in the independent-batch oracle model, write $D_{K,a,\ell}$ for the corresponding finite rank divergence. For sum aggregation, a componentwise LLN, without requiring independence between components, gives
+\[
+\frac{T_{\rm ens}}{c_fN}\xrightarrow{\mathsf P}
+\sum_{a=1}^A w_a\sum_{\ell=1}^L D_{K,a,\ell}.
+\]
+A positive limit yields oracle consistency with an $o(N)$ threshold. For the empirical permutation procedure, this additionally requires suitable plug-in convergence and a permutation critical value $o_{\mathsf P}(N)$; neither is proved for the current implementation here. If every selected divergence vanishes, this aggregation has no positive population-divergence limit; it does not follow that the complete joint distribution of all component histograms is identical under the alternative. Fixed finite projection collections need not identify all distributions. Even all one-dimensional orientations at $K=1$ have zero population rank divergence when both projected query and reference laws are continuous and symmetric about zero: their difference is symmetric, so its positive sign has probability $1/2$. Thus averaging these fresh-batch population rank laws cannot guarantee positive rank divergence at a fixed resolution. This statement concerns the averaged oracle law, not the conditional shared-batch partition discrepancy described at the start of this appendix.
+
+If an independently sampled view has positive population rank divergence with probability $p_*$, $A$ i.i.d. views include an informative one with probability $1-(1-p_*)^A$. For $h$ informative subsets among $m$ candidates sampled without replacement, the corresponding probability is $1-\binom{m-h}{A}/\binom mA$ ($A\le m$), not the i.i.d. formula. For a sparse-coordinate model where a size-$s$ subset is informative exactly when it contains all $r$ active coordinates, $m=\binom ds$ and $h=\binom{d-r}{s-r}$ if $s\ge r$, otherwise $h=0$. If instead any intersection with the active set is informative, $h=m-\binom{d-r}{s}$, using zero for an impossible binomial coefficient. These are model-dependent coverage calculations, not generic assumptions about alternatives. Sampling an informative view is not itself a power guarantee. A Haar-averaged population divergence is positive exactly when positive-divergence orientations have positive Haar measure; increasing-resolution identification alone does not prove that condition for one fixed $K$. If the orientation-to-divergence function is continuous and positive at one orientation, it is positive on a nonempty open set and hence $p_*>0$; continuity must be justified for the particular cell probabilities and support rather than assumed at a zero-probability boundary.
+
+Dense full rotations cost $O(A(N+M)d^2)$ before testing; $s$-dimensional projections cost $O(A(N+M)ds)$. With $L$ coordinate views of dimension $s$, fixed-$B$ rank comparisons cost $O((B+1)AL(N+M)Ks)$ in addition to histogram operations and preprocessing. Dense pooled PCA has typical cost $O((N+M)d^2+d^3)$. Shared preprocessing can be cached across permutations. More views increase computation and can reduce the separation of the aggregate relative to its null variation; validity and coverage do not imply monotone power improvement. No augmentation power/runtime campaign is claimed complete.
+
+\paragraph{An explicit subspace-invisible interaction.}
+Let the reference be uniform on $[0,1]^d$, let $H$ be an active coordinate set of size $r\ge2$, and take target density
+\[
+p(u)=1+\varepsilon\prod_{j\in H}(2u_j-1),\qquad 0<|\varepsilon|<1.
+\]
+Any projection missing an active coordinate is exactly the reference law, since integrating its linear factor gives zero. For a size-$s$ coordinate view containing $H$, the $K$-rank law differs from the uniform null by a product of coefficients
+\[
+h_n=\int_0^1\binom Kn u^n(1-u)^{K-n}(2u-1)\,du
+=\frac{2n-K}{(K+1)(K+2)}.
+\]
+Consequently its Pearson divergence is exactly
+\[
+D_{K,J}=\varepsilon^2\left(\frac{K}{3(K+2)}\right)^r>0
+\quad\text{if }H\subseteq J,
+\qquad D_{K,J}=0\quad\text{otherwise}.
+\]
+Indeed, $\sum_{n=0}^K h_n^2/(1/(K+1))=K/(3(K+2))$ and the inactive-coordinate factors sum to one. This realizes the all-active-coordinate coverage model above and gives an explicit failure for $s<r$, regardless of the number of coordinate views. The continuum Pearson divergence of this target is $\varepsilon^2 3^{-r}$ by product integration, so an informative rank view retains the fraction $(K/(K+2))^r$ of that discrepancy, illustrated in Figure~\ref{fig:interaction-retained-signal}. The formula gives a population rank divergence in the oracle model, not a power curve or a claim that the entire joint collection of histograms has the null distribution.
+\begin{figure}[t]
+\color{purple}
+\centering
+\includegraphics[width=.68\linewidth]{imgs/theory_subspace_interaction_signal.pdf}
+\caption{\rev{Exact population Pearson rank-divergence attenuation for the displayed interaction family, conditional on a view containing all active coordinates. Missing an active coordinate gives zero rank divergence. The continuum discrepancy also changes with interaction order; normalizing by it isolates the rank-discretization factor. These curves are analytic identities, not empirical rejection frequencies or a sample-complexity bound.}}
+\label{fig:interaction-retained-signal}
+\end{figure}
+
+\paragraph{Dependence is not exclusive to ranks.}
+The matched-marginal Gaussian-copula example compares joint information with marginal tests, which have no marginal population discrepancy. For independent Gaussian reference coordinates, conditional rank means are $KU_j$ and the conditional coordinates are independent, so the rank law determines $\mathbb E[U_1U_2]$. Under a Gaussian-copula target with $\rho\ne0$, let $Z,W$ be correlated standard normals and write $\Phi$ for the standard normal cdf in this paragraph; then $\mathbb E[\Phi(W)\mid Z]=\Phi(\rho Z/\sqrt{2-\rho^2})$. Its strict monotonicity, in the same or opposite direction as $\Phi(Z)$, makes $\operatorname{Cov}(\Phi(Z),\Phi(W))$ nonzero: for an independent copy $Z'$, covariance equals half the expectation of the product of the two function increments. Thus this family has a positive population rank divergence, but arbitrary copula changes can be invisible at fixed $K$. Gaussian MMD, energy distance (with the usual integrability conditions), and full optimal-transport discrepancies need not miss such dependence changes. Finite-feature or finitely sliced variants have their own limitations, which are not established by this example. For Gaussian MMD with kernel $k_\sigma(x,y)=\exp(-\|x-y\|^2/(2\sigma^2))$ and fixed bandwidth $\sigma>0$, the distinction is explicit: writing $\varphi_P(\omega)=\mathbb E_P e^{i\omega^\top X}$,
+\[
+\operatorname{MMD}_{\sigma}^2(P,\widetilde P)=
+\int_{\mathbb R^d}|\varphi_P(\omega)-\varphi_{\widetilde P}(\omega)|^2\,
+ d\mathcal N(0,\sigma^{-2}I_d)(\omega).
+\]
+The Gaussian Fourier representation of the kernel and bounded-integrand Fubini give this identity. Unequal laws have characteristic functions differing somewhere; continuity and the strictly positive Gaussian spectral density make the integral positive. Equal marginals therefore do not imply zero Gaussian MMD. This population separation statement is not a finite-sample power guarantee.
+}

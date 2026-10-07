@@ -1,0 +1,114 @@
+\section{Coordinate-aligned moment-matched mixtures}\label{app:axis-mixture}
+\paragraph{Alternative and hypothesis.}
+This study tests whether coordinate-visible shape differences remain detectable
+under fixed conservative calibration and training-only tuned controls. For
+$d\in\{10,20,50\}$ and active set $A=\{1,\ldots,s\}$, let
+$J_A\sim\mathrm{Unif}(A)$ and $S_A\sim\mathrm{Unif}\{-1,+1\}$ be independent.
+The reference is $Y\sim\mathcal N(0,I_d)$ and the target is
+\[
+ X=Z+aS_A e_{J_A},\qquad
+ a=\min\{\delta,.98\sqrt{s}\},\qquad
+ Z\sim\mathcal N(0,\Sigma_{s,a}),
+\]
+independently of $J_A,S_A$, where $e_j$ is coordinate vector $j$ and
+$\Sigma_{s,a}$ is diagonal, with $1-a^2/s$ on $A$ and 1 elsewhere.
+Thus $\E X=0$ and $\Cov(X)=I_d$: this is neither a mean/variance shift nor
+the two-component compensating-covariance mixture in
+Appendix~\ref{app:matched-comparators}. We retain all
+$(s,\delta)\in\{(2,1.5),(4,1.8),(8,1.8)\}$ in each dimension.
+The effective separation is $a\simeq1.385929$ at $s=2$ and $a=1.8$ otherwise;
+the cap is part of the alternative definition, not a fitted parameter.
+
+\paragraph{Methods and matched protocol.}
+Each class supplies $N=M=1000$ evaluation observations and 200 independent
+training observations. All six methods share data and pooled-training centering
+within a block. Pair-rank $G$ uses $K=4$, $\gamma=.1$, requested $L=128$
+deduplicated coordinate pairs (45 actual at $d=10$, 128 at $d=20,50$),
+shared reference batches reconstructed from fixed reference-role positions,
+and pooled jitter SD $10^{-12}$ reused across permutations.
+The entire summed statistic is recalculated for each allocation.
+
+The fixed-location ME and unsmoothed Fourier controls use $J=64$, pooled
+median-distance scale and ridge $10^{-6}$; their feature statistic is defined
+in Appendix~\ref{app:dependence-power}. Fourier64 means unsmoothed sine/cosine
+features, not Gaussian-window SCF. The three tuned controls are Gaussian-window
+SCF ($J=10$), RFF-MMD (256 features), and train-once RBF C2ST, as defined in
+Appendix~\ref{app:matched-comparators}. SCF/RFF select among five scales
+$\eta_0\{.25,.5,1,2,4\}$ using 49 permutations per candidate on training
+samples only. There is no unrestricted location/frequency optimization.
+Evaluation permutation methods use $B=199$ independent permutations and
+$p=(1+\sum_b\1\{T_b\ge T_{\rm obs}\})/200$ with all ties counted;
+C2ST uses its exact one-sided conditional hypergeometric held-out tail.
+No mid-$p$, stopping or antithetic pairing is used. Seed base is 202610073;
+all $16500$ blocks/$99000$ method calls are complete and independently audited.
+
+\paragraph{Predeclared inference.}
+There are $R=4000$ standard-Gaussian null blocks per dimension and $R=500$
+per alternative. All 18 method/dimension null screens remain in one family.
+A screen resolves only if its exact one-sided upper size bound at confidence
+$1-.05/18$ is at most $.065$ and its Bonferroni18 over-rejection test against
+$.05$ is not significant. All 18 resolve; rank null rejection frequencies are
+$.05000$, $.05350$, $.05225$ at $d=10,20,50$, with upper bounds
+$.06031$, $.06412$, $.06276$. Resolution is an empirical acceptance rule,
+not a theorem of exact $5\%$ level under arbitrary null laws.
+
+All nine settings times five comparators form the original 45-member family
+of exact two-sided McNemar tests, Holm-corrected at $.05$. All 45 pair-rank
+gains are positive, adjusted-significant and supported by both matching null
+screens; the largest adjusted $p$ is $7.776\times10^{-43}$. Differences range
+$36.2$--$96.6$ percentage points. Power intervals are pointwise exact binomial;
+paired intervals are pointwise normal approximations, not simultaneous bounds
+or substitutes for the family correction. An observed $500/500$ rejection
+frequency does not imply population power one. Complete counts, screens,
+discordances and distributions follow, including the lower absolute power at
+$d=50,s=8$ and all runtime disadvantages.
+
+\paragraph{Scope, timing and reproducibility.}
+These results support fixed-sample sensitivity on the specified
+coordinate-aligned shape changes, not general superiority, rotation robustness,
+empirical-reference consistency or causal identification of a bandwidth-dilution
+mechanism. The two-component mixture's weak results remain in the matched
+comparator and generator studies. At $d=50,s=8$, rank power is $42.0\%$
+versus $3.6$--$5.6\%$ for controls, but median total latency is $1.731$
+seconds versus $.112$, $.389$, $.091$ for SCF-grid, RFF-grid, RBF C2ST.
+These are fixed sample/feature/tuning budgets, not equal-wall-time comparisons.
+Total time charges common generation/centering/scale preparation plus each
+method's training and test call; it is not shared amortized rank latency.
+
+Dimensions $10,20$ use AMD EPYC 7302 CPUs; $50$ uses Intel Xeon Gold 6148.
+Each block's methods share one CPU, one numerical thread, double precision,
+Python 3.12.14, NumPy 2.5.2, SciPy 1.18.1 and scikit-learn 1.9.0. Exact
+Python/compiler cohorts differ between processors; Linux kernel strata are
+retained under the prospectively declared policy. The distinct matched-comparator guard
+is not waived. Dimension and hardware are confounded for runtime scaling.
+Allocated CPU cost, including qualification and software-admission failures,
+is $11.9403$ core-hours; no GPU is used. Software admission rejects occur
+before data generation; only absent null shards are rerun on qualified CPUs,
+with unchanged seeds/source/guard and no repeated alternative cohort.
+Complete statistics, configuration, CSVs and checksums are supplied under
+\texttt{empirical\_data/axis\_mixture\_20261007/}; anonymous runnable-code
+availability is separately disclosed in Appendix~\ref{app:release-scope}.
+
+\input{empirical_data/axis_mixture_20261007/tables}
+\begin{figure}[t]\centering
+\includegraphics[width=.96\linewidth]{axis_mixture_complete_power.pdf}
+\caption{All nine axis-mixture settings and six methods, $R=500$ per alternative,
+with pointwise exact 95\% intervals. All matching size screens resolve.}
+\label{fig:axis-power}\end{figure}
+\begin{figure}[t]\centering
+\includegraphics[width=.96\linewidth]{axis_mixture_complete_null.pdf}
+\caption{All 18 matched-null screens with $R=4000$. Pointwise intervals are
+separate from the simultaneous upper-bound criterion used for qualification.}
+\label{fig:axis-null}\end{figure}
+\begin{figure}[t]\centering
+\includegraphics[width=.96\linewidth]{axis_mixture_complete_paired.pdf}
+\caption{All 45 paired rank-comparator frequency differences. Pointwise paired
+normal intervals are descriptive; qualification uses the unchanged exact
+McNemar/Holm45 family and both matched-null screens.}
+\label{fig:axis-paired}\end{figure}
+\begin{figure}[t]\centering
+\includegraphics[width=.96\linewidth]{axis_mixture_complete_runtime.pdf}
+\caption{All axis-mixture alternative power/timing points. Rank power gains
+are not runtime dominance or equal-wall-time gains; timing distributions include
+common preparation and method-specific training/test costs.}
+\label{fig:axis-runtime}\end{figure}

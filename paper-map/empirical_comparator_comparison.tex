@@ -1,0 +1,163 @@
+% New frozen comparator evidence; blue revisions, no TU kernel-guard waiver.
+{\color{blue}
+\section{Matched finite-feature and classifier comparisons}
+\label{app:matched-comparators}
+
+\paragraph{Protocol and data.}
+A separately frozen eight-method study uses $\alpha=.05$, an independent
+training sample of 200 observations per class, and evaluation sizes $N=M=500$.
+Every method receives the same training/evaluation arrays in each block;
+selection never uses evaluation labels. The pooled training mean centers all
+arrays. The scale $\eta_0$ is the median positive pairwise distance among the
+400 pooled training observations. Cases and seeds are fixed before evaluation;
+method order is randomized within each block to reduce timing-order effects.
+There are $R=4000$ repetitions per null representation and $R=500$ per
+alternative representation, with no omitted or failed method calls.
+
+For $d\in\{20,50\}$, the nulls are standard Gaussian, its common randomly
+rotated representation, integer-rounded standard Gaussian, and Gaussian AR1
+with covariance $\Sigma_{ij}=.6^{|i-j|}$ for $i,j\in\{1,\ldots,d\}$.
+The shift target is $\mathcal N(.4d^{-1/2}\mathbf1,\Sigma)$ against
+$\mathcal N(0,\Sigma)$. The sparse-scale target has covariance
+$\operatorname{diag}(1.5^2,1,\ldots,1)$ against a standard Gaussian reference.
+A common orthogonal matrix, obtained by Gaussian QR decomposition, rotates
+both classes' training and evaluation arrays within the same base block.
+The matched-moment target is the equiprobable mixture with component means
+$\pm\mu$, $\mu=(.8/\sqrt2,.8/\sqrt2,0,\ldots,0)$, and component covariance
+$I_d-\mu\mu^\top$; the sampler adds $10^{-10}I_d$ for numerical stability.
+This is not the separate axis-mixture diagnostic.
+
+\paragraph{Rank methods.}
+We compare singleton and pair-coordinate $G$-tests, summed over fixed coordinate
+views, with $K=4$, requested $L=64$, reference pseudocount $\gamma=.1$ and
+pooled Gaussian jitter SD $10^{-12}$. Deduplication leaves $d$ singleton views
+and 64 pair views. Each view uses a shared reference batch reconstructed from
+fixed reference-role positions under each allocation; all $M$ assigned reference
+observations contribute to the reference histogram. Jitter, views and the
+auxiliary field are frozen for the complete permutation statistic. There is no
+PCA, mid-$p$, early stopping, antithetic pairing or GPU acceleration in this
+study. It evaluates $G$, not a comparison of divergence generators.
+
+\paragraph{Gaussian-window SCF.}
+For $J=10$ fixed frequencies $\omega_j\sim\mathcal N(0,I_d)$ and scale
+$\eta>0$, define the $2J$-dimensional features
+\[
+ \phi_\eta(z)=e^{-\|z/\eta\|^2/2}
+ \bigl(\sin(\omega_j^\top z/\eta),\cos(\omega_j^\top z/\eta)\bigr)_{j=1}^{J}.
+\]
+With $D_i=\phi_\eta(X_i)-\phi_\eta(Y_i)$,
+$\bar D=N^{-1}\sum_iD_i$ and
+$\widehat V=N^{-1}\sum_i(D_i-\bar D)(D_i-\bar D)^\top$, the statistic is
+$N\bar D^\top(\widehat V+10^{-6}I_{2J})^{-1}\bar D$.
+The covariance is recomputed for every full ordered permutation, including
+within-role pairing. Median and training-grid scales are separate methods.
+These are Gaussian-window features, not unsmoothed characteristic-function features; frequencies are random rather than optimized.
+
+\paragraph{Random-feature MMD.}
+For $H=256$, draw fixed $\omega_h\sim\mathcal N(0,I_d)$ and independent
+$b_h\sim\mathrm{Unif}[0,2\pi]$. Set
+$\psi_\eta(z)=\sqrt{2/H}(\cos(\omega_h^\top z/\eta+b_h))_{h=1}^{H}$.
+The statistic is the squared distance between the two empirical feature means,
+a biased finite-feature Gaussian-MMD approximation, not exact quadratic-kernel
+MMD. Median and training-grid bandwidths are reported separately; finite random
+features do not inherit a universal fixed-feature identification guarantee.
+
+\paragraph{Training-only scale selection.}
+The median variants use $\eta_0$. Grid variants select among
+$\eta_0\{.25,.5,1,2,4\}$ using only the independent training arrays.
+For each candidate, let $T$ be its training statistic and $\bar T_\pi,s_\pi$
+the mean and sample standard deviation from 49 training permutations.
+Selection maximizes $(T-\bar T_\pi)/\max(s_\pi,10^{-12})$, breaking ties by
+the first candidate. Frequencies, phases and training orders are shared across
+candidates; fresh, independent evaluation permutations calibrate the selected
+statistic. This fixed proxy/grid is not unrestricted feature or bandwidth
+optimization.
+
+\paragraph{Classifier tests and calibration.}
+Logistic regression and RBF SVC are fitted once on the common training split,
+with training-fitted coordinate standardization, $C=1$ and balanced class
+weights. Logistic regression has maximum 1000 iterations; SVC uses its
+training-variance-based \texttt{gamma=scale}. Training standardization is
+refitted within each orientation; the pipeline is not claimed to be exactly
+rotation-invariant. For $n=N+M=1000$ evaluation labels with $n_1=N=500$ target
+labels, let $k$ be the number of predicted target labels and $h$ their overlap
+with true target labels. Conditional null calibration uses
+$Z_{\rm hyp}\sim\mathrm{Hypergeom}(n,k,n_1)$ and $p=\Pr(Z_{\rm hyp}\ge h)$; this differs from recalibrating a classifier after refitting it on evaluation labels.
+The rank, SCF and RFF methods instead use $B=199$ independent uniform
+permutations and the full-budget plus-one upper tail, counting ties.
+
+\paragraph{Declared uncertainty and calibration screen.}
+Tables report observed rejection frequencies, not population guarantees.
+Pointwise exact 95\% binomial intervals accompany alternative frequencies.
+The original null family has 64 slots: eight methods, four null representations
+and two dimensions. The screen requires both a Bonferroni64-adjusted one-sided
+over-rejection $p$-value at least $.05$ and a simultaneous one-sided upper size
+bound $U\leq .05+.015$. The $.015$ margin is an empirical certification
+criterion, not a change to the nominal level or a universal validity guarantee.
+Failure of the upper-bound criterion alone is inconclusive, not proof that a
+method is intrinsically invalid. Both methods must pass their matching null
+screens before a primary calibrated-superiority claim.
+
+The original primary family contains 24 paired contrasts: pair ranks against
+SCF grid, RFF-MMD grid and RBF C2ST in eight alternative/dimension strata.
+Exact two-sided binomial tests of discordant paired decisions use Holm24;
+simultaneous difference bounds subtract conservative exact bounds for the
+rank-only and comparator-only rejection probabilities. All declared slots
+remain: unresolved $d=20$ contrasts are NA and conservatively assigned $p=1$
+for the correction, not removed to shrink the family. A qualified gain requires
+a passing matched-null screen, adjusted $p<.05$ and a positive simultaneous
+lower difference bound. Negative eligible contrasts can favor the comparator.
+
+\paragraph{Results and limitations.}
+At $d=50$, pair-rank sparse-scale power is $41.0\%$ versus
+$10.6\%$, $7.2\%$ and $9.2\%$ for the three primary comparators.
+All three calibrated paired gains survive the original family correction.
+After rotation, pair ranks have $10.0\%$ versus RBF C2ST's $23.0\%$,
+a qualified contrast in the opposite direction. Location shift gives no
+qualified primary pair-rank gain; median RFF-MMD's observed $54.6\%$ versus
+pair ranks' $21.6\%$ is a descriptive secondary comparison, not an added primary
+hypothesis. All eight mixture frequencies are $4.6$--$6.8\%$ at nominal $5\%$.
+The highest singleton sparse-scale frequency ($54.2\%$) lacks a passing matching
+raw-Gaussian screen. We do not select winners from these unqualified estimates.
+This experiment has no PCA arm; the separate coupled PCA/whitening evidence
+in Table~\ref{tab:coupled-rotation} is not a matched improvement to these runs.
+
+\paragraph{Hardware, timing and $d=20$ provenance.}
+The $d=50$ cohort uses Intel Xeon Gold 6148 CPUs; $d=20$ uses AMD EPYC 7302.
+Each worker allocates one CPU with one numerical thread. Both use Python 3.12.14,
+NumPy 2.5.2, SciPy 1.18.1 and scikit-learn 1.9.0, with distinct qualified Python
+builds and OS cohorts; arrays use double precision. Dimensions and hardware
+are confounded across panels, so these are not cross-dimension runtime-scaling
+measurements. All methods within each paired block use the same worker.
+Recorded total latency includes common preprocessing, training/selection,
+evaluation/calibration and call-side integrity checks; it excludes startup
+and raw-output/archive writing. On raw sparse scale, pair ranks take $2.4126$
+seconds versus $.0813$, $.2362$ and $.0534$ for SCF grid, RFF-MMD grid and
+RBF C2ST. These implementation-specific costs are not those of exact MMD nor the batched matched-generator routine timings.
+
+All 80 original workers completed, with 288000 method calls passing source,
+raw-checksum, original-worker input-replay and coverage audits.
+The original $d=20$ merger nevertheless rejects exact platform-string differences
+between Linux 6.12.110 and 6.12.111, despite identical recorded CPU/software
+and threading signatures otherwise. Original metadata is retained; no kernel
+waiver, reduced worker subset, new seed, retry or replacement statistic is used.
+Tables~\ref{tab:comparator-d20-descriptive}--\ref{tab:comparator-d20-null-descriptive}
+therefore give complete verified descriptive counts, not guard-cleared
+calibrated-superiority conclusions. Kernel compatibility would not itself
+certify the matched-null screens, which remain a separate requirement.
+
+\paragraph{Reproducibility aggregates.}
+The frozen numerical source is \texttt{8f2de62}; complete aggregate CSV/JSON,
+protocol and checksum manifests accompany this source in
+\texttt{empirical\_data/comparator\_20261007/}. Only institution-specific cohort
+aliases are sanitized in publication copies; original private worker records
+remain unchanged. This aggregate archive is not a claim that the updated
+anonymous code repository is already available.
+
+\input{empirical_data/comparator_20261007/power_d50}
+\input{empirical_data/comparator_20261007/null_d50}
+\input{empirical_data/comparator_20261007/paired_d50}
+\input{empirical_data/comparator_20261007/runtime_d50}
+\input{empirical_data/comparator_20261007/power_d20_descriptive}
+\input{empirical_data/comparator_20261007/null_d20_descriptive}
+}

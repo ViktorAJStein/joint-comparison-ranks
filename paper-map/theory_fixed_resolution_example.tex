@@ -1,0 +1,26 @@
+\begin{example}[A non-null alternative invisible at one fixed resolution]\label{ex:fixed-K-blind}
+Take a uniform reference on $[0,1]$ and fix $K\ge1$. Let $L_{K+1}$ be the degree-$(K+1)$ Legendre polynomial on $[-1,1]$, and give the target density
+\[
+p_K(u)=1+\varepsilon L_{K+1}(2u-1),\qquad 0<|\varepsilon|<1.
+\]
+Since $|L_{K+1}|\le1$ on this interval, this is a nonnegative normalized density different from the reference. Orthogonality against every polynomial of degree at most $K$ gives
+\[
+Q_{P\mid\widetilde P}^{(K)}(n)
+=\int_0^1\binom Kn u^n(1-u)^{K-n}p_K(u)\,du
+=\frac1{K+1},\qquad n=0,\ldots,K.
+\]
+Thus $D_K=0$ although $P\ne\widetilde P$. In the independent-batch oracle model, the entire rank-count distribution is the null multinomial distribution, so no test using only these rank counts can distinguish this alternative. The alternative depends on the fixed resolution; this does not contradict identification along increasing resolutions for one fixed pair of laws. Orthogonality follows directly from the shifted Rodrigues formula: $L_{K+1}(2u-1)$ is the $(K+1)$st derivative of $u^{K+1}(u-1)^{K+1}/(K+1)!$; integrating by parts $(K+1)$ times kills every degree-$K$ test polynomial and all boundary terms.
+
+A dependence-only version with both marginals uniform is
+\[
+p_K(u_1,u_2)=1+\varepsilon L_{K+1}(2u_1-1)L_{K+1}(2u_2-1).
+\]
+It is a non-independent copula density, but the independent-reference $K$-rank law is uniform on all $(K+1)^2$ cells by the same orthogonality. Thus even the full fresh-batch oracle rank law at one resolution can miss a copula change. This is not a proof of blindness for a shared empirical reference batch, whose conditional cutpoints can retain a different discrepancy. Applying the common inverse normal cdf coordinatewise also gives these counterexamples with continuous, strictly increasing reference cdfs on $\mathbb R^d$. Figure~\ref{fig:fixed-K-counterexample} illustrates the univariate construction.
+\end{example}
+\begin{figure}[t]
+\color{purple}
+\centering
+\includegraphics[width=.90\linewidth]{imgs/theory_fixed_K_counterexample.pdf}
+\caption{\rev{Exact fixed-resolution counterexample, not empirical power data: the uniform reference and density $1+\tfrac12L_5(2u-1)$ differ, but both induce uniform rank probabilities at $K=4$. Numerical quadrature verifies the cell probabilities; the equality follows from polynomial orthogonality.}}
+\label{fig:fixed-K-counterexample}
+\end{figure}

@@ -1,0 +1,2862 @@
+[
+  {
+    "python": "3.12.14 (main, Aug 24 2026, 11:43:01) [GCC 8.5.0 20210514 (Red Hat 8.5.0-28)]",
+    "numpy": "2.5.2",
+    "scipy": "1.18.1",
+    "platform": "Linux-6.12.111-1.el8.x86_64-x86_64-with-glibc2.28",
+    "cpu_model": "AMD EPYC 7302 16-Core Processor",
+    "protocol": {
+      "id": "dependence-power-v1-20261007",
+      "base_source_commit": "8f2de62a8c4aebe286872fb1ccd81eb73f83772d",
+      "base_seed": 2026100723,
+      "alpha": 0.05,
+      "B": 100,
+      "null_repetitions": 4000,
+      "power_repetitions": 500,
+      "pilot_rep_start": 100000,
+      "copula": {
+        "dimensions": [
+          4,
+          20
+        ],
+        "sample_sizes": [
+          1000
+        ],
+        "rho_reference": 0.6,
+        "K": 4,
+        "L": 64,
+        "generators": [
+          "gaussian",
+          "clayton",
+          "gumbel"
+        ],
+        "methods": [
+          "Rank_G_pairs",
+          "ME",
+          "Fourier_unsmoothed",
+          "MMD_exact_median_grid"
+        ],
+        "marginals": "Beta(2,5)"
+      },
+      "gaussian": {
+        "dimensions": [
+          2
+        ],
+        "sample_sizes": [
+          250,
+          500,
+          1000,
+          2000
+        ],
+        "rho_reference": 0.0,
+        "rho_alternatives": [
+          0.2,
+          0.4
+        ],
+        "K": 2,
+        "L": 1,
+        "methods": [
+          "Rank_Pearson_joint",
+          "Rank_Pearson_coordinate0"
+        ],
+        "marginals": "uniform"
+      },
+      "rank": {
+        "alpha0": 0.1,
+        "engine": "auto",
+        "tie": "jitter",
+        "jitter_scale": 1e-12,
+        "decision": "pvalue",
+        "stop_ci": "none",
+        "antithetic": false,
+        "gpu": "off",
+        "reference_mode": "shared_pool",
+        "use_fullY_for_HY": true,
+        "chunk": 512
+      },
+      "features": {
+        "J": 10,
+        "ridge": 1e-06,
+        "bandwidth_scale": 1.0,
+        "median_subsample": 1000
+      },
+      "mmd": {
+        "estimator": "unbiased",
+        "num_scales": 5,
+        "base": 2.0,
+        "median_subsample": 1000
+      },
+      "analysis": {
+        "null_family_size": 32,
+        "null_family_alpha": 0.05,
+        "null_upper_margin": 0.015,
+        "primary_power_family_size": 20,
+        "power_family_alpha": 0.05,
+        "failure_policy": "missing/failed/warning strata NA, no survivor rates",
+        "cohort_policy": "within-study fixed CPU/exact Python-build/library cohort; full platform and kernel recorded, effects/timings stratified; no alteration of old campaign policy"
+      },
+      "execution": {
+        "cpus_per_task": 1,
+        "gpus": 0,
+        "memory_gib": 4,
+        "maximum_total_cpu_core_hours": 14.0,
+        "preparation_reserve_cpu_core_hours": 0.25,
+        "analysis_reserve_cpu_core_hours": 0.5,
+        "automatic_retries": false
+      }
+    },
+    "protocol_hash": "5984f1e1d336071a0fcc053b953e3854b7bd49b67ab26229758799ee962c66d7",
+    "source_commit": "8f2de62a8c4aebe286872fb1ccd81eb73f83772d",
+    "source_hashes": {
+      "src/baselines/__init__.py": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "src/baselines/analytic_scf.py": "9765fe2993d9f016f2c5ba22188fc1c39e7ac2517ce814e51f43698ecb463d7d",
+      "src/baselines/c2st.py": "0f2a9cefe615a3eab4ac8a2c748d11d19bee6939cc6423cdd3516f30c9f14262",
+      "src/baselines/conditional_c2st.py": "d196598f9950dc95dcfbf351b6da89cc1d1f9aa79e08e5c5bda4e1d70ba63e56",
+      "src/baselines/hotelling_t2.py": "ffe0c0303b2fdf945abe08733e7fbf227c9582303ae4a16e7d485ab9a26325b7",
+      "src/baselines/kernel_mmd.py": "6d9c0620c6d7d1ff2a4ad6337699c46b25fd3f7ec359aa064285b10b71a2bb86",
+      "src/baselines/me_scf.py": "398c0bfe74b5055a5b3bb3a0270a144f470ce12655c583322c0c36f1e7dc8344",
+      "src/baselines/rank_chi2.py": "de7ec7c97ebe16a95e86db30ddd86c335647d5d9fa2a86a020003c6b022c35a3",
+      "src/baselines/rank_chi2_subspaces.py": "c21c6137e18ea9ae811d934c09fb3cd0fb590ba96cf05884d3f8fed2dfbe6024",
+      "src/baselines/rff_mmd.py": "7743dd2a0915b84a60d9c04084c455bece923a06c2c2b8c785561fe00b2826a4",
+      "src/baselines/sliced_ot.py": "1a8a696ba98fe2ed0a6beeb50f604d02a017b9ca126227d3b6523c5afa6618f1",
+      "src/baselines/tuned_mmd.py": "967fe2b03ca84c1ecf1bf4434b18cb1cb7db1eb2db8bb22eeafd447560ec2dd2",
+      "src/ranktwosample/__init__.py": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "src/ranktwosample/power_datasets.py": "f47ba8f15a4dca8abbd930625bf5b2fca263d68879d37bcedb0c813caf407cc2",
+      "src/ranktwosample/rank_two_sample.py": "21d31b946d33de5bc1d85d66b949afb5bc6ecb606166b9fe03d6c723a1f6968c",
+      "src/ranktwosample/rank_two_sample_subspaces.py": "7541ae9e617b0d16f2f8522d09cab9e862a72b2f0de967cde01685e766e13caf",
+      "src/scripts/cifar10c_power_rank_subspaces.py": "ce2c107257dc24f38867531921cb6751788b5029a6b44d7ab9e658fbc4a6ff96",
+      "src/scripts/fair_comparator_bench.py": "63211ef07406c5d95f21a3d27d8a058a4d65b95adcb511a73848e6d5203fc6e8",
+      "src/scripts/power_rank_subspaces.py": "805b503b7eae767c969d20fead91922fa1e528c3e5c73b591c558de6a9dd8810",
+      "src/scripts/rotation_bench.py": "3ab6fc5ade4ce59a64795ff415b489c5dc5ce38916b2573fa4891c65d661afd6",
+      "src/scripts/run_power_bench.py": "abbb0a01437ed64a0267c11416a3e3cc3c8080997b8e504e170219ef3dfc9e6a",
+      "pyproject.toml": "287721aa795bea8eb9be7c0d53a1ba650f59bd48dfb44bc035df764d76ba8bf1",
+      "uv.lock": "6304a76e85db71a2f2d5f66afa7288fc2ba6228ac093f308aeca5217cdc9fcbd",
+      "overlay/analyze.py": "823d2ae3427b41f2bdf1c15588dba2bb61a0fc738c42e6daf408f41535e3123d",
+      "overlay/plot.py": "e218988ef4fb1c493d6365658fbb006b15f76ef4a455f2dc5899a42d7f1d5686",
+      "overlay/runner.py": "3abd3b8d6cbb57e44141e86ab81a44ac8c26a489a684bf775c375ba553a90049",
+      "overlay/protocol.json": "3639cbe4828c3d88327b38b83795d50e29df7660bd8981f40adae9fc5f83be2f",
+      "overlay/protocol.md": "63c1b399287820496e054ee152ba18c3b00e6e385358c376a1caf422d872e010",
+      "overlay/verify_dependence_power.py": "deb40aec70a979ba8cdbd29c68a67acf5787c52cc10bff714ebe963395a91e5d"
+    },
+    "shard": "000",
+    "original_raw_sha256": "64ab1dc56516a7f2fbed4584da389ddef7d34a2ed35dd271601525921d3d1386",
+    "public_raw_sha256": "64ab1dc56516a7f2fbed4584da389ddef7d34a2ed35dd271601525921d3d1386"
+  },
+  {
+    "python": "3.12.14 (main, Aug 24 2026, 11:43:01) [GCC 8.5.0 20210514 (Red Hat 8.5.0-28)]",
+    "numpy": "2.5.2",
+    "scipy": "1.18.1",
+    "platform": "Linux-6.12.111-1.el8.x86_64-x86_64-with-glibc2.28",
+    "cpu_model": "AMD EPYC 7302 16-Core Processor",
+    "protocol": {
+      "id": "dependence-power-v1-20261007",
+      "base_source_commit": "8f2de62a8c4aebe286872fb1ccd81eb73f83772d",
+      "base_seed": 2026100723,
+      "alpha": 0.05,
+      "B": 100,
+      "null_repetitions": 4000,
+      "power_repetitions": 500,
+      "pilot_rep_start": 100000,
+      "copula": {
+        "dimensions": [
+          4,
+          20
+        ],
+        "sample_sizes": [
+          1000
+        ],
+        "rho_reference": 0.6,
+        "K": 4,
+        "L": 64,
+        "generators": [
+          "gaussian",
+          "clayton",
+          "gumbel"
+        ],
+        "methods": [
+          "Rank_G_pairs",
+          "ME",
+          "Fourier_unsmoothed",
+          "MMD_exact_median_grid"
+        ],
+        "marginals": "Beta(2,5)"
+      },
+      "gaussian": {
+        "dimensions": [
+          2
+        ],
+        "sample_sizes": [
+          250,
+          500,
+          1000,
+          2000
+        ],
+        "rho_reference": 0.0,
+        "rho_alternatives": [
+          0.2,
+          0.4
+        ],
+        "K": 2,
+        "L": 1,
+        "methods": [
+          "Rank_Pearson_joint",
+          "Rank_Pearson_coordinate0"
+        ],
+        "marginals": "uniform"
+      },
+      "rank": {
+        "alpha0": 0.1,
+        "engine": "auto",
+        "tie": "jitter",
+        "jitter_scale": 1e-12,
+        "decision": "pvalue",
+        "stop_ci": "none",
+        "antithetic": false,
+        "gpu": "off",
+        "reference_mode": "shared_pool",
+        "use_fullY_for_HY": true,
+        "chunk": 512
+      },
+      "features": {
+        "J": 10,
+        "ridge": 1e-06,
+        "bandwidth_scale": 1.0,
+        "median_subsample": 1000
+      },
+      "mmd": {
+        "estimator": "unbiased",
+        "num_scales": 5,
+        "base": 2.0,
+        "median_subsample": 1000
+      },
+      "analysis": {
+        "null_family_size": 32,
+        "null_family_alpha": 0.05,
+        "null_upper_margin": 0.015,
+        "primary_power_family_size": 20,
+        "power_family_alpha": 0.05,
+        "failure_policy": "missing/failed/warning strata NA, no survivor rates",
+        "cohort_policy": "within-study fixed CPU/exact Python-build/library cohort; full platform and kernel recorded, effects/timings stratified; no alteration of old campaign policy"
+      },
+      "execution": {
+        "cpus_per_task": 1,
+        "gpus": 0,
+        "memory_gib": 4,
+        "maximum_total_cpu_core_hours": 14.0,
+        "preparation_reserve_cpu_core_hours": 0.25,
+        "analysis_reserve_cpu_core_hours": 0.5,
+        "automatic_retries": false
+      }
+    },
+    "protocol_hash": "5984f1e1d336071a0fcc053b953e3854b7bd49b67ab26229758799ee962c66d7",
+    "source_commit": "8f2de62a8c4aebe286872fb1ccd81eb73f83772d",
+    "source_hashes": {
+      "src/baselines/__init__.py": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "src/baselines/analytic_scf.py": "9765fe2993d9f016f2c5ba22188fc1c39e7ac2517ce814e51f43698ecb463d7d",
+      "src/baselines/c2st.py": "0f2a9cefe615a3eab4ac8a2c748d11d19bee6939cc6423cdd3516f30c9f14262",
+      "src/baselines/conditional_c2st.py": "d196598f9950dc95dcfbf351b6da89cc1d1f9aa79e08e5c5bda4e1d70ba63e56",
+      "src/baselines/hotelling_t2.py": "ffe0c0303b2fdf945abe08733e7fbf227c9582303ae4a16e7d485ab9a26325b7",
+      "src/baselines/kernel_mmd.py": "6d9c0620c6d7d1ff2a4ad6337699c46b25fd3f7ec359aa064285b10b71a2bb86",
+      "src/baselines/me_scf.py": "398c0bfe74b5055a5b3bb3a0270a144f470ce12655c583322c0c36f1e7dc8344",
+      "src/baselines/rank_chi2.py": "de7ec7c97ebe16a95e86db30ddd86c335647d5d9fa2a86a020003c6b022c35a3",
+      "src/baselines/rank_chi2_subspaces.py": "c21c6137e18ea9ae811d934c09fb3cd0fb590ba96cf05884d3f8fed2dfbe6024",
+      "src/baselines/rff_mmd.py": "7743dd2a0915b84a60d9c04084c455bece923a06c2c2b8c785561fe00b2826a4",
+      "src/baselines/sliced_ot.py": "1a8a696ba98fe2ed0a6beeb50f604d02a017b9ca126227d3b6523c5afa6618f1",
+      "src/baselines/tuned_mmd.py": "967fe2b03ca84c1ecf1bf4434b18cb1cb7db1eb2db8bb22eeafd447560ec2dd2",
+      "src/ranktwosample/__init__.py": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "src/ranktwosample/power_datasets.py": "f47ba8f15a4dca8abbd930625bf5b2fca263d68879d37bcedb0c813caf407cc2",
+      "src/ranktwosample/rank_two_sample.py": "21d31b946d33de5bc1d85d66b949afb5bc6ecb606166b9fe03d6c723a1f6968c",
+      "src/ranktwosample/rank_two_sample_subspaces.py": "7541ae9e617b0d16f2f8522d09cab9e862a72b2f0de967cde01685e766e13caf",
+      "src/scripts/cifar10c_power_rank_subspaces.py": "ce2c107257dc24f38867531921cb6751788b5029a6b44d7ab9e658fbc4a6ff96",
+      "src/scripts/fair_comparator_bench.py": "63211ef07406c5d95f21a3d27d8a058a4d65b95adcb511a73848e6d5203fc6e8",
+      "src/scripts/power_rank_subspaces.py": "805b503b7eae767c969d20fead91922fa1e528c3e5c73b591c558de6a9dd8810",
+      "src/scripts/rotation_bench.py": "3ab6fc5ade4ce59a64795ff415b489c5dc5ce38916b2573fa4891c65d661afd6",
+      "src/scripts/run_power_bench.py": "abbb0a01437ed64a0267c11416a3e3cc3c8080997b8e504e170219ef3dfc9e6a",
+      "pyproject.toml": "287721aa795bea8eb9be7c0d53a1ba650f59bd48dfb44bc035df764d76ba8bf1",
+      "uv.lock": "6304a76e85db71a2f2d5f66afa7288fc2ba6228ac093f308aeca5217cdc9fcbd",
+      "overlay/analyze.py": "823d2ae3427b41f2bdf1c15588dba2bb61a0fc738c42e6daf408f41535e3123d",
+      "overlay/plot.py": "e218988ef4fb1c493d6365658fbb006b15f76ef4a455f2dc5899a42d7f1d5686",
+      "overlay/runner.py": "3abd3b8d6cbb57e44141e86ab81a44ac8c26a489a684bf775c375ba553a90049",
+      "overlay/protocol.json": "3639cbe4828c3d88327b38b83795d50e29df7660bd8981f40adae9fc5f83be2f",
+      "overlay/protocol.md": "63c1b399287820496e054ee152ba18c3b00e6e385358c376a1caf422d872e010",
+      "overlay/verify_dependence_power.py": "deb40aec70a979ba8cdbd29c68a67acf5787c52cc10bff714ebe963395a91e5d"
+    },
+    "shard": "001",
+    "original_raw_sha256": "aec14cdbb38e71a46c1ab4b4e5f90e9348dcacd6e9c73e40ddf576389129ca7e",
+    "public_raw_sha256": "aec14cdbb38e71a46c1ab4b4e5f90e9348dcacd6e9c73e40ddf576389129ca7e"
+  },
+  {
+    "python": "3.12.14 (main, Aug 24 2026, 11:43:01) [GCC 8.5.0 20210514 (Red Hat 8.5.0-28)]",
+    "numpy": "2.5.2",
+    "scipy": "1.18.1",
+    "platform": "Linux-6.12.110-1.el8.x86_64-x86_64-with-glibc2.28",
+    "cpu_model": "AMD EPYC 7302 16-Core Processor",
+    "protocol": {
+      "id": "dependence-power-v1-20261007",
+      "base_source_commit": "8f2de62a8c4aebe286872fb1ccd81eb73f83772d",
+      "base_seed": 2026100723,
+      "alpha": 0.05,
+      "B": 100,
+      "null_repetitions": 4000,
+      "power_repetitions": 500,
+      "pilot_rep_start": 100000,
+      "copula": {
+        "dimensions": [
+          4,
+          20
+        ],
+        "sample_sizes": [
+          1000
+        ],
+        "rho_reference": 0.6,
+        "K": 4,
+        "L": 64,
+        "generators": [
+          "gaussian",
+          "clayton",
+          "gumbel"
+        ],
+        "methods": [
+          "Rank_G_pairs",
+          "ME",
+          "Fourier_unsmoothed",
+          "MMD_exact_median_grid"
+        ],
+        "marginals": "Beta(2,5)"
+      },
+      "gaussian": {
+        "dimensions": [
+          2
+        ],
+        "sample_sizes": [
+          250,
+          500,
+          1000,
+          2000
+        ],
+        "rho_reference": 0.0,
+        "rho_alternatives": [
+          0.2,
+          0.4
+        ],
+        "K": 2,
+        "L": 1,
+        "methods": [
+          "Rank_Pearson_joint",
+          "Rank_Pearson_coordinate0"
+        ],
+        "marginals": "uniform"
+      },
+      "rank": {
+        "alpha0": 0.1,
+        "engine": "auto",
+        "tie": "jitter",
+        "jitter_scale": 1e-12,
+        "decision": "pvalue",
+        "stop_ci": "none",
+        "antithetic": false,
+        "gpu": "off",
+        "reference_mode": "shared_pool",
+        "use_fullY_for_HY": true,
+        "chunk": 512
+      },
+      "features": {
+        "J": 10,
+        "ridge": 1e-06,
+        "bandwidth_scale": 1.0,
+        "median_subsample": 1000
+      },
+      "mmd": {
+        "estimator": "unbiased",
+        "num_scales": 5,
+        "base": 2.0,
+        "median_subsample": 1000
+      },
+      "analysis": {
+        "null_family_size": 32,
+        "null_family_alpha": 0.05,
+        "null_upper_margin": 0.015,
+        "primary_power_family_size": 20,
+        "power_family_alpha": 0.05,
+        "failure_policy": "missing/failed/warning strata NA, no survivor rates",
+        "cohort_policy": "within-study fixed CPU/exact Python-build/library cohort; full platform and kernel recorded, effects/timings stratified; no alteration of old campaign policy"
+      },
+      "execution": {
+        "cpus_per_task": 1,
+        "gpus": 0,
+        "memory_gib": 4,
+        "maximum_total_cpu_core_hours": 14.0,
+        "preparation_reserve_cpu_core_hours": 0.25,
+        "analysis_reserve_cpu_core_hours": 0.5,
+        "automatic_retries": false
+      }
+    },
+    "protocol_hash": "5984f1e1d336071a0fcc053b953e3854b7bd49b67ab26229758799ee962c66d7",
+    "source_commit": "8f2de62a8c4aebe286872fb1ccd81eb73f83772d",
+    "source_hashes": {
+      "src/baselines/__init__.py": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "src/baselines/analytic_scf.py": "9765fe2993d9f016f2c5ba22188fc1c39e7ac2517ce814e51f43698ecb463d7d",
+      "src/baselines/c2st.py": "0f2a9cefe615a3eab4ac8a2c748d11d19bee6939cc6423cdd3516f30c9f14262",
+      "src/baselines/conditional_c2st.py": "d196598f9950dc95dcfbf351b6da89cc1d1f9aa79e08e5c5bda4e1d70ba63e56",
+      "src/baselines/hotelling_t2.py": "ffe0c0303b2fdf945abe08733e7fbf227c9582303ae4a16e7d485ab9a26325b7",
+      "src/baselines/kernel_mmd.py": "6d9c0620c6d7d1ff2a4ad6337699c46b25fd3f7ec359aa064285b10b71a2bb86",
+      "src/baselines/me_scf.py": "398c0bfe74b5055a5b3bb3a0270a144f470ce12655c583322c0c36f1e7dc8344",
+      "src/baselines/rank_chi2.py": "de7ec7c97ebe16a95e86db30ddd86c335647d5d9fa2a86a020003c6b022c35a3",
+      "src/baselines/rank_chi2_subspaces.py": "c21c6137e18ea9ae811d934c09fb3cd0fb590ba96cf05884d3f8fed2dfbe6024",
+      "src/baselines/rff_mmd.py": "7743dd2a0915b84a60d9c04084c455bece923a06c2c2b8c785561fe00b2826a4",
+      "src/baselines/sliced_ot.py": "1a8a696ba98fe2ed0a6beeb50f604d02a017b9ca126227d3b6523c5afa6618f1",
+      "src/baselines/tuned_mmd.py": "967fe2b03ca84c1ecf1bf4434b18cb1cb7db1eb2db8bb22eeafd447560ec2dd2",
+      "src/ranktwosample/__init__.py": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "src/ranktwosample/power_datasets.py": "f47ba8f15a4dca8abbd930625bf5b2fca263d68879d37bcedb0c813caf407cc2",
+      "src/ranktwosample/rank_two_sample.py": "21d31b946d33de5bc1d85d66b949afb5bc6ecb606166b9fe03d6c723a1f6968c",
+      "src/ranktwosample/rank_two_sample_subspaces.py": "7541ae9e617b0d16f2f8522d09cab9e862a72b2f0de967cde01685e766e13caf",
+      "src/scripts/cifar10c_power_rank_subspaces.py": "ce2c107257dc24f38867531921cb6751788b5029a6b44d7ab9e658fbc4a6ff96",
+      "src/scripts/fair_comparator_bench.py": "63211ef07406c5d95f21a3d27d8a058a4d65b95adcb511a73848e6d5203fc6e8",
+      "src/scripts/power_rank_subspaces.py": "805b503b7eae767c969d20fead91922fa1e528c3e5c73b591c558de6a9dd8810",
+      "src/scripts/rotation_bench.py": "3ab6fc5ade4ce59a64795ff415b489c5dc5ce38916b2573fa4891c65d661afd6",
+      "src/scripts/run_power_bench.py": "abbb0a01437ed64a0267c11416a3e3cc3c8080997b8e504e170219ef3dfc9e6a",
+      "pyproject.toml": "287721aa795bea8eb9be7c0d53a1ba650f59bd48dfb44bc035df764d76ba8bf1",
+      "uv.lock": "6304a76e85db71a2f2d5f66afa7288fc2ba6228ac093f308aeca5217cdc9fcbd",
+      "overlay/analyze.py": "823d2ae3427b41f2bdf1c15588dba2bb61a0fc738c42e6daf408f41535e3123d",
+      "overlay/plot.py": "e218988ef4fb1c493d6365658fbb006b15f76ef4a455f2dc5899a42d7f1d5686",
+      "overlay/runner.py": "3abd3b8d6cbb57e44141e86ab81a44ac8c26a489a684bf775c375ba553a90049",
+      "overlay/protocol.json": "3639cbe4828c3d88327b38b83795d50e29df7660bd8981f40adae9fc5f83be2f",
+      "overlay/protocol.md": "63c1b399287820496e054ee152ba18c3b00e6e385358c376a1caf422d872e010",
+      "overlay/verify_dependence_power.py": "deb40aec70a979ba8cdbd29c68a67acf5787c52cc10bff714ebe963395a91e5d"
+    },
+    "shard": "002",
+    "original_raw_sha256": "8816bb23d0aa532f0848a134afdf0dd8e48e19b8ac6ee9c2a065faedd4bf289c",
+    "public_raw_sha256": "8816bb23d0aa532f0848a134afdf0dd8e48e19b8ac6ee9c2a065faedd4bf289c"
+  },
+  {
+    "python": "3.12.14 (main, Aug 24 2026, 11:43:01) [GCC 8.5.0 20210514 (Red Hat 8.5.0-28)]",
+    "numpy": "2.5.2",
+    "scipy": "1.18.1",
+    "platform": "Linux-6.12.111-1.el8.x86_64-x86_64-with-glibc2.28",
+    "cpu_model": "AMD EPYC 7302 16-Core Processor",
+    "protocol": {
+      "id": "dependence-power-v1-20261007",
+      "base_source_commit": "8f2de62a8c4aebe286872fb1ccd81eb73f83772d",
+      "base_seed": 2026100723,
+      "alpha": 0.05,
+      "B": 100,
+      "null_repetitions": 4000,
+      "power_repetitions": 500,
+      "pilot_rep_start": 100000,
+      "copula": {
+        "dimensions": [
+          4,
+          20
+        ],
+        "sample_sizes": [
+          1000
+        ],
+        "rho_reference": 0.6,
+        "K": 4,
+        "L": 64,
+        "generators": [
+          "gaussian",
+          "clayton",
+          "gumbel"
+        ],
+        "methods": [
+          "Rank_G_pairs",
+          "ME",
+          "Fourier_unsmoothed",
+          "MMD_exact_median_grid"
+        ],
+        "marginals": "Beta(2,5)"
+      },
+      "gaussian": {
+        "dimensions": [
+          2
+        ],
+        "sample_sizes": [
+          250,
+          500,
+          1000,
+          2000
+        ],
+        "rho_reference": 0.0,
+        "rho_alternatives": [
+          0.2,
+          0.4
+        ],
+        "K": 2,
+        "L": 1,
+        "methods": [
+          "Rank_Pearson_joint",
+          "Rank_Pearson_coordinate0"
+        ],
+        "marginals": "uniform"
+      },
+      "rank": {
+        "alpha0": 0.1,
+        "engine": "auto",
+        "tie": "jitter",
+        "jitter_scale": 1e-12,
+        "decision": "pvalue",
+        "stop_ci": "none",
+        "antithetic": false,
+        "gpu": "off",
+        "reference_mode": "shared_pool",
+        "use_fullY_for_HY": true,
+        "chunk": 512
+      },
+      "features": {
+        "J": 10,
+        "ridge": 1e-06,
+        "bandwidth_scale": 1.0,
+        "median_subsample": 1000
+      },
+      "mmd": {
+        "estimator": "unbiased",
+        "num_scales": 5,
+        "base": 2.0,
+        "median_subsample": 1000
+      },
+      "analysis": {
+        "null_family_size": 32,
+        "null_family_alpha": 0.05,
+        "null_upper_margin": 0.015,
+        "primary_power_family_size": 20,
+        "power_family_alpha": 0.05,
+        "failure_policy": "missing/failed/warning strata NA, no survivor rates",
+        "cohort_policy": "within-study fixed CPU/exact Python-build/library cohort; full platform and kernel recorded, effects/timings stratified; no alteration of old campaign policy"
+      },
+      "execution": {
+        "cpus_per_task": 1,
+        "gpus": 0,
+        "memory_gib": 4,
+        "maximum_total_cpu_core_hours": 14.0,
+        "preparation_reserve_cpu_core_hours": 0.25,
+        "analysis_reserve_cpu_core_hours": 0.5,
+        "automatic_retries": false
+      }
+    },
+    "protocol_hash": "5984f1e1d336071a0fcc053b953e3854b7bd49b67ab26229758799ee962c66d7",
+    "source_commit": "8f2de62a8c4aebe286872fb1ccd81eb73f83772d",
+    "source_hashes": {
+      "src/baselines/__init__.py": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "src/baselines/analytic_scf.py": "9765fe2993d9f016f2c5ba22188fc1c39e7ac2517ce814e51f43698ecb463d7d",
+      "src/baselines/c2st.py": "0f2a9cefe615a3eab4ac8a2c748d11d19bee6939cc6423cdd3516f30c9f14262",
+      "src/baselines/conditional_c2st.py": "d196598f9950dc95dcfbf351b6da89cc1d1f9aa79e08e5c5bda4e1d70ba63e56",
+      "src/baselines/hotelling_t2.py": "ffe0c0303b2fdf945abe08733e7fbf227c9582303ae4a16e7d485ab9a26325b7",
+      "src/baselines/kernel_mmd.py": "6d9c0620c6d7d1ff2a4ad6337699c46b25fd3f7ec359aa064285b10b71a2bb86",
+      "src/baselines/me_scf.py": "398c0bfe74b5055a5b3bb3a0270a144f470ce12655c583322c0c36f1e7dc8344",
+      "src/baselines/rank_chi2.py": "de7ec7c97ebe16a95e86db30ddd86c335647d5d9fa2a86a020003c6b022c35a3",
+      "src/baselines/rank_chi2_subspaces.py": "c21c6137e18ea9ae811d934c09fb3cd0fb590ba96cf05884d3f8fed2dfbe6024",
+      "src/baselines/rff_mmd.py": "7743dd2a0915b84a60d9c04084c455bece923a06c2c2b8c785561fe00b2826a4",
+      "src/baselines/sliced_ot.py": "1a8a696ba98fe2ed0a6beeb50f604d02a017b9ca126227d3b6523c5afa6618f1",
+      "src/baselines/tuned_mmd.py": "967fe2b03ca84c1ecf1bf4434b18cb1cb7db1eb2db8bb22eeafd447560ec2dd2",
+      "src/ranktwosample/__init__.py": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "src/ranktwosample/power_datasets.py": "f47ba8f15a4dca8abbd930625bf5b2fca263d68879d37bcedb0c813caf407cc2",
+      "src/ranktwosample/rank_two_sample.py": "21d31b946d33de5bc1d85d66b949afb5bc6ecb606166b9fe03d6c723a1f6968c",
+      "src/ranktwosample/rank_two_sample_subspaces.py": "7541ae9e617b0d16f2f8522d09cab9e862a72b2f0de967cde01685e766e13caf",
+      "src/scripts/cifar10c_power_rank_subspaces.py": "ce2c107257dc24f38867531921cb6751788b5029a6b44d7ab9e658fbc4a6ff96",
+      "src/scripts/fair_comparator_bench.py": "63211ef07406c5d95f21a3d27d8a058a4d65b95adcb511a73848e6d5203fc6e8",
+      "src/scripts/power_rank_subspaces.py": "805b503b7eae767c969d20fead91922fa1e528c3e5c73b591c558de6a9dd8810",
+      "src/scripts/rotation_bench.py": "3ab6fc5ade4ce59a64795ff415b489c5dc5ce38916b2573fa4891c65d661afd6",
+      "src/scripts/run_power_bench.py": "abbb0a01437ed64a0267c11416a3e3cc3c8080997b8e504e170219ef3dfc9e6a",
+      "pyproject.toml": "287721aa795bea8eb9be7c0d53a1ba650f59bd48dfb44bc035df764d76ba8bf1",
+      "uv.lock": "6304a76e85db71a2f2d5f66afa7288fc2ba6228ac093f308aeca5217cdc9fcbd",
+      "overlay/analyze.py": "823d2ae3427b41f2bdf1c15588dba2bb61a0fc738c42e6daf408f41535e3123d",
+      "overlay/plot.py": "e218988ef4fb1c493d6365658fbb006b15f76ef4a455f2dc5899a42d7f1d5686",
+      "overlay/runner.py": "3abd3b8d6cbb57e44141e86ab81a44ac8c26a489a684bf775c375ba553a90049",
+      "overlay/protocol.json": "3639cbe4828c3d88327b38b83795d50e29df7660bd8981f40adae9fc5f83be2f",
+      "overlay/protocol.md": "63c1b399287820496e054ee152ba18c3b00e6e385358c376a1caf422d872e010",
+      "overlay/verify_dependence_power.py": "deb40aec70a979ba8cdbd29c68a67acf5787c52cc10bff714ebe963395a91e5d"
+    },
+    "shard": "003",
+    "original_raw_sha256": "912859a1aa03f20b6fcb36c96a3e9f3262142c23e914817e8c16f61cbab24bc2",
+    "public_raw_sha256": "912859a1aa03f20b6fcb36c96a3e9f3262142c23e914817e8c16f61cbab24bc2"
+  },
+  {
+    "python": "3.12.14 (main, Aug 24 2026, 11:43:01) [GCC 8.5.0 20210514 (Red Hat 8.5.0-28)]",
+    "numpy": "2.5.2",
+    "scipy": "1.18.1",
+    "platform": "Linux-6.12.111-1.el8.x86_64-x86_64-with-glibc2.28",
+    "cpu_model": "AMD EPYC 7302 16-Core Processor",
+    "protocol": {
+      "id": "dependence-power-v1-20261007",
+      "base_source_commit": "8f2de62a8c4aebe286872fb1ccd81eb73f83772d",
+      "base_seed": 2026100723,
+      "alpha": 0.05,
+      "B": 100,
+      "null_repetitions": 4000,
+      "power_repetitions": 500,
+      "pilot_rep_start": 100000,
+      "copula": {
+        "dimensions": [
+          4,
+          20
+        ],
+        "sample_sizes": [
+          1000
+        ],
+        "rho_reference": 0.6,
+        "K": 4,
+        "L": 64,
+        "generators": [
+          "gaussian",
+          "clayton",
+          "gumbel"
+        ],
+        "methods": [
+          "Rank_G_pairs",
+          "ME",
+          "Fourier_unsmoothed",
+          "MMD_exact_median_grid"
+        ],
+        "marginals": "Beta(2,5)"
+      },
+      "gaussian": {
+        "dimensions": [
+          2
+        ],
+        "sample_sizes": [
+          250,
+          500,
+          1000,
+          2000
+        ],
+        "rho_reference": 0.0,
+        "rho_alternatives": [
+          0.2,
+          0.4
+        ],
+        "K": 2,
+        "L": 1,
+        "methods": [
+          "Rank_Pearson_joint",
+          "Rank_Pearson_coordinate0"
+        ],
+        "marginals": "uniform"
+      },
+      "rank": {
+        "alpha0": 0.1,
+        "engine": "auto",
+        "tie": "jitter",
+        "jitter_scale": 1e-12,
+        "decision": "pvalue",
+        "stop_ci": "none",
+        "antithetic": false,
+        "gpu": "off",
+        "reference_mode": "shared_pool",
+        "use_fullY_for_HY": true,
+        "chunk": 512
+      },
+      "features": {
+        "J": 10,
+        "ridge": 1e-06,
+        "bandwidth_scale": 1.0,
+        "median_subsample": 1000
+      },
+      "mmd": {
+        "estimator": "unbiased",
+        "num_scales": 5,
+        "base": 2.0,
+        "median_subsample": 1000
+      },
+      "analysis": {
+        "null_family_size": 32,
+        "null_family_alpha": 0.05,
+        "null_upper_margin": 0.015,
+        "primary_power_family_size": 20,
+        "power_family_alpha": 0.05,
+        "failure_policy": "missing/failed/warning strata NA, no survivor rates",
+        "cohort_policy": "within-study fixed CPU/exact Python-build/library cohort; full platform and kernel recorded, effects/timings stratified; no alteration of old campaign policy"
+      },
+      "execution": {
+        "cpus_per_task": 1,
+        "gpus": 0,
+        "memory_gib": 4,
+        "maximum_total_cpu_core_hours": 14.0,
+        "preparation_reserve_cpu_core_hours": 0.25,
+        "analysis_reserve_cpu_core_hours": 0.5,
+        "automatic_retries": false
+      }
+    },
+    "protocol_hash": "5984f1e1d336071a0fcc053b953e3854b7bd49b67ab26229758799ee962c66d7",
+    "source_commit": "8f2de62a8c4aebe286872fb1ccd81eb73f83772d",
+    "source_hashes": {
+      "src/baselines/__init__.py": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "src/baselines/analytic_scf.py": "9765fe2993d9f016f2c5ba22188fc1c39e7ac2517ce814e51f43698ecb463d7d",
+      "src/baselines/c2st.py": "0f2a9cefe615a3eab4ac8a2c748d11d19bee6939cc6423cdd3516f30c9f14262",
+      "src/baselines/conditional_c2st.py": "d196598f9950dc95dcfbf351b6da89cc1d1f9aa79e08e5c5bda4e1d70ba63e56",
+      "src/baselines/hotelling_t2.py": "ffe0c0303b2fdf945abe08733e7fbf227c9582303ae4a16e7d485ab9a26325b7",
+      "src/baselines/kernel_mmd.py": "6d9c0620c6d7d1ff2a4ad6337699c46b25fd3f7ec359aa064285b10b71a2bb86",
+      "src/baselines/me_scf.py": "398c0bfe74b5055a5b3bb3a0270a144f470ce12655c583322c0c36f1e7dc8344",
+      "src/baselines/rank_chi2.py": "de7ec7c97ebe16a95e86db30ddd86c335647d5d9fa2a86a020003c6b022c35a3",
+      "src/baselines/rank_chi2_subspaces.py": "c21c6137e18ea9ae811d934c09fb3cd0fb590ba96cf05884d3f8fed2dfbe6024",
+      "src/baselines/rff_mmd.py": "7743dd2a0915b84a60d9c04084c455bece923a06c2c2b8c785561fe00b2826a4",
+      "src/baselines/sliced_ot.py": "1a8a696ba98fe2ed0a6beeb50f604d02a017b9ca126227d3b6523c5afa6618f1",
+      "src/baselines/tuned_mmd.py": "967fe2b03ca84c1ecf1bf4434b18cb1cb7db1eb2db8bb22eeafd447560ec2dd2",
+      "src/ranktwosample/__init__.py": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "src/ranktwosample/power_datasets.py": "f47ba8f15a4dca8abbd930625bf5b2fca263d68879d37bcedb0c813caf407cc2",
+      "src/ranktwosample/rank_two_sample.py": "21d31b946d33de5bc1d85d66b949afb5bc6ecb606166b9fe03d6c723a1f6968c",
+      "src/ranktwosample/rank_two_sample_subspaces.py": "7541ae9e617b0d16f2f8522d09cab9e862a72b2f0de967cde01685e766e13caf",
+      "src/scripts/cifar10c_power_rank_subspaces.py": "ce2c107257dc24f38867531921cb6751788b5029a6b44d7ab9e658fbc4a6ff96",
+      "src/scripts/fair_comparator_bench.py": "63211ef07406c5d95f21a3d27d8a058a4d65b95adcb511a73848e6d5203fc6e8",
+      "src/scripts/power_rank_subspaces.py": "805b503b7eae767c969d20fead91922fa1e528c3e5c73b591c558de6a9dd8810",
+      "src/scripts/rotation_bench.py": "3ab6fc5ade4ce59a64795ff415b489c5dc5ce38916b2573fa4891c65d661afd6",
+      "src/scripts/run_power_bench.py": "abbb0a01437ed64a0267c11416a3e3cc3c8080997b8e504e170219ef3dfc9e6a",
+      "pyproject.toml": "287721aa795bea8eb9be7c0d53a1ba650f59bd48dfb44bc035df764d76ba8bf1",
+      "uv.lock": "6304a76e85db71a2f2d5f66afa7288fc2ba6228ac093f308aeca5217cdc9fcbd",
+      "overlay/analyze.py": "823d2ae3427b41f2bdf1c15588dba2bb61a0fc738c42e6daf408f41535e3123d",
+      "overlay/plot.py": "e218988ef4fb1c493d6365658fbb006b15f76ef4a455f2dc5899a42d7f1d5686",
+      "overlay/runner.py": "3abd3b8d6cbb57e44141e86ab81a44ac8c26a489a684bf775c375ba553a90049",
+      "overlay/protocol.json": "3639cbe4828c3d88327b38b83795d50e29df7660bd8981f40adae9fc5f83be2f",
+      "overlay/protocol.md": "63c1b399287820496e054ee152ba18c3b00e6e385358c376a1caf422d872e010",
+      "overlay/verify_dependence_power.py": "deb40aec70a979ba8cdbd29c68a67acf5787c52cc10bff714ebe963395a91e5d"
+    },
+    "shard": "004",
+    "original_raw_sha256": "2cd2bf4b79ab586d2eb0df027da1c59470fb90d4fdaf35e639da5fdb5a23d5bd",
+    "public_raw_sha256": "2cd2bf4b79ab586d2eb0df027da1c59470fb90d4fdaf35e639da5fdb5a23d5bd"
+  },
+  {
+    "python": "3.12.14 (main, Aug 24 2026, 11:43:01) [GCC 8.5.0 20210514 (Red Hat 8.5.0-28)]",
+    "numpy": "2.5.2",
+    "scipy": "1.18.1",
+    "platform": "Linux-6.12.111-1.el8.x86_64-x86_64-with-glibc2.28",
+    "cpu_model": "AMD EPYC 7302 16-Core Processor",
+    "protocol": {
+      "id": "dependence-power-v1-20261007",
+      "base_source_commit": "8f2de62a8c4aebe286872fb1ccd81eb73f83772d",
+      "base_seed": 2026100723,
+      "alpha": 0.05,
+      "B": 100,
+      "null_repetitions": 4000,
+      "power_repetitions": 500,
+      "pilot_rep_start": 100000,
+      "copula": {
+        "dimensions": [
+          4,
+          20
+        ],
+        "sample_sizes": [
+          1000
+        ],
+        "rho_reference": 0.6,
+        "K": 4,
+        "L": 64,
+        "generators": [
+          "gaussian",
+          "clayton",
+          "gumbel"
+        ],
+        "methods": [
+          "Rank_G_pairs",
+          "ME",
+          "Fourier_unsmoothed",
+          "MMD_exact_median_grid"
+        ],
+        "marginals": "Beta(2,5)"
+      },
+      "gaussian": {
+        "dimensions": [
+          2
+        ],
+        "sample_sizes": [
+          250,
+          500,
+          1000,
+          2000
+        ],
+        "rho_reference": 0.0,
+        "rho_alternatives": [
+          0.2,
+          0.4
+        ],
+        "K": 2,
+        "L": 1,
+        "methods": [
+          "Rank_Pearson_joint",
+          "Rank_Pearson_coordinate0"
+        ],
+        "marginals": "uniform"
+      },
+      "rank": {
+        "alpha0": 0.1,
+        "engine": "auto",
+        "tie": "jitter",
+        "jitter_scale": 1e-12,
+        "decision": "pvalue",
+        "stop_ci": "none",
+        "antithetic": false,
+        "gpu": "off",
+        "reference_mode": "shared_pool",
+        "use_fullY_for_HY": true,
+        "chunk": 512
+      },
+      "features": {
+        "J": 10,
+        "ridge": 1e-06,
+        "bandwidth_scale": 1.0,
+        "median_subsample": 1000
+      },
+      "mmd": {
+        "estimator": "unbiased",
+        "num_scales": 5,
+        "base": 2.0,
+        "median_subsample": 1000
+      },
+      "analysis": {
+        "null_family_size": 32,
+        "null_family_alpha": 0.05,
+        "null_upper_margin": 0.015,
+        "primary_power_family_size": 20,
+        "power_family_alpha": 0.05,
+        "failure_policy": "missing/failed/warning strata NA, no survivor rates",
+        "cohort_policy": "within-study fixed CPU/exact Python-build/library cohort; full platform and kernel recorded, effects/timings stratified; no alteration of old campaign policy"
+      },
+      "execution": {
+        "cpus_per_task": 1,
+        "gpus": 0,
+        "memory_gib": 4,
+        "maximum_total_cpu_core_hours": 14.0,
+        "preparation_reserve_cpu_core_hours": 0.25,
+        "analysis_reserve_cpu_core_hours": 0.5,
+        "automatic_retries": false
+      }
+    },
+    "protocol_hash": "5984f1e1d336071a0fcc053b953e3854b7bd49b67ab26229758799ee962c66d7",
+    "source_commit": "8f2de62a8c4aebe286872fb1ccd81eb73f83772d",
+    "source_hashes": {
+      "src/baselines/__init__.py": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "src/baselines/analytic_scf.py": "9765fe2993d9f016f2c5ba22188fc1c39e7ac2517ce814e51f43698ecb463d7d",
+      "src/baselines/c2st.py": "0f2a9cefe615a3eab4ac8a2c748d11d19bee6939cc6423cdd3516f30c9f14262",
+      "src/baselines/conditional_c2st.py": "d196598f9950dc95dcfbf351b6da89cc1d1f9aa79e08e5c5bda4e1d70ba63e56",
+      "src/baselines/hotelling_t2.py": "ffe0c0303b2fdf945abe08733e7fbf227c9582303ae4a16e7d485ab9a26325b7",
+      "src/baselines/kernel_mmd.py": "6d9c0620c6d7d1ff2a4ad6337699c46b25fd3f7ec359aa064285b10b71a2bb86",
+      "src/baselines/me_scf.py": "398c0bfe74b5055a5b3bb3a0270a144f470ce12655c583322c0c36f1e7dc8344",
+      "src/baselines/rank_chi2.py": "de7ec7c97ebe16a95e86db30ddd86c335647d5d9fa2a86a020003c6b022c35a3",
+      "src/baselines/rank_chi2_subspaces.py": "c21c6137e18ea9ae811d934c09fb3cd0fb590ba96cf05884d3f8fed2dfbe6024",
+      "src/baselines/rff_mmd.py": "7743dd2a0915b84a60d9c04084c455bece923a06c2c2b8c785561fe00b2826a4",
+      "src/baselines/sliced_ot.py": "1a8a696ba98fe2ed0a6beeb50f604d02a017b9ca126227d3b6523c5afa6618f1",
+      "src/baselines/tuned_mmd.py": "967fe2b03ca84c1ecf1bf4434b18cb1cb7db1eb2db8bb22eeafd447560ec2dd2",
+      "src/ranktwosample/__init__.py": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "src/ranktwosample/power_datasets.py": "f47ba8f15a4dca8abbd930625bf5b2fca263d68879d37bcedb0c813caf407cc2",
+      "src/ranktwosample/rank_two_sample.py": "21d31b946d33de5bc1d85d66b949afb5bc6ecb606166b9fe03d6c723a1f6968c",
+      "src/ranktwosample/rank_two_sample_subspaces.py": "7541ae9e617b0d16f2f8522d09cab9e862a72b2f0de967cde01685e766e13caf",
+      "src/scripts/cifar10c_power_rank_subspaces.py": "ce2c107257dc24f38867531921cb6751788b5029a6b44d7ab9e658fbc4a6ff96",
+      "src/scripts/fair_comparator_bench.py": "63211ef07406c5d95f21a3d27d8a058a4d65b95adcb511a73848e6d5203fc6e8",
+      "src/scripts/power_rank_subspaces.py": "805b503b7eae767c969d20fead91922fa1e528c3e5c73b591c558de6a9dd8810",
+      "src/scripts/rotation_bench.py": "3ab6fc5ade4ce59a64795ff415b489c5dc5ce38916b2573fa4891c65d661afd6",
+      "src/scripts/run_power_bench.py": "abbb0a01437ed64a0267c11416a3e3cc3c8080997b8e504e170219ef3dfc9e6a",
+      "pyproject.toml": "287721aa795bea8eb9be7c0d53a1ba650f59bd48dfb44bc035df764d76ba8bf1",
+      "uv.lock": "6304a76e85db71a2f2d5f66afa7288fc2ba6228ac093f308aeca5217cdc9fcbd",
+      "overlay/analyze.py": "823d2ae3427b41f2bdf1c15588dba2bb61a0fc738c42e6daf408f41535e3123d",
+      "overlay/plot.py": "e218988ef4fb1c493d6365658fbb006b15f76ef4a455f2dc5899a42d7f1d5686",
+      "overlay/runner.py": "3abd3b8d6cbb57e44141e86ab81a44ac8c26a489a684bf775c375ba553a90049",
+      "overlay/protocol.json": "3639cbe4828c3d88327b38b83795d50e29df7660bd8981f40adae9fc5f83be2f",
+      "overlay/protocol.md": "63c1b399287820496e054ee152ba18c3b00e6e385358c376a1caf422d872e010",
+      "overlay/verify_dependence_power.py": "deb40aec70a979ba8cdbd29c68a67acf5787c52cc10bff714ebe963395a91e5d"
+    },
+    "shard": "005",
+    "original_raw_sha256": "b1d64cbac514c34938990fafe1b41a121b640347454347273100cd0d31d48b5d",
+    "public_raw_sha256": "b1d64cbac514c34938990fafe1b41a121b640347454347273100cd0d31d48b5d"
+  },
+  {
+    "python": "3.12.14 (main, Aug 24 2026, 11:43:01) [GCC 8.5.0 20210514 (Red Hat 8.5.0-28)]",
+    "numpy": "2.5.2",
+    "scipy": "1.18.1",
+    "platform": "Linux-6.12.111-1.el8.x86_64-x86_64-with-glibc2.28",
+    "cpu_model": "AMD EPYC 7302 16-Core Processor",
+    "protocol": {
+      "id": "dependence-power-v1-20261007",
+      "base_source_commit": "8f2de62a8c4aebe286872fb1ccd81eb73f83772d",
+      "base_seed": 2026100723,
+      "alpha": 0.05,
+      "B": 100,
+      "null_repetitions": 4000,
+      "power_repetitions": 500,
+      "pilot_rep_start": 100000,
+      "copula": {
+        "dimensions": [
+          4,
+          20
+        ],
+        "sample_sizes": [
+          1000
+        ],
+        "rho_reference": 0.6,
+        "K": 4,
+        "L": 64,
+        "generators": [
+          "gaussian",
+          "clayton",
+          "gumbel"
+        ],
+        "methods": [
+          "Rank_G_pairs",
+          "ME",
+          "Fourier_unsmoothed",
+          "MMD_exact_median_grid"
+        ],
+        "marginals": "Beta(2,5)"
+      },
+      "gaussian": {
+        "dimensions": [
+          2
+        ],
+        "sample_sizes": [
+          250,
+          500,
+          1000,
+          2000
+        ],
+        "rho_reference": 0.0,
+        "rho_alternatives": [
+          0.2,
+          0.4
+        ],
+        "K": 2,
+        "L": 1,
+        "methods": [
+          "Rank_Pearson_joint",
+          "Rank_Pearson_coordinate0"
+        ],
+        "marginals": "uniform"
+      },
+      "rank": {
+        "alpha0": 0.1,
+        "engine": "auto",
+        "tie": "jitter",
+        "jitter_scale": 1e-12,
+        "decision": "pvalue",
+        "stop_ci": "none",
+        "antithetic": false,
+        "gpu": "off",
+        "reference_mode": "shared_pool",
+        "use_fullY_for_HY": true,
+        "chunk": 512
+      },
+      "features": {
+        "J": 10,
+        "ridge": 1e-06,
+        "bandwidth_scale": 1.0,
+        "median_subsample": 1000
+      },
+      "mmd": {
+        "estimator": "unbiased",
+        "num_scales": 5,
+        "base": 2.0,
+        "median_subsample": 1000
+      },
+      "analysis": {
+        "null_family_size": 32,
+        "null_family_alpha": 0.05,
+        "null_upper_margin": 0.015,
+        "primary_power_family_size": 20,
+        "power_family_alpha": 0.05,
+        "failure_policy": "missing/failed/warning strata NA, no survivor rates",
+        "cohort_policy": "within-study fixed CPU/exact Python-build/library cohort; full platform and kernel recorded, effects/timings stratified; no alteration of old campaign policy"
+      },
+      "execution": {
+        "cpus_per_task": 1,
+        "gpus": 0,
+        "memory_gib": 4,
+        "maximum_total_cpu_core_hours": 14.0,
+        "preparation_reserve_cpu_core_hours": 0.25,
+        "analysis_reserve_cpu_core_hours": 0.5,
+        "automatic_retries": false
+      }
+    },
+    "protocol_hash": "5984f1e1d336071a0fcc053b953e3854b7bd49b67ab26229758799ee962c66d7",
+    "source_commit": "8f2de62a8c4aebe286872fb1ccd81eb73f83772d",
+    "source_hashes": {
+      "src/baselines/__init__.py": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "src/baselines/analytic_scf.py": "9765fe2993d9f016f2c5ba22188fc1c39e7ac2517ce814e51f43698ecb463d7d",
+      "src/baselines/c2st.py": "0f2a9cefe615a3eab4ac8a2c748d11d19bee6939cc6423cdd3516f30c9f14262",
+      "src/baselines/conditional_c2st.py": "d196598f9950dc95dcfbf351b6da89cc1d1f9aa79e08e5c5bda4e1d70ba63e56",
+      "src/baselines/hotelling_t2.py": "ffe0c0303b2fdf945abe08733e7fbf227c9582303ae4a16e7d485ab9a26325b7",
+      "src/baselines/kernel_mmd.py": "6d9c0620c6d7d1ff2a4ad6337699c46b25fd3f7ec359aa064285b10b71a2bb86",
+      "src/baselines/me_scf.py": "398c0bfe74b5055a5b3bb3a0270a144f470ce12655c583322c0c36f1e7dc8344",
+      "src/baselines/rank_chi2.py": "de7ec7c97ebe16a95e86db30ddd86c335647d5d9fa2a86a020003c6b022c35a3",
+      "src/baselines/rank_chi2_subspaces.py": "c21c6137e18ea9ae811d934c09fb3cd0fb590ba96cf05884d3f8fed2dfbe6024",
+      "src/baselines/rff_mmd.py": "7743dd2a0915b84a60d9c04084c455bece923a06c2c2b8c785561fe00b2826a4",
+      "src/baselines/sliced_ot.py": "1a8a696ba98fe2ed0a6beeb50f604d02a017b9ca126227d3b6523c5afa6618f1",
+      "src/baselines/tuned_mmd.py": "967fe2b03ca84c1ecf1bf4434b18cb1cb7db1eb2db8bb22eeafd447560ec2dd2",
+      "src/ranktwosample/__init__.py": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "src/ranktwosample/power_datasets.py": "f47ba8f15a4dca8abbd930625bf5b2fca263d68879d37bcedb0c813caf407cc2",
+      "src/ranktwosample/rank_two_sample.py": "21d31b946d33de5bc1d85d66b949afb5bc6ecb606166b9fe03d6c723a1f6968c",
+      "src/ranktwosample/rank_two_sample_subspaces.py": "7541ae9e617b0d16f2f8522d09cab9e862a72b2f0de967cde01685e766e13caf",
+      "src/scripts/cifar10c_power_rank_subspaces.py": "ce2c107257dc24f38867531921cb6751788b5029a6b44d7ab9e658fbc4a6ff96",
+      "src/scripts/fair_comparator_bench.py": "63211ef07406c5d95f21a3d27d8a058a4d65b95adcb511a73848e6d5203fc6e8",
+      "src/scripts/power_rank_subspaces.py": "805b503b7eae767c969d20fead91922fa1e528c3e5c73b591c558de6a9dd8810",
+      "src/scripts/rotation_bench.py": "3ab6fc5ade4ce59a64795ff415b489c5dc5ce38916b2573fa4891c65d661afd6",
+      "src/scripts/run_power_bench.py": "abbb0a01437ed64a0267c11416a3e3cc3c8080997b8e504e170219ef3dfc9e6a",
+      "pyproject.toml": "287721aa795bea8eb9be7c0d53a1ba650f59bd48dfb44bc035df764d76ba8bf1",
+      "uv.lock": "6304a76e85db71a2f2d5f66afa7288fc2ba6228ac093f308aeca5217cdc9fcbd",
+      "overlay/analyze.py": "823d2ae3427b41f2bdf1c15588dba2bb61a0fc738c42e6daf408f41535e3123d",
+      "overlay/plot.py": "e218988ef4fb1c493d6365658fbb006b15f76ef4a455f2dc5899a42d7f1d5686",
+      "overlay/runner.py": "3abd3b8d6cbb57e44141e86ab81a44ac8c26a489a684bf775c375ba553a90049",
+      "overlay/protocol.json": "3639cbe4828c3d88327b38b83795d50e29df7660bd8981f40adae9fc5f83be2f",
+      "overlay/protocol.md": "63c1b399287820496e054ee152ba18c3b00e6e385358c376a1caf422d872e010",
+      "overlay/verify_dependence_power.py": "deb40aec70a979ba8cdbd29c68a67acf5787c52cc10bff714ebe963395a91e5d"
+    },
+    "shard": "006",
+    "original_raw_sha256": "ec99e1f16e14641b542ba35c25f1b14d3d4b96cb8203731bb5de29d43a56cbd2",
+    "public_raw_sha256": "ec99e1f16e14641b542ba35c25f1b14d3d4b96cb8203731bb5de29d43a56cbd2"
+  },
+  {
+    "python": "3.12.14 (main, Aug 24 2026, 11:43:01) [GCC 8.5.0 20210514 (Red Hat 8.5.0-28)]",
+    "numpy": "2.5.2",
+    "scipy": "1.18.1",
+    "platform": "Linux-6.12.110-1.el8.x86_64-x86_64-with-glibc2.28",
+    "cpu_model": "AMD EPYC 7302 16-Core Processor",
+    "protocol": {
+      "id": "dependence-power-v1-20261007",
+      "base_source_commit": "8f2de62a8c4aebe286872fb1ccd81eb73f83772d",
+      "base_seed": 2026100723,
+      "alpha": 0.05,
+      "B": 100,
+      "null_repetitions": 4000,
+      "power_repetitions": 500,
+      "pilot_rep_start": 100000,
+      "copula": {
+        "dimensions": [
+          4,
+          20
+        ],
+        "sample_sizes": [
+          1000
+        ],
+        "rho_reference": 0.6,
+        "K": 4,
+        "L": 64,
+        "generators": [
+          "gaussian",
+          "clayton",
+          "gumbel"
+        ],
+        "methods": [
+          "Rank_G_pairs",
+          "ME",
+          "Fourier_unsmoothed",
+          "MMD_exact_median_grid"
+        ],
+        "marginals": "Beta(2,5)"
+      },
+      "gaussian": {
+        "dimensions": [
+          2
+        ],
+        "sample_sizes": [
+          250,
+          500,
+          1000,
+          2000
+        ],
+        "rho_reference": 0.0,
+        "rho_alternatives": [
+          0.2,
+          0.4
+        ],
+        "K": 2,
+        "L": 1,
+        "methods": [
+          "Rank_Pearson_joint",
+          "Rank_Pearson_coordinate0"
+        ],
+        "marginals": "uniform"
+      },
+      "rank": {
+        "alpha0": 0.1,
+        "engine": "auto",
+        "tie": "jitter",
+        "jitter_scale": 1e-12,
+        "decision": "pvalue",
+        "stop_ci": "none",
+        "antithetic": false,
+        "gpu": "off",
+        "reference_mode": "shared_pool",
+        "use_fullY_for_HY": true,
+        "chunk": 512
+      },
+      "features": {
+        "J": 10,
+        "ridge": 1e-06,
+        "bandwidth_scale": 1.0,
+        "median_subsample": 1000
+      },
+      "mmd": {
+        "estimator": "unbiased",
+        "num_scales": 5,
+        "base": 2.0,
+        "median_subsample": 1000
+      },
+      "analysis": {
+        "null_family_size": 32,
+        "null_family_alpha": 0.05,
+        "null_upper_margin": 0.015,
+        "primary_power_family_size": 20,
+        "power_family_alpha": 0.05,
+        "failure_policy": "missing/failed/warning strata NA, no survivor rates",
+        "cohort_policy": "within-study fixed CPU/exact Python-build/library cohort; full platform and kernel recorded, effects/timings stratified; no alteration of old campaign policy"
+      },
+      "execution": {
+        "cpus_per_task": 1,
+        "gpus": 0,
+        "memory_gib": 4,
+        "maximum_total_cpu_core_hours": 14.0,
+        "preparation_reserve_cpu_core_hours": 0.25,
+        "analysis_reserve_cpu_core_hours": 0.5,
+        "automatic_retries": false
+      }
+    },
+    "protocol_hash": "5984f1e1d336071a0fcc053b953e3854b7bd49b67ab26229758799ee962c66d7",
+    "source_commit": "8f2de62a8c4aebe286872fb1ccd81eb73f83772d",
+    "source_hashes": {
+      "src/baselines/__init__.py": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "src/baselines/analytic_scf.py": "9765fe2993d9f016f2c5ba22188fc1c39e7ac2517ce814e51f43698ecb463d7d",
+      "src/baselines/c2st.py": "0f2a9cefe615a3eab4ac8a2c748d11d19bee6939cc6423cdd3516f30c9f14262",
+      "src/baselines/conditional_c2st.py": "d196598f9950dc95dcfbf351b6da89cc1d1f9aa79e08e5c5bda4e1d70ba63e56",
+      "src/baselines/hotelling_t2.py": "ffe0c0303b2fdf945abe08733e7fbf227c9582303ae4a16e7d485ab9a26325b7",
+      "src/baselines/kernel_mmd.py": "6d9c0620c6d7d1ff2a4ad6337699c46b25fd3f7ec359aa064285b10b71a2bb86",
+      "src/baselines/me_scf.py": "398c0bfe74b5055a5b3bb3a0270a144f470ce12655c583322c0c36f1e7dc8344",
+      "src/baselines/rank_chi2.py": "de7ec7c97ebe16a95e86db30ddd86c335647d5d9fa2a86a020003c6b022c35a3",
+      "src/baselines/rank_chi2_subspaces.py": "c21c6137e18ea9ae811d934c09fb3cd0fb590ba96cf05884d3f8fed2dfbe6024",
+      "src/baselines/rff_mmd.py": "7743dd2a0915b84a60d9c04084c455bece923a06c2c2b8c785561fe00b2826a4",
+      "src/baselines/sliced_ot.py": "1a8a696ba98fe2ed0a6beeb50f604d02a017b9ca126227d3b6523c5afa6618f1",
+      "src/baselines/tuned_mmd.py": "967fe2b03ca84c1ecf1bf4434b18cb1cb7db1eb2db8bb22eeafd447560ec2dd2",
+      "src/ranktwosample/__init__.py": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "src/ranktwosample/power_datasets.py": "f47ba8f15a4dca8abbd930625bf5b2fca263d68879d37bcedb0c813caf407cc2",
+      "src/ranktwosample/rank_two_sample.py": "21d31b946d33de5bc1d85d66b949afb5bc6ecb606166b9fe03d6c723a1f6968c",
+      "src/ranktwosample/rank_two_sample_subspaces.py": "7541ae9e617b0d16f2f8522d09cab9e862a72b2f0de967cde01685e766e13caf",
+      "src/scripts/cifar10c_power_rank_subspaces.py": "ce2c107257dc24f38867531921cb6751788b5029a6b44d7ab9e658fbc4a6ff96",
+      "src/scripts/fair_comparator_bench.py": "63211ef07406c5d95f21a3d27d8a058a4d65b95adcb511a73848e6d5203fc6e8",
+      "src/scripts/power_rank_subspaces.py": "805b503b7eae767c969d20fead91922fa1e528c3e5c73b591c558de6a9dd8810",
+      "src/scripts/rotation_bench.py": "3ab6fc5ade4ce59a64795ff415b489c5dc5ce38916b2573fa4891c65d661afd6",
+      "src/scripts/run_power_bench.py": "abbb0a01437ed64a0267c11416a3e3cc3c8080997b8e504e170219ef3dfc9e6a",
+      "pyproject.toml": "287721aa795bea8eb9be7c0d53a1ba650f59bd48dfb44bc035df764d76ba8bf1",
+      "uv.lock": "6304a76e85db71a2f2d5f66afa7288fc2ba6228ac093f308aeca5217cdc9fcbd",
+      "overlay/analyze.py": "823d2ae3427b41f2bdf1c15588dba2bb61a0fc738c42e6daf408f41535e3123d",
+      "overlay/plot.py": "e218988ef4fb1c493d6365658fbb006b15f76ef4a455f2dc5899a42d7f1d5686",
+      "overlay/runner.py": "3abd3b8d6cbb57e44141e86ab81a44ac8c26a489a684bf775c375ba553a90049",
+      "overlay/protocol.json": "3639cbe4828c3d88327b38b83795d50e29df7660bd8981f40adae9fc5f83be2f",
+      "overlay/protocol.md": "63c1b399287820496e054ee152ba18c3b00e6e385358c376a1caf422d872e010",
+      "overlay/verify_dependence_power.py": "deb40aec70a979ba8cdbd29c68a67acf5787c52cc10bff714ebe963395a91e5d"
+    },
+    "shard": "007",
+    "original_raw_sha256": "f0706329ee0378492114aa004915aa3bc9281a79ddc22b0d2ed9bac87593cf63",
+    "public_raw_sha256": "f0706329ee0378492114aa004915aa3bc9281a79ddc22b0d2ed9bac87593cf63"
+  },
+  {
+    "python": "3.12.14 (main, Aug 24 2026, 11:43:01) [GCC 8.5.0 20210514 (Red Hat 8.5.0-28)]",
+    "numpy": "2.5.2",
+    "scipy": "1.18.1",
+    "platform": "Linux-6.12.110-1.el8.x86_64-x86_64-with-glibc2.28",
+    "cpu_model": "AMD EPYC 7302 16-Core Processor",
+    "protocol": {
+      "id": "dependence-power-v1-20261007",
+      "base_source_commit": "8f2de62a8c4aebe286872fb1ccd81eb73f83772d",
+      "base_seed": 2026100723,
+      "alpha": 0.05,
+      "B": 100,
+      "null_repetitions": 4000,
+      "power_repetitions": 500,
+      "pilot_rep_start": 100000,
+      "copula": {
+        "dimensions": [
+          4,
+          20
+        ],
+        "sample_sizes": [
+          1000
+        ],
+        "rho_reference": 0.6,
+        "K": 4,
+        "L": 64,
+        "generators": [
+          "gaussian",
+          "clayton",
+          "gumbel"
+        ],
+        "methods": [
+          "Rank_G_pairs",
+          "ME",
+          "Fourier_unsmoothed",
+          "MMD_exact_median_grid"
+        ],
+        "marginals": "Beta(2,5)"
+      },
+      "gaussian": {
+        "dimensions": [
+          2
+        ],
+        "sample_sizes": [
+          250,
+          500,
+          1000,
+          2000
+        ],
+        "rho_reference": 0.0,
+        "rho_alternatives": [
+          0.2,
+          0.4
+        ],
+        "K": 2,
+        "L": 1,
+        "methods": [
+          "Rank_Pearson_joint",
+          "Rank_Pearson_coordinate0"
+        ],
+        "marginals": "uniform"
+      },
+      "rank": {
+        "alpha0": 0.1,
+        "engine": "auto",
+        "tie": "jitter",
+        "jitter_scale": 1e-12,
+        "decision": "pvalue",
+        "stop_ci": "none",
+        "antithetic": false,
+        "gpu": "off",
+        "reference_mode": "shared_pool",
+        "use_fullY_for_HY": true,
+        "chunk": 512
+      },
+      "features": {
+        "J": 10,
+        "ridge": 1e-06,
+        "bandwidth_scale": 1.0,
+        "median_subsample": 1000
+      },
+      "mmd": {
+        "estimator": "unbiased",
+        "num_scales": 5,
+        "base": 2.0,
+        "median_subsample": 1000
+      },
+      "analysis": {
+        "null_family_size": 32,
+        "null_family_alpha": 0.05,
+        "null_upper_margin": 0.015,
+        "primary_power_family_size": 20,
+        "power_family_alpha": 0.05,
+        "failure_policy": "missing/failed/warning strata NA, no survivor rates",
+        "cohort_policy": "within-study fixed CPU/exact Python-build/library cohort; full platform and kernel recorded, effects/timings stratified; no alteration of old campaign policy"
+      },
+      "execution": {
+        "cpus_per_task": 1,
+        "gpus": 0,
+        "memory_gib": 4,
+        "maximum_total_cpu_core_hours": 14.0,
+        "preparation_reserve_cpu_core_hours": 0.25,
+        "analysis_reserve_cpu_core_hours": 0.5,
+        "automatic_retries": false
+      }
+    },
+    "protocol_hash": "5984f1e1d336071a0fcc053b953e3854b7bd49b67ab26229758799ee962c66d7",
+    "source_commit": "8f2de62a8c4aebe286872fb1ccd81eb73f83772d",
+    "source_hashes": {
+      "src/baselines/__init__.py": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "src/baselines/analytic_scf.py": "9765fe2993d9f016f2c5ba22188fc1c39e7ac2517ce814e51f43698ecb463d7d",
+      "src/baselines/c2st.py": "0f2a9cefe615a3eab4ac8a2c748d11d19bee6939cc6423cdd3516f30c9f14262",
+      "src/baselines/conditional_c2st.py": "d196598f9950dc95dcfbf351b6da89cc1d1f9aa79e08e5c5bda4e1d70ba63e56",
+      "src/baselines/hotelling_t2.py": "ffe0c0303b2fdf945abe08733e7fbf227c9582303ae4a16e7d485ab9a26325b7",
+      "src/baselines/kernel_mmd.py": "6d9c0620c6d7d1ff2a4ad6337699c46b25fd3f7ec359aa064285b10b71a2bb86",
+      "src/baselines/me_scf.py": "398c0bfe74b5055a5b3bb3a0270a144f470ce12655c583322c0c36f1e7dc8344",
+      "src/baselines/rank_chi2.py": "de7ec7c97ebe16a95e86db30ddd86c335647d5d9fa2a86a020003c6b022c35a3",
+      "src/baselines/rank_chi2_subspaces.py": "c21c6137e18ea9ae811d934c09fb3cd0fb590ba96cf05884d3f8fed2dfbe6024",
+      "src/baselines/rff_mmd.py": "7743dd2a0915b84a60d9c04084c455bece923a06c2c2b8c785561fe00b2826a4",
+      "src/baselines/sliced_ot.py": "1a8a696ba98fe2ed0a6beeb50f604d02a017b9ca126227d3b6523c5afa6618f1",
+      "src/baselines/tuned_mmd.py": "967fe2b03ca84c1ecf1bf4434b18cb1cb7db1eb2db8bb22eeafd447560ec2dd2",
+      "src/ranktwosample/__init__.py": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "src/ranktwosample/power_datasets.py": "f47ba8f15a4dca8abbd930625bf5b2fca263d68879d37bcedb0c813caf407cc2",
+      "src/ranktwosample/rank_two_sample.py": "21d31b946d33de5bc1d85d66b949afb5bc6ecb606166b9fe03d6c723a1f6968c",
+      "src/ranktwosample/rank_two_sample_subspaces.py": "7541ae9e617b0d16f2f8522d09cab9e862a72b2f0de967cde01685e766e13caf",
+      "src/scripts/cifar10c_power_rank_subspaces.py": "ce2c107257dc24f38867531921cb6751788b5029a6b44d7ab9e658fbc4a6ff96",
+      "src/scripts/fair_comparator_bench.py": "63211ef07406c5d95f21a3d27d8a058a4d65b95adcb511a73848e6d5203fc6e8",
+      "src/scripts/power_rank_subspaces.py": "805b503b7eae767c969d20fead91922fa1e528c3e5c73b591c558de6a9dd8810",
+      "src/scripts/rotation_bench.py": "3ab6fc5ade4ce59a64795ff415b489c5dc5ce38916b2573fa4891c65d661afd6",
+      "src/scripts/run_power_bench.py": "abbb0a01437ed64a0267c11416a3e3cc3c8080997b8e504e170219ef3dfc9e6a",
+      "pyproject.toml": "287721aa795bea8eb9be7c0d53a1ba650f59bd48dfb44bc035df764d76ba8bf1",
+      "uv.lock": "6304a76e85db71a2f2d5f66afa7288fc2ba6228ac093f308aeca5217cdc9fcbd",
+      "overlay/analyze.py": "823d2ae3427b41f2bdf1c15588dba2bb61a0fc738c42e6daf408f41535e3123d",
+      "overlay/plot.py": "e218988ef4fb1c493d6365658fbb006b15f76ef4a455f2dc5899a42d7f1d5686",
+      "overlay/runner.py": "3abd3b8d6cbb57e44141e86ab81a44ac8c26a489a684bf775c375ba553a90049",
+      "overlay/protocol.json": "3639cbe4828c3d88327b38b83795d50e29df7660bd8981f40adae9fc5f83be2f",
+      "overlay/protocol.md": "63c1b399287820496e054ee152ba18c3b00e6e385358c376a1caf422d872e010",
+      "overlay/verify_dependence_power.py": "deb40aec70a979ba8cdbd29c68a67acf5787c52cc10bff714ebe963395a91e5d"
+    },
+    "shard": "008",
+    "original_raw_sha256": "33ca8a55bacceb5bf051540605ae2d6e5ccae3390c34620e922c412dfd5dac71",
+    "public_raw_sha256": "33ca8a55bacceb5bf051540605ae2d6e5ccae3390c34620e922c412dfd5dac71"
+  },
+  {
+    "python": "3.12.14 (main, Aug 24 2026, 11:43:01) [GCC 8.5.0 20210514 (Red Hat 8.5.0-28)]",
+    "numpy": "2.5.2",
+    "scipy": "1.18.1",
+    "platform": "Linux-6.12.111-1.el8.x86_64-x86_64-with-glibc2.28",
+    "cpu_model": "AMD EPYC 7302 16-Core Processor",
+    "protocol": {
+      "id": "dependence-power-v1-20261007",
+      "base_source_commit": "8f2de62a8c4aebe286872fb1ccd81eb73f83772d",
+      "base_seed": 2026100723,
+      "alpha": 0.05,
+      "B": 100,
+      "null_repetitions": 4000,
+      "power_repetitions": 500,
+      "pilot_rep_start": 100000,
+      "copula": {
+        "dimensions": [
+          4,
+          20
+        ],
+        "sample_sizes": [
+          1000
+        ],
+        "rho_reference": 0.6,
+        "K": 4,
+        "L": 64,
+        "generators": [
+          "gaussian",
+          "clayton",
+          "gumbel"
+        ],
+        "methods": [
+          "Rank_G_pairs",
+          "ME",
+          "Fourier_unsmoothed",
+          "MMD_exact_median_grid"
+        ],
+        "marginals": "Beta(2,5)"
+      },
+      "gaussian": {
+        "dimensions": [
+          2
+        ],
+        "sample_sizes": [
+          250,
+          500,
+          1000,
+          2000
+        ],
+        "rho_reference": 0.0,
+        "rho_alternatives": [
+          0.2,
+          0.4
+        ],
+        "K": 2,
+        "L": 1,
+        "methods": [
+          "Rank_Pearson_joint",
+          "Rank_Pearson_coordinate0"
+        ],
+        "marginals": "uniform"
+      },
+      "rank": {
+        "alpha0": 0.1,
+        "engine": "auto",
+        "tie": "jitter",
+        "jitter_scale": 1e-12,
+        "decision": "pvalue",
+        "stop_ci": "none",
+        "antithetic": false,
+        "gpu": "off",
+        "reference_mode": "shared_pool",
+        "use_fullY_for_HY": true,
+        "chunk": 512
+      },
+      "features": {
+        "J": 10,
+        "ridge": 1e-06,
+        "bandwidth_scale": 1.0,
+        "median_subsample": 1000
+      },
+      "mmd": {
+        "estimator": "unbiased",
+        "num_scales": 5,
+        "base": 2.0,
+        "median_subsample": 1000
+      },
+      "analysis": {
+        "null_family_size": 32,
+        "null_family_alpha": 0.05,
+        "null_upper_margin": 0.015,
+        "primary_power_family_size": 20,
+        "power_family_alpha": 0.05,
+        "failure_policy": "missing/failed/warning strata NA, no survivor rates",
+        "cohort_policy": "within-study fixed CPU/exact Python-build/library cohort; full platform and kernel recorded, effects/timings stratified; no alteration of old campaign policy"
+      },
+      "execution": {
+        "cpus_per_task": 1,
+        "gpus": 0,
+        "memory_gib": 4,
+        "maximum_total_cpu_core_hours": 14.0,
+        "preparation_reserve_cpu_core_hours": 0.25,
+        "analysis_reserve_cpu_core_hours": 0.5,
+        "automatic_retries": false
+      }
+    },
+    "protocol_hash": "5984f1e1d336071a0fcc053b953e3854b7bd49b67ab26229758799ee962c66d7",
+    "source_commit": "8f2de62a8c4aebe286872fb1ccd81eb73f83772d",
+    "source_hashes": {
+      "src/baselines/__init__.py": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "src/baselines/analytic_scf.py": "9765fe2993d9f016f2c5ba22188fc1c39e7ac2517ce814e51f43698ecb463d7d",
+      "src/baselines/c2st.py": "0f2a9cefe615a3eab4ac8a2c748d11d19bee6939cc6423cdd3516f30c9f14262",
+      "src/baselines/conditional_c2st.py": "d196598f9950dc95dcfbf351b6da89cc1d1f9aa79e08e5c5bda4e1d70ba63e56",
+      "src/baselines/hotelling_t2.py": "ffe0c0303b2fdf945abe08733e7fbf227c9582303ae4a16e7d485ab9a26325b7",
+      "src/baselines/kernel_mmd.py": "6d9c0620c6d7d1ff2a4ad6337699c46b25fd3f7ec359aa064285b10b71a2bb86",
+      "src/baselines/me_scf.py": "398c0bfe74b5055a5b3bb3a0270a144f470ce12655c583322c0c36f1e7dc8344",
+      "src/baselines/rank_chi2.py": "de7ec7c97ebe16a95e86db30ddd86c335647d5d9fa2a86a020003c6b022c35a3",
+      "src/baselines/rank_chi2_subspaces.py": "c21c6137e18ea9ae811d934c09fb3cd0fb590ba96cf05884d3f8fed2dfbe6024",
+      "src/baselines/rff_mmd.py": "7743dd2a0915b84a60d9c04084c455bece923a06c2c2b8c785561fe00b2826a4",
+      "src/baselines/sliced_ot.py": "1a8a696ba98fe2ed0a6beeb50f604d02a017b9ca126227d3b6523c5afa6618f1",
+      "src/baselines/tuned_mmd.py": "967fe2b03ca84c1ecf1bf4434b18cb1cb7db1eb2db8bb22eeafd447560ec2dd2",
+      "src/ranktwosample/__init__.py": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "src/ranktwosample/power_datasets.py": "f47ba8f15a4dca8abbd930625bf5b2fca263d68879d37bcedb0c813caf407cc2",
+      "src/ranktwosample/rank_two_sample.py": "21d31b946d33de5bc1d85d66b949afb5bc6ecb606166b9fe03d6c723a1f6968c",
+      "src/ranktwosample/rank_two_sample_subspaces.py": "7541ae9e617b0d16f2f8522d09cab9e862a72b2f0de967cde01685e766e13caf",
+      "src/scripts/cifar10c_power_rank_subspaces.py": "ce2c107257dc24f38867531921cb6751788b5029a6b44d7ab9e658fbc4a6ff96",
+      "src/scripts/fair_comparator_bench.py": "63211ef07406c5d95f21a3d27d8a058a4d65b95adcb511a73848e6d5203fc6e8",
+      "src/scripts/power_rank_subspaces.py": "805b503b7eae767c969d20fead91922fa1e528c3e5c73b591c558de6a9dd8810",
+      "src/scripts/rotation_bench.py": "3ab6fc5ade4ce59a64795ff415b489c5dc5ce38916b2573fa4891c65d661afd6",
+      "src/scripts/run_power_bench.py": "abbb0a01437ed64a0267c11416a3e3cc3c8080997b8e504e170219ef3dfc9e6a",
+      "pyproject.toml": "287721aa795bea8eb9be7c0d53a1ba650f59bd48dfb44bc035df764d76ba8bf1",
+      "uv.lock": "6304a76e85db71a2f2d5f66afa7288fc2ba6228ac093f308aeca5217cdc9fcbd",
+      "overlay/analyze.py": "823d2ae3427b41f2bdf1c15588dba2bb61a0fc738c42e6daf408f41535e3123d",
+      "overlay/plot.py": "e218988ef4fb1c493d6365658fbb006b15f76ef4a455f2dc5899a42d7f1d5686",
+      "overlay/runner.py": "3abd3b8d6cbb57e44141e86ab81a44ac8c26a489a684bf775c375ba553a90049",
+      "overlay/protocol.json": "3639cbe4828c3d88327b38b83795d50e29df7660bd8981f40adae9fc5f83be2f",
+      "overlay/protocol.md": "63c1b399287820496e054ee152ba18c3b00e6e385358c376a1caf422d872e010",
+      "overlay/verify_dependence_power.py": "deb40aec70a979ba8cdbd29c68a67acf5787c52cc10bff714ebe963395a91e5d"
+    },
+    "shard": "009",
+    "original_raw_sha256": "ef270b6bc406bac0a36d40fbd98d53b1e02f7c160760f32ae06aac754981d383",
+    "public_raw_sha256": "ef270b6bc406bac0a36d40fbd98d53b1e02f7c160760f32ae06aac754981d383"
+  },
+  {
+    "python": "3.12.14 (main, Aug 24 2026, 11:43:01) [GCC 8.5.0 20210514 (Red Hat 8.5.0-28)]",
+    "numpy": "2.5.2",
+    "scipy": "1.18.1",
+    "platform": "Linux-6.12.111-1.el8.x86_64-x86_64-with-glibc2.28",
+    "cpu_model": "AMD EPYC 7302 16-Core Processor",
+    "protocol": {
+      "id": "dependence-power-v1-20261007",
+      "base_source_commit": "8f2de62a8c4aebe286872fb1ccd81eb73f83772d",
+      "base_seed": 2026100723,
+      "alpha": 0.05,
+      "B": 100,
+      "null_repetitions": 4000,
+      "power_repetitions": 500,
+      "pilot_rep_start": 100000,
+      "copula": {
+        "dimensions": [
+          4,
+          20
+        ],
+        "sample_sizes": [
+          1000
+        ],
+        "rho_reference": 0.6,
+        "K": 4,
+        "L": 64,
+        "generators": [
+          "gaussian",
+          "clayton",
+          "gumbel"
+        ],
+        "methods": [
+          "Rank_G_pairs",
+          "ME",
+          "Fourier_unsmoothed",
+          "MMD_exact_median_grid"
+        ],
+        "marginals": "Beta(2,5)"
+      },
+      "gaussian": {
+        "dimensions": [
+          2
+        ],
+        "sample_sizes": [
+          250,
+          500,
+          1000,
+          2000
+        ],
+        "rho_reference": 0.0,
+        "rho_alternatives": [
+          0.2,
+          0.4
+        ],
+        "K": 2,
+        "L": 1,
+        "methods": [
+          "Rank_Pearson_joint",
+          "Rank_Pearson_coordinate0"
+        ],
+        "marginals": "uniform"
+      },
+      "rank": {
+        "alpha0": 0.1,
+        "engine": "auto",
+        "tie": "jitter",
+        "jitter_scale": 1e-12,
+        "decision": "pvalue",
+        "stop_ci": "none",
+        "antithetic": false,
+        "gpu": "off",
+        "reference_mode": "shared_pool",
+        "use_fullY_for_HY": true,
+        "chunk": 512
+      },
+      "features": {
+        "J": 10,
+        "ridge": 1e-06,
+        "bandwidth_scale": 1.0,
+        "median_subsample": 1000
+      },
+      "mmd": {
+        "estimator": "unbiased",
+        "num_scales": 5,
+        "base": 2.0,
+        "median_subsample": 1000
+      },
+      "analysis": {
+        "null_family_size": 32,
+        "null_family_alpha": 0.05,
+        "null_upper_margin": 0.015,
+        "primary_power_family_size": 20,
+        "power_family_alpha": 0.05,
+        "failure_policy": "missing/failed/warning strata NA, no survivor rates",
+        "cohort_policy": "within-study fixed CPU/exact Python-build/library cohort; full platform and kernel recorded, effects/timings stratified; no alteration of old campaign policy"
+      },
+      "execution": {
+        "cpus_per_task": 1,
+        "gpus": 0,
+        "memory_gib": 4,
+        "maximum_total_cpu_core_hours": 14.0,
+        "preparation_reserve_cpu_core_hours": 0.25,
+        "analysis_reserve_cpu_core_hours": 0.5,
+        "automatic_retries": false
+      }
+    },
+    "protocol_hash": "5984f1e1d336071a0fcc053b953e3854b7bd49b67ab26229758799ee962c66d7",
+    "source_commit": "8f2de62a8c4aebe286872fb1ccd81eb73f83772d",
+    "source_hashes": {
+      "src/baselines/__init__.py": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "src/baselines/analytic_scf.py": "9765fe2993d9f016f2c5ba22188fc1c39e7ac2517ce814e51f43698ecb463d7d",
+      "src/baselines/c2st.py": "0f2a9cefe615a3eab4ac8a2c748d11d19bee6939cc6423cdd3516f30c9f14262",
+      "src/baselines/conditional_c2st.py": "d196598f9950dc95dcfbf351b6da89cc1d1f9aa79e08e5c5bda4e1d70ba63e56",
+      "src/baselines/hotelling_t2.py": "ffe0c0303b2fdf945abe08733e7fbf227c9582303ae4a16e7d485ab9a26325b7",
+      "src/baselines/kernel_mmd.py": "6d9c0620c6d7d1ff2a4ad6337699c46b25fd3f7ec359aa064285b10b71a2bb86",
+      "src/baselines/me_scf.py": "398c0bfe74b5055a5b3bb3a0270a144f470ce12655c583322c0c36f1e7dc8344",
+      "src/baselines/rank_chi2.py": "de7ec7c97ebe16a95e86db30ddd86c335647d5d9fa2a86a020003c6b022c35a3",
+      "src/baselines/rank_chi2_subspaces.py": "c21c6137e18ea9ae811d934c09fb3cd0fb590ba96cf05884d3f8fed2dfbe6024",
+      "src/baselines/rff_mmd.py": "7743dd2a0915b84a60d9c04084c455bece923a06c2c2b8c785561fe00b2826a4",
+      "src/baselines/sliced_ot.py": "1a8a696ba98fe2ed0a6beeb50f604d02a017b9ca126227d3b6523c5afa6618f1",
+      "src/baselines/tuned_mmd.py": "967fe2b03ca84c1ecf1bf4434b18cb1cb7db1eb2db8bb22eeafd447560ec2dd2",
+      "src/ranktwosample/__init__.py": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "src/ranktwosample/power_datasets.py": "f47ba8f15a4dca8abbd930625bf5b2fca263d68879d37bcedb0c813caf407cc2",
+      "src/ranktwosample/rank_two_sample.py": "21d31b946d33de5bc1d85d66b949afb5bc6ecb606166b9fe03d6c723a1f6968c",
+      "src/ranktwosample/rank_two_sample_subspaces.py": "7541ae9e617b0d16f2f8522d09cab9e862a72b2f0de967cde01685e766e13caf",
+      "src/scripts/cifar10c_power_rank_subspaces.py": "ce2c107257dc24f38867531921cb6751788b5029a6b44d7ab9e658fbc4a6ff96",
+      "src/scripts/fair_comparator_bench.py": "63211ef07406c5d95f21a3d27d8a058a4d65b95adcb511a73848e6d5203fc6e8",
+      "src/scripts/power_rank_subspaces.py": "805b503b7eae767c969d20fead91922fa1e528c3e5c73b591c558de6a9dd8810",
+      "src/scripts/rotation_bench.py": "3ab6fc5ade4ce59a64795ff415b489c5dc5ce38916b2573fa4891c65d661afd6",
+      "src/scripts/run_power_bench.py": "abbb0a01437ed64a0267c11416a3e3cc3c8080997b8e504e170219ef3dfc9e6a",
+      "pyproject.toml": "287721aa795bea8eb9be7c0d53a1ba650f59bd48dfb44bc035df764d76ba8bf1",
+      "uv.lock": "6304a76e85db71a2f2d5f66afa7288fc2ba6228ac093f308aeca5217cdc9fcbd",
+      "overlay/analyze.py": "823d2ae3427b41f2bdf1c15588dba2bb61a0fc738c42e6daf408f41535e3123d",
+      "overlay/plot.py": "e218988ef4fb1c493d6365658fbb006b15f76ef4a455f2dc5899a42d7f1d5686",
+      "overlay/runner.py": "3abd3b8d6cbb57e44141e86ab81a44ac8c26a489a684bf775c375ba553a90049",
+      "overlay/protocol.json": "3639cbe4828c3d88327b38b83795d50e29df7660bd8981f40adae9fc5f83be2f",
+      "overlay/protocol.md": "63c1b399287820496e054ee152ba18c3b00e6e385358c376a1caf422d872e010",
+      "overlay/verify_dependence_power.py": "deb40aec70a979ba8cdbd29c68a67acf5787c52cc10bff714ebe963395a91e5d"
+    },
+    "shard": "010",
+    "original_raw_sha256": "6b61b7c34552657eb5c4532db97bdec471fb0b7ddd4de872e864729f4688705d",
+    "public_raw_sha256": "6b61b7c34552657eb5c4532db97bdec471fb0b7ddd4de872e864729f4688705d"
+  },
+  {
+    "python": "3.12.14 (main, Aug 24 2026, 11:43:01) [GCC 8.5.0 20210514 (Red Hat 8.5.0-28)]",
+    "numpy": "2.5.2",
+    "scipy": "1.18.1",
+    "platform": "Linux-6.12.111-1.el8.x86_64-x86_64-with-glibc2.28",
+    "cpu_model": "AMD EPYC 7302 16-Core Processor",
+    "protocol": {
+      "id": "dependence-power-v1-20261007",
+      "base_source_commit": "8f2de62a8c4aebe286872fb1ccd81eb73f83772d",
+      "base_seed": 2026100723,
+      "alpha": 0.05,
+      "B": 100,
+      "null_repetitions": 4000,
+      "power_repetitions": 500,
+      "pilot_rep_start": 100000,
+      "copula": {
+        "dimensions": [
+          4,
+          20
+        ],
+        "sample_sizes": [
+          1000
+        ],
+        "rho_reference": 0.6,
+        "K": 4,
+        "L": 64,
+        "generators": [
+          "gaussian",
+          "clayton",
+          "gumbel"
+        ],
+        "methods": [
+          "Rank_G_pairs",
+          "ME",
+          "Fourier_unsmoothed",
+          "MMD_exact_median_grid"
+        ],
+        "marginals": "Beta(2,5)"
+      },
+      "gaussian": {
+        "dimensions": [
+          2
+        ],
+        "sample_sizes": [
+          250,
+          500,
+          1000,
+          2000
+        ],
+        "rho_reference": 0.0,
+        "rho_alternatives": [
+          0.2,
+          0.4
+        ],
+        "K": 2,
+        "L": 1,
+        "methods": [
+          "Rank_Pearson_joint",
+          "Rank_Pearson_coordinate0"
+        ],
+        "marginals": "uniform"
+      },
+      "rank": {
+        "alpha0": 0.1,
+        "engine": "auto",
+        "tie": "jitter",
+        "jitter_scale": 1e-12,
+        "decision": "pvalue",
+        "stop_ci": "none",
+        "antithetic": false,
+        "gpu": "off",
+        "reference_mode": "shared_pool",
+        "use_fullY_for_HY": true,
+        "chunk": 512
+      },
+      "features": {
+        "J": 10,
+        "ridge": 1e-06,
+        "bandwidth_scale": 1.0,
+        "median_subsample": 1000
+      },
+      "mmd": {
+        "estimator": "unbiased",
+        "num_scales": 5,
+        "base": 2.0,
+        "median_subsample": 1000
+      },
+      "analysis": {
+        "null_family_size": 32,
+        "null_family_alpha": 0.05,
+        "null_upper_margin": 0.015,
+        "primary_power_family_size": 20,
+        "power_family_alpha": 0.05,
+        "failure_policy": "missing/failed/warning strata NA, no survivor rates",
+        "cohort_policy": "within-study fixed CPU/exact Python-build/library cohort; full platform and kernel recorded, effects/timings stratified; no alteration of old campaign policy"
+      },
+      "execution": {
+        "cpus_per_task": 1,
+        "gpus": 0,
+        "memory_gib": 4,
+        "maximum_total_cpu_core_hours": 14.0,
+        "preparation_reserve_cpu_core_hours": 0.25,
+        "analysis_reserve_cpu_core_hours": 0.5,
+        "automatic_retries": false
+      }
+    },
+    "protocol_hash": "5984f1e1d336071a0fcc053b953e3854b7bd49b67ab26229758799ee962c66d7",
+    "source_commit": "8f2de62a8c4aebe286872fb1ccd81eb73f83772d",
+    "source_hashes": {
+      "src/baselines/__init__.py": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "src/baselines/analytic_scf.py": "9765fe2993d9f016f2c5ba22188fc1c39e7ac2517ce814e51f43698ecb463d7d",
+      "src/baselines/c2st.py": "0f2a9cefe615a3eab4ac8a2c748d11d19bee6939cc6423cdd3516f30c9f14262",
+      "src/baselines/conditional_c2st.py": "d196598f9950dc95dcfbf351b6da89cc1d1f9aa79e08e5c5bda4e1d70ba63e56",
+      "src/baselines/hotelling_t2.py": "ffe0c0303b2fdf945abe08733e7fbf227c9582303ae4a16e7d485ab9a26325b7",
+      "src/baselines/kernel_mmd.py": "6d9c0620c6d7d1ff2a4ad6337699c46b25fd3f7ec359aa064285b10b71a2bb86",
+      "src/baselines/me_scf.py": "398c0bfe74b5055a5b3bb3a0270a144f470ce12655c583322c0c36f1e7dc8344",
+      "src/baselines/rank_chi2.py": "de7ec7c97ebe16a95e86db30ddd86c335647d5d9fa2a86a020003c6b022c35a3",
+      "src/baselines/rank_chi2_subspaces.py": "c21c6137e18ea9ae811d934c09fb3cd0fb590ba96cf05884d3f8fed2dfbe6024",
+      "src/baselines/rff_mmd.py": "7743dd2a0915b84a60d9c04084c455bece923a06c2c2b8c785561fe00b2826a4",
+      "src/baselines/sliced_ot.py": "1a8a696ba98fe2ed0a6beeb50f604d02a017b9ca126227d3b6523c5afa6618f1",
+      "src/baselines/tuned_mmd.py": "967fe2b03ca84c1ecf1bf4434b18cb1cb7db1eb2db8bb22eeafd447560ec2dd2",
+      "src/ranktwosample/__init__.py": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "src/ranktwosample/power_datasets.py": "f47ba8f15a4dca8abbd930625bf5b2fca263d68879d37bcedb0c813caf407cc2",
+      "src/ranktwosample/rank_two_sample.py": "21d31b946d33de5bc1d85d66b949afb5bc6ecb606166b9fe03d6c723a1f6968c",
+      "src/ranktwosample/rank_two_sample_subspaces.py": "7541ae9e617b0d16f2f8522d09cab9e862a72b2f0de967cde01685e766e13caf",
+      "src/scripts/cifar10c_power_rank_subspaces.py": "ce2c107257dc24f38867531921cb6751788b5029a6b44d7ab9e658fbc4a6ff96",
+      "src/scripts/fair_comparator_bench.py": "63211ef07406c5d95f21a3d27d8a058a4d65b95adcb511a73848e6d5203fc6e8",
+      "src/scripts/power_rank_subspaces.py": "805b503b7eae767c969d20fead91922fa1e528c3e5c73b591c558de6a9dd8810",
+      "src/scripts/rotation_bench.py": "3ab6fc5ade4ce59a64795ff415b489c5dc5ce38916b2573fa4891c65d661afd6",
+      "src/scripts/run_power_bench.py": "abbb0a01437ed64a0267c11416a3e3cc3c8080997b8e504e170219ef3dfc9e6a",
+      "pyproject.toml": "287721aa795bea8eb9be7c0d53a1ba650f59bd48dfb44bc035df764d76ba8bf1",
+      "uv.lock": "6304a76e85db71a2f2d5f66afa7288fc2ba6228ac093f308aeca5217cdc9fcbd",
+      "overlay/analyze.py": "823d2ae3427b41f2bdf1c15588dba2bb61a0fc738c42e6daf408f41535e3123d",
+      "overlay/plot.py": "e218988ef4fb1c493d6365658fbb006b15f76ef4a455f2dc5899a42d7f1d5686",
+      "overlay/runner.py": "3abd3b8d6cbb57e44141e86ab81a44ac8c26a489a684bf775c375ba553a90049",
+      "overlay/protocol.json": "3639cbe4828c3d88327b38b83795d50e29df7660bd8981f40adae9fc5f83be2f",
+      "overlay/protocol.md": "63c1b399287820496e054ee152ba18c3b00e6e385358c376a1caf422d872e010",
+      "overlay/verify_dependence_power.py": "deb40aec70a979ba8cdbd29c68a67acf5787c52cc10bff714ebe963395a91e5d"
+    },
+    "shard": "011",
+    "original_raw_sha256": "390b00da422debc26e8ef8022c2429075890d8f520d8ffb15e2552b211e34f26",
+    "public_raw_sha256": "390b00da422debc26e8ef8022c2429075890d8f520d8ffb15e2552b211e34f26"
+  },
+  {
+    "python": "3.12.14 (main, Aug 24 2026, 11:43:01) [GCC 8.5.0 20210514 (Red Hat 8.5.0-28)]",
+    "numpy": "2.5.2",
+    "scipy": "1.18.1",
+    "platform": "Linux-6.12.111-1.el8.x86_64-x86_64-with-glibc2.28",
+    "cpu_model": "AMD EPYC 7302 16-Core Processor",
+    "protocol": {
+      "id": "dependence-power-v1-20261007",
+      "base_source_commit": "8f2de62a8c4aebe286872fb1ccd81eb73f83772d",
+      "base_seed": 2026100723,
+      "alpha": 0.05,
+      "B": 100,
+      "null_repetitions": 4000,
+      "power_repetitions": 500,
+      "pilot_rep_start": 100000,
+      "copula": {
+        "dimensions": [
+          4,
+          20
+        ],
+        "sample_sizes": [
+          1000
+        ],
+        "rho_reference": 0.6,
+        "K": 4,
+        "L": 64,
+        "generators": [
+          "gaussian",
+          "clayton",
+          "gumbel"
+        ],
+        "methods": [
+          "Rank_G_pairs",
+          "ME",
+          "Fourier_unsmoothed",
+          "MMD_exact_median_grid"
+        ],
+        "marginals": "Beta(2,5)"
+      },
+      "gaussian": {
+        "dimensions": [
+          2
+        ],
+        "sample_sizes": [
+          250,
+          500,
+          1000,
+          2000
+        ],
+        "rho_reference": 0.0,
+        "rho_alternatives": [
+          0.2,
+          0.4
+        ],
+        "K": 2,
+        "L": 1,
+        "methods": [
+          "Rank_Pearson_joint",
+          "Rank_Pearson_coordinate0"
+        ],
+        "marginals": "uniform"
+      },
+      "rank": {
+        "alpha0": 0.1,
+        "engine": "auto",
+        "tie": "jitter",
+        "jitter_scale": 1e-12,
+        "decision": "pvalue",
+        "stop_ci": "none",
+        "antithetic": false,
+        "gpu": "off",
+        "reference_mode": "shared_pool",
+        "use_fullY_for_HY": true,
+        "chunk": 512
+      },
+      "features": {
+        "J": 10,
+        "ridge": 1e-06,
+        "bandwidth_scale": 1.0,
+        "median_subsample": 1000
+      },
+      "mmd": {
+        "estimator": "unbiased",
+        "num_scales": 5,
+        "base": 2.0,
+        "median_subsample": 1000
+      },
+      "analysis": {
+        "null_family_size": 32,
+        "null_family_alpha": 0.05,
+        "null_upper_margin": 0.015,
+        "primary_power_family_size": 20,
+        "power_family_alpha": 0.05,
+        "failure_policy": "missing/failed/warning strata NA, no survivor rates",
+        "cohort_policy": "within-study fixed CPU/exact Python-build/library cohort; full platform and kernel recorded, effects/timings stratified; no alteration of old campaign policy"
+      },
+      "execution": {
+        "cpus_per_task": 1,
+        "gpus": 0,
+        "memory_gib": 4,
+        "maximum_total_cpu_core_hours": 14.0,
+        "preparation_reserve_cpu_core_hours": 0.25,
+        "analysis_reserve_cpu_core_hours": 0.5,
+        "automatic_retries": false
+      }
+    },
+    "protocol_hash": "5984f1e1d336071a0fcc053b953e3854b7bd49b67ab26229758799ee962c66d7",
+    "source_commit": "8f2de62a8c4aebe286872fb1ccd81eb73f83772d",
+    "source_hashes": {
+      "src/baselines/__init__.py": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "src/baselines/analytic_scf.py": "9765fe2993d9f016f2c5ba22188fc1c39e7ac2517ce814e51f43698ecb463d7d",
+      "src/baselines/c2st.py": "0f2a9cefe615a3eab4ac8a2c748d11d19bee6939cc6423cdd3516f30c9f14262",
+      "src/baselines/conditional_c2st.py": "d196598f9950dc95dcfbf351b6da89cc1d1f9aa79e08e5c5bda4e1d70ba63e56",
+      "src/baselines/hotelling_t2.py": "ffe0c0303b2fdf945abe08733e7fbf227c9582303ae4a16e7d485ab9a26325b7",
+      "src/baselines/kernel_mmd.py": "6d9c0620c6d7d1ff2a4ad6337699c46b25fd3f7ec359aa064285b10b71a2bb86",
+      "src/baselines/me_scf.py": "398c0bfe74b5055a5b3bb3a0270a144f470ce12655c583322c0c36f1e7dc8344",
+      "src/baselines/rank_chi2.py": "de7ec7c97ebe16a95e86db30ddd86c335647d5d9fa2a86a020003c6b022c35a3",
+      "src/baselines/rank_chi2_subspaces.py": "c21c6137e18ea9ae811d934c09fb3cd0fb590ba96cf05884d3f8fed2dfbe6024",
+      "src/baselines/rff_mmd.py": "7743dd2a0915b84a60d9c04084c455bece923a06c2c2b8c785561fe00b2826a4",
+      "src/baselines/sliced_ot.py": "1a8a696ba98fe2ed0a6beeb50f604d02a017b9ca126227d3b6523c5afa6618f1",
+      "src/baselines/tuned_mmd.py": "967fe2b03ca84c1ecf1bf4434b18cb1cb7db1eb2db8bb22eeafd447560ec2dd2",
+      "src/ranktwosample/__init__.py": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "src/ranktwosample/power_datasets.py": "f47ba8f15a4dca8abbd930625bf5b2fca263d68879d37bcedb0c813caf407cc2",
+      "src/ranktwosample/rank_two_sample.py": "21d31b946d33de5bc1d85d66b949afb5bc6ecb606166b9fe03d6c723a1f6968c",
+      "src/ranktwosample/rank_two_sample_subspaces.py": "7541ae9e617b0d16f2f8522d09cab9e862a72b2f0de967cde01685e766e13caf",
+      "src/scripts/cifar10c_power_rank_subspaces.py": "ce2c107257dc24f38867531921cb6751788b5029a6b44d7ab9e658fbc4a6ff96",
+      "src/scripts/fair_comparator_bench.py": "63211ef07406c5d95f21a3d27d8a058a4d65b95adcb511a73848e6d5203fc6e8",
+      "src/scripts/power_rank_subspaces.py": "805b503b7eae767c969d20fead91922fa1e528c3e5c73b591c558de6a9dd8810",
+      "src/scripts/rotation_bench.py": "3ab6fc5ade4ce59a64795ff415b489c5dc5ce38916b2573fa4891c65d661afd6",
+      "src/scripts/run_power_bench.py": "abbb0a01437ed64a0267c11416a3e3cc3c8080997b8e504e170219ef3dfc9e6a",
+      "pyproject.toml": "287721aa795bea8eb9be7c0d53a1ba650f59bd48dfb44bc035df764d76ba8bf1",
+      "uv.lock": "6304a76e85db71a2f2d5f66afa7288fc2ba6228ac093f308aeca5217cdc9fcbd",
+      "overlay/analyze.py": "823d2ae3427b41f2bdf1c15588dba2bb61a0fc738c42e6daf408f41535e3123d",
+      "overlay/plot.py": "e218988ef4fb1c493d6365658fbb006b15f76ef4a455f2dc5899a42d7f1d5686",
+      "overlay/runner.py": "3abd3b8d6cbb57e44141e86ab81a44ac8c26a489a684bf775c375ba553a90049",
+      "overlay/protocol.json": "3639cbe4828c3d88327b38b83795d50e29df7660bd8981f40adae9fc5f83be2f",
+      "overlay/protocol.md": "63c1b399287820496e054ee152ba18c3b00e6e385358c376a1caf422d872e010",
+      "overlay/verify_dependence_power.py": "deb40aec70a979ba8cdbd29c68a67acf5787c52cc10bff714ebe963395a91e5d"
+    },
+    "shard": "012",
+    "original_raw_sha256": "70cb47f3bf7bb2270f276aa869e6b070fccad9e83ca619b1d7eba58d8bfd6048",
+    "public_raw_sha256": "70cb47f3bf7bb2270f276aa869e6b070fccad9e83ca619b1d7eba58d8bfd6048"
+  },
+  {
+    "python": "3.12.14 (main, Aug 24 2026, 11:43:01) [GCC 8.5.0 20210514 (Red Hat 8.5.0-28)]",
+    "numpy": "2.5.2",
+    "scipy": "1.18.1",
+    "platform": "Linux-6.12.111-1.el8.x86_64-x86_64-with-glibc2.28",
+    "cpu_model": "AMD EPYC 7302 16-Core Processor",
+    "protocol": {
+      "id": "dependence-power-v1-20261007",
+      "base_source_commit": "8f2de62a8c4aebe286872fb1ccd81eb73f83772d",
+      "base_seed": 2026100723,
+      "alpha": 0.05,
+      "B": 100,
+      "null_repetitions": 4000,
+      "power_repetitions": 500,
+      "pilot_rep_start": 100000,
+      "copula": {
+        "dimensions": [
+          4,
+          20
+        ],
+        "sample_sizes": [
+          1000
+        ],
+        "rho_reference": 0.6,
+        "K": 4,
+        "L": 64,
+        "generators": [
+          "gaussian",
+          "clayton",
+          "gumbel"
+        ],
+        "methods": [
+          "Rank_G_pairs",
+          "ME",
+          "Fourier_unsmoothed",
+          "MMD_exact_median_grid"
+        ],
+        "marginals": "Beta(2,5)"
+      },
+      "gaussian": {
+        "dimensions": [
+          2
+        ],
+        "sample_sizes": [
+          250,
+          500,
+          1000,
+          2000
+        ],
+        "rho_reference": 0.0,
+        "rho_alternatives": [
+          0.2,
+          0.4
+        ],
+        "K": 2,
+        "L": 1,
+        "methods": [
+          "Rank_Pearson_joint",
+          "Rank_Pearson_coordinate0"
+        ],
+        "marginals": "uniform"
+      },
+      "rank": {
+        "alpha0": 0.1,
+        "engine": "auto",
+        "tie": "jitter",
+        "jitter_scale": 1e-12,
+        "decision": "pvalue",
+        "stop_ci": "none",
+        "antithetic": false,
+        "gpu": "off",
+        "reference_mode": "shared_pool",
+        "use_fullY_for_HY": true,
+        "chunk": 512
+      },
+      "features": {
+        "J": 10,
+        "ridge": 1e-06,
+        "bandwidth_scale": 1.0,
+        "median_subsample": 1000
+      },
+      "mmd": {
+        "estimator": "unbiased",
+        "num_scales": 5,
+        "base": 2.0,
+        "median_subsample": 1000
+      },
+      "analysis": {
+        "null_family_size": 32,
+        "null_family_alpha": 0.05,
+        "null_upper_margin": 0.015,
+        "primary_power_family_size": 20,
+        "power_family_alpha": 0.05,
+        "failure_policy": "missing/failed/warning strata NA, no survivor rates",
+        "cohort_policy": "within-study fixed CPU/exact Python-build/library cohort; full platform and kernel recorded, effects/timings stratified; no alteration of old campaign policy"
+      },
+      "execution": {
+        "cpus_per_task": 1,
+        "gpus": 0,
+        "memory_gib": 4,
+        "maximum_total_cpu_core_hours": 14.0,
+        "preparation_reserve_cpu_core_hours": 0.25,
+        "analysis_reserve_cpu_core_hours": 0.5,
+        "automatic_retries": false
+      }
+    },
+    "protocol_hash": "5984f1e1d336071a0fcc053b953e3854b7bd49b67ab26229758799ee962c66d7",
+    "source_commit": "8f2de62a8c4aebe286872fb1ccd81eb73f83772d",
+    "source_hashes": {
+      "src/baselines/__init__.py": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "src/baselines/analytic_scf.py": "9765fe2993d9f016f2c5ba22188fc1c39e7ac2517ce814e51f43698ecb463d7d",
+      "src/baselines/c2st.py": "0f2a9cefe615a3eab4ac8a2c748d11d19bee6939cc6423cdd3516f30c9f14262",
+      "src/baselines/conditional_c2st.py": "d196598f9950dc95dcfbf351b6da89cc1d1f9aa79e08e5c5bda4e1d70ba63e56",
+      "src/baselines/hotelling_t2.py": "ffe0c0303b2fdf945abe08733e7fbf227c9582303ae4a16e7d485ab9a26325b7",
+      "src/baselines/kernel_mmd.py": "6d9c0620c6d7d1ff2a4ad6337699c46b25fd3f7ec359aa064285b10b71a2bb86",
+      "src/baselines/me_scf.py": "398c0bfe74b5055a5b3bb3a0270a144f470ce12655c583322c0c36f1e7dc8344",
+      "src/baselines/rank_chi2.py": "de7ec7c97ebe16a95e86db30ddd86c335647d5d9fa2a86a020003c6b022c35a3",
+      "src/baselines/rank_chi2_subspaces.py": "c21c6137e18ea9ae811d934c09fb3cd0fb590ba96cf05884d3f8fed2dfbe6024",
+      "src/baselines/rff_mmd.py": "7743dd2a0915b84a60d9c04084c455bece923a06c2c2b8c785561fe00b2826a4",
+      "src/baselines/sliced_ot.py": "1a8a696ba98fe2ed0a6beeb50f604d02a017b9ca126227d3b6523c5afa6618f1",
+      "src/baselines/tuned_mmd.py": "967fe2b03ca84c1ecf1bf4434b18cb1cb7db1eb2db8bb22eeafd447560ec2dd2",
+      "src/ranktwosample/__init__.py": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "src/ranktwosample/power_datasets.py": "f47ba8f15a4dca8abbd930625bf5b2fca263d68879d37bcedb0c813caf407cc2",
+      "src/ranktwosample/rank_two_sample.py": "21d31b946d33de5bc1d85d66b949afb5bc6ecb606166b9fe03d6c723a1f6968c",
+      "src/ranktwosample/rank_two_sample_subspaces.py": "7541ae9e617b0d16f2f8522d09cab9e862a72b2f0de967cde01685e766e13caf",
+      "src/scripts/cifar10c_power_rank_subspaces.py": "ce2c107257dc24f38867531921cb6751788b5029a6b44d7ab9e658fbc4a6ff96",
+      "src/scripts/fair_comparator_bench.py": "63211ef07406c5d95f21a3d27d8a058a4d65b95adcb511a73848e6d5203fc6e8",
+      "src/scripts/power_rank_subspaces.py": "805b503b7eae767c969d20fead91922fa1e528c3e5c73b591c558de6a9dd8810",
+      "src/scripts/rotation_bench.py": "3ab6fc5ade4ce59a64795ff415b489c5dc5ce38916b2573fa4891c65d661afd6",
+      "src/scripts/run_power_bench.py": "abbb0a01437ed64a0267c11416a3e3cc3c8080997b8e504e170219ef3dfc9e6a",
+      "pyproject.toml": "287721aa795bea8eb9be7c0d53a1ba650f59bd48dfb44bc035df764d76ba8bf1",
+      "uv.lock": "6304a76e85db71a2f2d5f66afa7288fc2ba6228ac093f308aeca5217cdc9fcbd",
+      "overlay/analyze.py": "823d2ae3427b41f2bdf1c15588dba2bb61a0fc738c42e6daf408f41535e3123d",
+      "overlay/plot.py": "e218988ef4fb1c493d6365658fbb006b15f76ef4a455f2dc5899a42d7f1d5686",
+      "overlay/runner.py": "3abd3b8d6cbb57e44141e86ab81a44ac8c26a489a684bf775c375ba553a90049",
+      "overlay/protocol.json": "3639cbe4828c3d88327b38b83795d50e29df7660bd8981f40adae9fc5f83be2f",
+      "overlay/protocol.md": "63c1b399287820496e054ee152ba18c3b00e6e385358c376a1caf422d872e010",
+      "overlay/verify_dependence_power.py": "deb40aec70a979ba8cdbd29c68a67acf5787c52cc10bff714ebe963395a91e5d"
+    },
+    "shard": "013",
+    "original_raw_sha256": "e077574958339725f14713beef74a70a4675f34604b3926fdc7c0f38e1d1242c",
+    "public_raw_sha256": "e077574958339725f14713beef74a70a4675f34604b3926fdc7c0f38e1d1242c"
+  },
+  {
+    "python": "3.12.14 (main, Aug 24 2026, 11:43:01) [GCC 8.5.0 20210514 (Red Hat 8.5.0-28)]",
+    "numpy": "2.5.2",
+    "scipy": "1.18.1",
+    "platform": "Linux-6.12.111-1.el8.x86_64-x86_64-with-glibc2.28",
+    "cpu_model": "AMD EPYC 7302 16-Core Processor",
+    "protocol": {
+      "id": "dependence-power-v1-20261007",
+      "base_source_commit": "8f2de62a8c4aebe286872fb1ccd81eb73f83772d",
+      "base_seed": 2026100723,
+      "alpha": 0.05,
+      "B": 100,
+      "null_repetitions": 4000,
+      "power_repetitions": 500,
+      "pilot_rep_start": 100000,
+      "copula": {
+        "dimensions": [
+          4,
+          20
+        ],
+        "sample_sizes": [
+          1000
+        ],
+        "rho_reference": 0.6,
+        "K": 4,
+        "L": 64,
+        "generators": [
+          "gaussian",
+          "clayton",
+          "gumbel"
+        ],
+        "methods": [
+          "Rank_G_pairs",
+          "ME",
+          "Fourier_unsmoothed",
+          "MMD_exact_median_grid"
+        ],
+        "marginals": "Beta(2,5)"
+      },
+      "gaussian": {
+        "dimensions": [
+          2
+        ],
+        "sample_sizes": [
+          250,
+          500,
+          1000,
+          2000
+        ],
+        "rho_reference": 0.0,
+        "rho_alternatives": [
+          0.2,
+          0.4
+        ],
+        "K": 2,
+        "L": 1,
+        "methods": [
+          "Rank_Pearson_joint",
+          "Rank_Pearson_coordinate0"
+        ],
+        "marginals": "uniform"
+      },
+      "rank": {
+        "alpha0": 0.1,
+        "engine": "auto",
+        "tie": "jitter",
+        "jitter_scale": 1e-12,
+        "decision": "pvalue",
+        "stop_ci": "none",
+        "antithetic": false,
+        "gpu": "off",
+        "reference_mode": "shared_pool",
+        "use_fullY_for_HY": true,
+        "chunk": 512
+      },
+      "features": {
+        "J": 10,
+        "ridge": 1e-06,
+        "bandwidth_scale": 1.0,
+        "median_subsample": 1000
+      },
+      "mmd": {
+        "estimator": "unbiased",
+        "num_scales": 5,
+        "base": 2.0,
+        "median_subsample": 1000
+      },
+      "analysis": {
+        "null_family_size": 32,
+        "null_family_alpha": 0.05,
+        "null_upper_margin": 0.015,
+        "primary_power_family_size": 20,
+        "power_family_alpha": 0.05,
+        "failure_policy": "missing/failed/warning strata NA, no survivor rates",
+        "cohort_policy": "within-study fixed CPU/exact Python-build/library cohort; full platform and kernel recorded, effects/timings stratified; no alteration of old campaign policy"
+      },
+      "execution": {
+        "cpus_per_task": 1,
+        "gpus": 0,
+        "memory_gib": 4,
+        "maximum_total_cpu_core_hours": 14.0,
+        "preparation_reserve_cpu_core_hours": 0.25,
+        "analysis_reserve_cpu_core_hours": 0.5,
+        "automatic_retries": false
+      }
+    },
+    "protocol_hash": "5984f1e1d336071a0fcc053b953e3854b7bd49b67ab26229758799ee962c66d7",
+    "source_commit": "8f2de62a8c4aebe286872fb1ccd81eb73f83772d",
+    "source_hashes": {
+      "src/baselines/__init__.py": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "src/baselines/analytic_scf.py": "9765fe2993d9f016f2c5ba22188fc1c39e7ac2517ce814e51f43698ecb463d7d",
+      "src/baselines/c2st.py": "0f2a9cefe615a3eab4ac8a2c748d11d19bee6939cc6423cdd3516f30c9f14262",
+      "src/baselines/conditional_c2st.py": "d196598f9950dc95dcfbf351b6da89cc1d1f9aa79e08e5c5bda4e1d70ba63e56",
+      "src/baselines/hotelling_t2.py": "ffe0c0303b2fdf945abe08733e7fbf227c9582303ae4a16e7d485ab9a26325b7",
+      "src/baselines/kernel_mmd.py": "6d9c0620c6d7d1ff2a4ad6337699c46b25fd3f7ec359aa064285b10b71a2bb86",
+      "src/baselines/me_scf.py": "398c0bfe74b5055a5b3bb3a0270a144f470ce12655c583322c0c36f1e7dc8344",
+      "src/baselines/rank_chi2.py": "de7ec7c97ebe16a95e86db30ddd86c335647d5d9fa2a86a020003c6b022c35a3",
+      "src/baselines/rank_chi2_subspaces.py": "c21c6137e18ea9ae811d934c09fb3cd0fb590ba96cf05884d3f8fed2dfbe6024",
+      "src/baselines/rff_mmd.py": "7743dd2a0915b84a60d9c04084c455bece923a06c2c2b8c785561fe00b2826a4",
+      "src/baselines/sliced_ot.py": "1a8a696ba98fe2ed0a6beeb50f604d02a017b9ca126227d3b6523c5afa6618f1",
+      "src/baselines/tuned_mmd.py": "967fe2b03ca84c1ecf1bf4434b18cb1cb7db1eb2db8bb22eeafd447560ec2dd2",
+      "src/ranktwosample/__init__.py": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "src/ranktwosample/power_datasets.py": "f47ba8f15a4dca8abbd930625bf5b2fca263d68879d37bcedb0c813caf407cc2",
+      "src/ranktwosample/rank_two_sample.py": "21d31b946d33de5bc1d85d66b949afb5bc6ecb606166b9fe03d6c723a1f6968c",
+      "src/ranktwosample/rank_two_sample_subspaces.py": "7541ae9e617b0d16f2f8522d09cab9e862a72b2f0de967cde01685e766e13caf",
+      "src/scripts/cifar10c_power_rank_subspaces.py": "ce2c107257dc24f38867531921cb6751788b5029a6b44d7ab9e658fbc4a6ff96",
+      "src/scripts/fair_comparator_bench.py": "63211ef07406c5d95f21a3d27d8a058a4d65b95adcb511a73848e6d5203fc6e8",
+      "src/scripts/power_rank_subspaces.py": "805b503b7eae767c969d20fead91922fa1e528c3e5c73b591c558de6a9dd8810",
+      "src/scripts/rotation_bench.py": "3ab6fc5ade4ce59a64795ff415b489c5dc5ce38916b2573fa4891c65d661afd6",
+      "src/scripts/run_power_bench.py": "abbb0a01437ed64a0267c11416a3e3cc3c8080997b8e504e170219ef3dfc9e6a",
+      "pyproject.toml": "287721aa795bea8eb9be7c0d53a1ba650f59bd48dfb44bc035df764d76ba8bf1",
+      "uv.lock": "6304a76e85db71a2f2d5f66afa7288fc2ba6228ac093f308aeca5217cdc9fcbd",
+      "overlay/analyze.py": "823d2ae3427b41f2bdf1c15588dba2bb61a0fc738c42e6daf408f41535e3123d",
+      "overlay/plot.py": "e218988ef4fb1c493d6365658fbb006b15f76ef4a455f2dc5899a42d7f1d5686",
+      "overlay/runner.py": "3abd3b8d6cbb57e44141e86ab81a44ac8c26a489a684bf775c375ba553a90049",
+      "overlay/protocol.json": "3639cbe4828c3d88327b38b83795d50e29df7660bd8981f40adae9fc5f83be2f",
+      "overlay/protocol.md": "63c1b399287820496e054ee152ba18c3b00e6e385358c376a1caf422d872e010",
+      "overlay/verify_dependence_power.py": "deb40aec70a979ba8cdbd29c68a67acf5787c52cc10bff714ebe963395a91e5d"
+    },
+    "shard": "014",
+    "original_raw_sha256": "07b611a191e9fcb60431f96b47249df9fd52b11579cc9b9f57224cd11dceeba9",
+    "public_raw_sha256": "07b611a191e9fcb60431f96b47249df9fd52b11579cc9b9f57224cd11dceeba9"
+  },
+  {
+    "python": "3.12.14 (main, Aug 24 2026, 11:43:01) [GCC 8.5.0 20210514 (Red Hat 8.5.0-28)]",
+    "numpy": "2.5.2",
+    "scipy": "1.18.1",
+    "platform": "Linux-6.12.111-1.el8.x86_64-x86_64-with-glibc2.28",
+    "cpu_model": "AMD EPYC 7302 16-Core Processor",
+    "protocol": {
+      "id": "dependence-power-v1-20261007",
+      "base_source_commit": "8f2de62a8c4aebe286872fb1ccd81eb73f83772d",
+      "base_seed": 2026100723,
+      "alpha": 0.05,
+      "B": 100,
+      "null_repetitions": 4000,
+      "power_repetitions": 500,
+      "pilot_rep_start": 100000,
+      "copula": {
+        "dimensions": [
+          4,
+          20
+        ],
+        "sample_sizes": [
+          1000
+        ],
+        "rho_reference": 0.6,
+        "K": 4,
+        "L": 64,
+        "generators": [
+          "gaussian",
+          "clayton",
+          "gumbel"
+        ],
+        "methods": [
+          "Rank_G_pairs",
+          "ME",
+          "Fourier_unsmoothed",
+          "MMD_exact_median_grid"
+        ],
+        "marginals": "Beta(2,5)"
+      },
+      "gaussian": {
+        "dimensions": [
+          2
+        ],
+        "sample_sizes": [
+          250,
+          500,
+          1000,
+          2000
+        ],
+        "rho_reference": 0.0,
+        "rho_alternatives": [
+          0.2,
+          0.4
+        ],
+        "K": 2,
+        "L": 1,
+        "methods": [
+          "Rank_Pearson_joint",
+          "Rank_Pearson_coordinate0"
+        ],
+        "marginals": "uniform"
+      },
+      "rank": {
+        "alpha0": 0.1,
+        "engine": "auto",
+        "tie": "jitter",
+        "jitter_scale": 1e-12,
+        "decision": "pvalue",
+        "stop_ci": "none",
+        "antithetic": false,
+        "gpu": "off",
+        "reference_mode": "shared_pool",
+        "use_fullY_for_HY": true,
+        "chunk": 512
+      },
+      "features": {
+        "J": 10,
+        "ridge": 1e-06,
+        "bandwidth_scale": 1.0,
+        "median_subsample": 1000
+      },
+      "mmd": {
+        "estimator": "unbiased",
+        "num_scales": 5,
+        "base": 2.0,
+        "median_subsample": 1000
+      },
+      "analysis": {
+        "null_family_size": 32,
+        "null_family_alpha": 0.05,
+        "null_upper_margin": 0.015,
+        "primary_power_family_size": 20,
+        "power_family_alpha": 0.05,
+        "failure_policy": "missing/failed/warning strata NA, no survivor rates",
+        "cohort_policy": "within-study fixed CPU/exact Python-build/library cohort; full platform and kernel recorded, effects/timings stratified; no alteration of old campaign policy"
+      },
+      "execution": {
+        "cpus_per_task": 1,
+        "gpus": 0,
+        "memory_gib": 4,
+        "maximum_total_cpu_core_hours": 14.0,
+        "preparation_reserve_cpu_core_hours": 0.25,
+        "analysis_reserve_cpu_core_hours": 0.5,
+        "automatic_retries": false
+      }
+    },
+    "protocol_hash": "5984f1e1d336071a0fcc053b953e3854b7bd49b67ab26229758799ee962c66d7",
+    "source_commit": "8f2de62a8c4aebe286872fb1ccd81eb73f83772d",
+    "source_hashes": {
+      "src/baselines/__init__.py": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "src/baselines/analytic_scf.py": "9765fe2993d9f016f2c5ba22188fc1c39e7ac2517ce814e51f43698ecb463d7d",
+      "src/baselines/c2st.py": "0f2a9cefe615a3eab4ac8a2c748d11d19bee6939cc6423cdd3516f30c9f14262",
+      "src/baselines/conditional_c2st.py": "d196598f9950dc95dcfbf351b6da89cc1d1f9aa79e08e5c5bda4e1d70ba63e56",
+      "src/baselines/hotelling_t2.py": "ffe0c0303b2fdf945abe08733e7fbf227c9582303ae4a16e7d485ab9a26325b7",
+      "src/baselines/kernel_mmd.py": "6d9c0620c6d7d1ff2a4ad6337699c46b25fd3f7ec359aa064285b10b71a2bb86",
+      "src/baselines/me_scf.py": "398c0bfe74b5055a5b3bb3a0270a144f470ce12655c583322c0c36f1e7dc8344",
+      "src/baselines/rank_chi2.py": "de7ec7c97ebe16a95e86db30ddd86c335647d5d9fa2a86a020003c6b022c35a3",
+      "src/baselines/rank_chi2_subspaces.py": "c21c6137e18ea9ae811d934c09fb3cd0fb590ba96cf05884d3f8fed2dfbe6024",
+      "src/baselines/rff_mmd.py": "7743dd2a0915b84a60d9c04084c455bece923a06c2c2b8c785561fe00b2826a4",
+      "src/baselines/sliced_ot.py": "1a8a696ba98fe2ed0a6beeb50f604d02a017b9ca126227d3b6523c5afa6618f1",
+      "src/baselines/tuned_mmd.py": "967fe2b03ca84c1ecf1bf4434b18cb1cb7db1eb2db8bb22eeafd447560ec2dd2",
+      "src/ranktwosample/__init__.py": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "src/ranktwosample/power_datasets.py": "f47ba8f15a4dca8abbd930625bf5b2fca263d68879d37bcedb0c813caf407cc2",
+      "src/ranktwosample/rank_two_sample.py": "21d31b946d33de5bc1d85d66b949afb5bc6ecb606166b9fe03d6c723a1f6968c",
+      "src/ranktwosample/rank_two_sample_subspaces.py": "7541ae9e617b0d16f2f8522d09cab9e862a72b2f0de967cde01685e766e13caf",
+      "src/scripts/cifar10c_power_rank_subspaces.py": "ce2c107257dc24f38867531921cb6751788b5029a6b44d7ab9e658fbc4a6ff96",
+      "src/scripts/fair_comparator_bench.py": "63211ef07406c5d95f21a3d27d8a058a4d65b95adcb511a73848e6d5203fc6e8",
+      "src/scripts/power_rank_subspaces.py": "805b503b7eae767c969d20fead91922fa1e528c3e5c73b591c558de6a9dd8810",
+      "src/scripts/rotation_bench.py": "3ab6fc5ade4ce59a64795ff415b489c5dc5ce38916b2573fa4891c65d661afd6",
+      "src/scripts/run_power_bench.py": "abbb0a01437ed64a0267c11416a3e3cc3c8080997b8e504e170219ef3dfc9e6a",
+      "pyproject.toml": "287721aa795bea8eb9be7c0d53a1ba650f59bd48dfb44bc035df764d76ba8bf1",
+      "uv.lock": "6304a76e85db71a2f2d5f66afa7288fc2ba6228ac093f308aeca5217cdc9fcbd",
+      "overlay/analyze.py": "823d2ae3427b41f2bdf1c15588dba2bb61a0fc738c42e6daf408f41535e3123d",
+      "overlay/plot.py": "e218988ef4fb1c493d6365658fbb006b15f76ef4a455f2dc5899a42d7f1d5686",
+      "overlay/runner.py": "3abd3b8d6cbb57e44141e86ab81a44ac8c26a489a684bf775c375ba553a90049",
+      "overlay/protocol.json": "3639cbe4828c3d88327b38b83795d50e29df7660bd8981f40adae9fc5f83be2f",
+      "overlay/protocol.md": "63c1b399287820496e054ee152ba18c3b00e6e385358c376a1caf422d872e010",
+      "overlay/verify_dependence_power.py": "deb40aec70a979ba8cdbd29c68a67acf5787c52cc10bff714ebe963395a91e5d"
+    },
+    "shard": "015",
+    "original_raw_sha256": "e11cc0afa91be0405ca2f1749f5b4115687685fdc6ed1194308bde47d5fd9bf5",
+    "public_raw_sha256": "e11cc0afa91be0405ca2f1749f5b4115687685fdc6ed1194308bde47d5fd9bf5"
+  },
+  {
+    "python": "3.12.14 (main, Sep  1 2026, 14:16:52) [Clang 22.1.3 ]",
+    "numpy": "2.5.2",
+    "scipy": "1.18.1",
+    "platform": "Linux-6.8.0-136-generic-x86_64-with-glibc2.35",
+    "cpu_model": "Intel(R) Xeon(R) Gold 6148 CPU @ 2.40GHz",
+    "protocol": {
+      "id": "dependence-power-v1-20261007",
+      "base_source_commit": "8f2de62a8c4aebe286872fb1ccd81eb73f83772d",
+      "base_seed": 2026100723,
+      "alpha": 0.05,
+      "B": 100,
+      "null_repetitions": 4000,
+      "power_repetitions": 500,
+      "pilot_rep_start": 100000,
+      "copula": {
+        "dimensions": [
+          4,
+          20
+        ],
+        "sample_sizes": [
+          1000
+        ],
+        "rho_reference": 0.6,
+        "K": 4,
+        "L": 64,
+        "generators": [
+          "gaussian",
+          "clayton",
+          "gumbel"
+        ],
+        "methods": [
+          "Rank_G_pairs",
+          "ME",
+          "Fourier_unsmoothed",
+          "MMD_exact_median_grid"
+        ],
+        "marginals": "Beta(2,5)"
+      },
+      "gaussian": {
+        "dimensions": [
+          2
+        ],
+        "sample_sizes": [
+          250,
+          500,
+          1000,
+          2000
+        ],
+        "rho_reference": 0.0,
+        "rho_alternatives": [
+          0.2,
+          0.4
+        ],
+        "K": 2,
+        "L": 1,
+        "methods": [
+          "Rank_Pearson_joint",
+          "Rank_Pearson_coordinate0"
+        ],
+        "marginals": "uniform"
+      },
+      "rank": {
+        "alpha0": 0.1,
+        "engine": "auto",
+        "tie": "jitter",
+        "jitter_scale": 1e-12,
+        "decision": "pvalue",
+        "stop_ci": "none",
+        "antithetic": false,
+        "gpu": "off",
+        "reference_mode": "shared_pool",
+        "use_fullY_for_HY": true,
+        "chunk": 512
+      },
+      "features": {
+        "J": 10,
+        "ridge": 1e-06,
+        "bandwidth_scale": 1.0,
+        "median_subsample": 1000
+      },
+      "mmd": {
+        "estimator": "unbiased",
+        "num_scales": 5,
+        "base": 2.0,
+        "median_subsample": 1000
+      },
+      "analysis": {
+        "null_family_size": 32,
+        "null_family_alpha": 0.05,
+        "null_upper_margin": 0.015,
+        "primary_power_family_size": 20,
+        "power_family_alpha": 0.05,
+        "failure_policy": "missing/failed/warning strata NA, no survivor rates",
+        "cohort_policy": "within-study fixed CPU/exact Python-build/library cohort; full platform and kernel recorded, effects/timings stratified; no alteration of old campaign policy"
+      },
+      "execution": {
+        "cpus_per_task": 1,
+        "gpus": 0,
+        "memory_gib": 4,
+        "maximum_total_cpu_core_hours": 14.0,
+        "preparation_reserve_cpu_core_hours": 0.25,
+        "analysis_reserve_cpu_core_hours": 0.5,
+        "automatic_retries": false
+      }
+    },
+    "protocol_hash": "5984f1e1d336071a0fcc053b953e3854b7bd49b67ab26229758799ee962c66d7",
+    "source_commit": "8f2de62a8c4aebe286872fb1ccd81eb73f83772d",
+    "source_hashes": {
+      "src/baselines/__init__.py": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "src/baselines/analytic_scf.py": "9765fe2993d9f016f2c5ba22188fc1c39e7ac2517ce814e51f43698ecb463d7d",
+      "src/baselines/c2st.py": "0f2a9cefe615a3eab4ac8a2c748d11d19bee6939cc6423cdd3516f30c9f14262",
+      "src/baselines/conditional_c2st.py": "d196598f9950dc95dcfbf351b6da89cc1d1f9aa79e08e5c5bda4e1d70ba63e56",
+      "src/baselines/hotelling_t2.py": "ffe0c0303b2fdf945abe08733e7fbf227c9582303ae4a16e7d485ab9a26325b7",
+      "src/baselines/kernel_mmd.py": "6d9c0620c6d7d1ff2a4ad6337699c46b25fd3f7ec359aa064285b10b71a2bb86",
+      "src/baselines/me_scf.py": "398c0bfe74b5055a5b3bb3a0270a144f470ce12655c583322c0c36f1e7dc8344",
+      "src/baselines/rank_chi2.py": "de7ec7c97ebe16a95e86db30ddd86c335647d5d9fa2a86a020003c6b022c35a3",
+      "src/baselines/rank_chi2_subspaces.py": "c21c6137e18ea9ae811d934c09fb3cd0fb590ba96cf05884d3f8fed2dfbe6024",
+      "src/baselines/rff_mmd.py": "7743dd2a0915b84a60d9c04084c455bece923a06c2c2b8c785561fe00b2826a4",
+      "src/baselines/sliced_ot.py": "1a8a696ba98fe2ed0a6beeb50f604d02a017b9ca126227d3b6523c5afa6618f1",
+      "src/baselines/tuned_mmd.py": "967fe2b03ca84c1ecf1bf4434b18cb1cb7db1eb2db8bb22eeafd447560ec2dd2",
+      "src/ranktwosample/__init__.py": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "src/ranktwosample/power_datasets.py": "f47ba8f15a4dca8abbd930625bf5b2fca263d68879d37bcedb0c813caf407cc2",
+      "src/ranktwosample/rank_two_sample.py": "21d31b946d33de5bc1d85d66b949afb5bc6ecb606166b9fe03d6c723a1f6968c",
+      "src/ranktwosample/rank_two_sample_subspaces.py": "7541ae9e617b0d16f2f8522d09cab9e862a72b2f0de967cde01685e766e13caf",
+      "src/scripts/cifar10c_power_rank_subspaces.py": "ce2c107257dc24f38867531921cb6751788b5029a6b44d7ab9e658fbc4a6ff96",
+      "src/scripts/fair_comparator_bench.py": "63211ef07406c5d95f21a3d27d8a058a4d65b95adcb511a73848e6d5203fc6e8",
+      "src/scripts/power_rank_subspaces.py": "805b503b7eae767c969d20fead91922fa1e528c3e5c73b591c558de6a9dd8810",
+      "src/scripts/rotation_bench.py": "3ab6fc5ade4ce59a64795ff415b489c5dc5ce38916b2573fa4891c65d661afd6",
+      "src/scripts/run_power_bench.py": "abbb0a01437ed64a0267c11416a3e3cc3c8080997b8e504e170219ef3dfc9e6a",
+      "pyproject.toml": "287721aa795bea8eb9be7c0d53a1ba650f59bd48dfb44bc035df764d76ba8bf1",
+      "uv.lock": "6304a76e85db71a2f2d5f66afa7288fc2ba6228ac093f308aeca5217cdc9fcbd",
+      "overlay/analyze.py": "823d2ae3427b41f2bdf1c15588dba2bb61a0fc738c42e6daf408f41535e3123d",
+      "overlay/plot.py": "e218988ef4fb1c493d6365658fbb006b15f76ef4a455f2dc5899a42d7f1d5686",
+      "overlay/runner.py": "3abd3b8d6cbb57e44141e86ab81a44ac8c26a489a684bf775c375ba553a90049",
+      "overlay/protocol.json": "3639cbe4828c3d88327b38b83795d50e29df7660bd8981f40adae9fc5f83be2f",
+      "overlay/protocol.md": "63c1b399287820496e054ee152ba18c3b00e6e385358c376a1caf422d872e010",
+      "overlay/verify_dependence_power.py": "deb40aec70a979ba8cdbd29c68a67acf5787c52cc10bff714ebe963395a91e5d"
+    },
+    "shard": "016",
+    "original_raw_sha256": "7861ed7b34915593b00066bd602b5fdd27ad7109b0c3c15c7f6637f48b7af087",
+    "public_raw_sha256": "7861ed7b34915593b00066bd602b5fdd27ad7109b0c3c15c7f6637f48b7af087"
+  },
+  {
+    "python": "3.12.14 (main, Sep  1 2026, 14:16:52) [Clang 22.1.3 ]",
+    "numpy": "2.5.2",
+    "scipy": "1.18.1",
+    "platform": "Linux-6.8.0-136-generic-x86_64-with-glibc2.35",
+    "cpu_model": "Intel(R) Xeon(R) Gold 6148 CPU @ 2.40GHz",
+    "protocol": {
+      "id": "dependence-power-v1-20261007",
+      "base_source_commit": "8f2de62a8c4aebe286872fb1ccd81eb73f83772d",
+      "base_seed": 2026100723,
+      "alpha": 0.05,
+      "B": 100,
+      "null_repetitions": 4000,
+      "power_repetitions": 500,
+      "pilot_rep_start": 100000,
+      "copula": {
+        "dimensions": [
+          4,
+          20
+        ],
+        "sample_sizes": [
+          1000
+        ],
+        "rho_reference": 0.6,
+        "K": 4,
+        "L": 64,
+        "generators": [
+          "gaussian",
+          "clayton",
+          "gumbel"
+        ],
+        "methods": [
+          "Rank_G_pairs",
+          "ME",
+          "Fourier_unsmoothed",
+          "MMD_exact_median_grid"
+        ],
+        "marginals": "Beta(2,5)"
+      },
+      "gaussian": {
+        "dimensions": [
+          2
+        ],
+        "sample_sizes": [
+          250,
+          500,
+          1000,
+          2000
+        ],
+        "rho_reference": 0.0,
+        "rho_alternatives": [
+          0.2,
+          0.4
+        ],
+        "K": 2,
+        "L": 1,
+        "methods": [
+          "Rank_Pearson_joint",
+          "Rank_Pearson_coordinate0"
+        ],
+        "marginals": "uniform"
+      },
+      "rank": {
+        "alpha0": 0.1,
+        "engine": "auto",
+        "tie": "jitter",
+        "jitter_scale": 1e-12,
+        "decision": "pvalue",
+        "stop_ci": "none",
+        "antithetic": false,
+        "gpu": "off",
+        "reference_mode": "shared_pool",
+        "use_fullY_for_HY": true,
+        "chunk": 512
+      },
+      "features": {
+        "J": 10,
+        "ridge": 1e-06,
+        "bandwidth_scale": 1.0,
+        "median_subsample": 1000
+      },
+      "mmd": {
+        "estimator": "unbiased",
+        "num_scales": 5,
+        "base": 2.0,
+        "median_subsample": 1000
+      },
+      "analysis": {
+        "null_family_size": 32,
+        "null_family_alpha": 0.05,
+        "null_upper_margin": 0.015,
+        "primary_power_family_size": 20,
+        "power_family_alpha": 0.05,
+        "failure_policy": "missing/failed/warning strata NA, no survivor rates",
+        "cohort_policy": "within-study fixed CPU/exact Python-build/library cohort; full platform and kernel recorded, effects/timings stratified; no alteration of old campaign policy"
+      },
+      "execution": {
+        "cpus_per_task": 1,
+        "gpus": 0,
+        "memory_gib": 4,
+        "maximum_total_cpu_core_hours": 14.0,
+        "preparation_reserve_cpu_core_hours": 0.25,
+        "analysis_reserve_cpu_core_hours": 0.5,
+        "automatic_retries": false
+      }
+    },
+    "protocol_hash": "5984f1e1d336071a0fcc053b953e3854b7bd49b67ab26229758799ee962c66d7",
+    "source_commit": "8f2de62a8c4aebe286872fb1ccd81eb73f83772d",
+    "source_hashes": {
+      "src/baselines/__init__.py": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "src/baselines/analytic_scf.py": "9765fe2993d9f016f2c5ba22188fc1c39e7ac2517ce814e51f43698ecb463d7d",
+      "src/baselines/c2st.py": "0f2a9cefe615a3eab4ac8a2c748d11d19bee6939cc6423cdd3516f30c9f14262",
+      "src/baselines/conditional_c2st.py": "d196598f9950dc95dcfbf351b6da89cc1d1f9aa79e08e5c5bda4e1d70ba63e56",
+      "src/baselines/hotelling_t2.py": "ffe0c0303b2fdf945abe08733e7fbf227c9582303ae4a16e7d485ab9a26325b7",
+      "src/baselines/kernel_mmd.py": "6d9c0620c6d7d1ff2a4ad6337699c46b25fd3f7ec359aa064285b10b71a2bb86",
+      "src/baselines/me_scf.py": "398c0bfe74b5055a5b3bb3a0270a144f470ce12655c583322c0c36f1e7dc8344",
+      "src/baselines/rank_chi2.py": "de7ec7c97ebe16a95e86db30ddd86c335647d5d9fa2a86a020003c6b022c35a3",
+      "src/baselines/rank_chi2_subspaces.py": "c21c6137e18ea9ae811d934c09fb3cd0fb590ba96cf05884d3f8fed2dfbe6024",
+      "src/baselines/rff_mmd.py": "7743dd2a0915b84a60d9c04084c455bece923a06c2c2b8c785561fe00b2826a4",
+      "src/baselines/sliced_ot.py": "1a8a696ba98fe2ed0a6beeb50f604d02a017b9ca126227d3b6523c5afa6618f1",
+      "src/baselines/tuned_mmd.py": "967fe2b03ca84c1ecf1bf4434b18cb1cb7db1eb2db8bb22eeafd447560ec2dd2",
+      "src/ranktwosample/__init__.py": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "src/ranktwosample/power_datasets.py": "f47ba8f15a4dca8abbd930625bf5b2fca263d68879d37bcedb0c813caf407cc2",
+      "src/ranktwosample/rank_two_sample.py": "21d31b946d33de5bc1d85d66b949afb5bc6ecb606166b9fe03d6c723a1f6968c",
+      "src/ranktwosample/rank_two_sample_subspaces.py": "7541ae9e617b0d16f2f8522d09cab9e862a72b2f0de967cde01685e766e13caf",
+      "src/scripts/cifar10c_power_rank_subspaces.py": "ce2c107257dc24f38867531921cb6751788b5029a6b44d7ab9e658fbc4a6ff96",
+      "src/scripts/fair_comparator_bench.py": "63211ef07406c5d95f21a3d27d8a058a4d65b95adcb511a73848e6d5203fc6e8",
+      "src/scripts/power_rank_subspaces.py": "805b503b7eae767c969d20fead91922fa1e528c3e5c73b591c558de6a9dd8810",
+      "src/scripts/rotation_bench.py": "3ab6fc5ade4ce59a64795ff415b489c5dc5ce38916b2573fa4891c65d661afd6",
+      "src/scripts/run_power_bench.py": "abbb0a01437ed64a0267c11416a3e3cc3c8080997b8e504e170219ef3dfc9e6a",
+      "pyproject.toml": "287721aa795bea8eb9be7c0d53a1ba650f59bd48dfb44bc035df764d76ba8bf1",
+      "uv.lock": "6304a76e85db71a2f2d5f66afa7288fc2ba6228ac093f308aeca5217cdc9fcbd",
+      "overlay/analyze.py": "823d2ae3427b41f2bdf1c15588dba2bb61a0fc738c42e6daf408f41535e3123d",
+      "overlay/plot.py": "e218988ef4fb1c493d6365658fbb006b15f76ef4a455f2dc5899a42d7f1d5686",
+      "overlay/runner.py": "3abd3b8d6cbb57e44141e86ab81a44ac8c26a489a684bf775c375ba553a90049",
+      "overlay/protocol.json": "3639cbe4828c3d88327b38b83795d50e29df7660bd8981f40adae9fc5f83be2f",
+      "overlay/protocol.md": "63c1b399287820496e054ee152ba18c3b00e6e385358c376a1caf422d872e010",
+      "overlay/verify_dependence_power.py": "deb40aec70a979ba8cdbd29c68a67acf5787c52cc10bff714ebe963395a91e5d"
+    },
+    "shard": "017",
+    "original_raw_sha256": "8fb43ace1f66b88e2e4468a96e306bd9e7726c9b515da7b3311b72cf403d8af3",
+    "public_raw_sha256": "8fb43ace1f66b88e2e4468a96e306bd9e7726c9b515da7b3311b72cf403d8af3"
+  },
+  {
+    "python": "3.12.14 (main, Sep  1 2026, 14:16:52) [Clang 22.1.3 ]",
+    "numpy": "2.5.2",
+    "scipy": "1.18.1",
+    "platform": "Linux-6.8.0-136-generic-x86_64-with-glibc2.35",
+    "cpu_model": "Intel(R) Xeon(R) Gold 6148 CPU @ 2.40GHz",
+    "protocol": {
+      "id": "dependence-power-v1-20261007",
+      "base_source_commit": "8f2de62a8c4aebe286872fb1ccd81eb73f83772d",
+      "base_seed": 2026100723,
+      "alpha": 0.05,
+      "B": 100,
+      "null_repetitions": 4000,
+      "power_repetitions": 500,
+      "pilot_rep_start": 100000,
+      "copula": {
+        "dimensions": [
+          4,
+          20
+        ],
+        "sample_sizes": [
+          1000
+        ],
+        "rho_reference": 0.6,
+        "K": 4,
+        "L": 64,
+        "generators": [
+          "gaussian",
+          "clayton",
+          "gumbel"
+        ],
+        "methods": [
+          "Rank_G_pairs",
+          "ME",
+          "Fourier_unsmoothed",
+          "MMD_exact_median_grid"
+        ],
+        "marginals": "Beta(2,5)"
+      },
+      "gaussian": {
+        "dimensions": [
+          2
+        ],
+        "sample_sizes": [
+          250,
+          500,
+          1000,
+          2000
+        ],
+        "rho_reference": 0.0,
+        "rho_alternatives": [
+          0.2,
+          0.4
+        ],
+        "K": 2,
+        "L": 1,
+        "methods": [
+          "Rank_Pearson_joint",
+          "Rank_Pearson_coordinate0"
+        ],
+        "marginals": "uniform"
+      },
+      "rank": {
+        "alpha0": 0.1,
+        "engine": "auto",
+        "tie": "jitter",
+        "jitter_scale": 1e-12,
+        "decision": "pvalue",
+        "stop_ci": "none",
+        "antithetic": false,
+        "gpu": "off",
+        "reference_mode": "shared_pool",
+        "use_fullY_for_HY": true,
+        "chunk": 512
+      },
+      "features": {
+        "J": 10,
+        "ridge": 1e-06,
+        "bandwidth_scale": 1.0,
+        "median_subsample": 1000
+      },
+      "mmd": {
+        "estimator": "unbiased",
+        "num_scales": 5,
+        "base": 2.0,
+        "median_subsample": 1000
+      },
+      "analysis": {
+        "null_family_size": 32,
+        "null_family_alpha": 0.05,
+        "null_upper_margin": 0.015,
+        "primary_power_family_size": 20,
+        "power_family_alpha": 0.05,
+        "failure_policy": "missing/failed/warning strata NA, no survivor rates",
+        "cohort_policy": "within-study fixed CPU/exact Python-build/library cohort; full platform and kernel recorded, effects/timings stratified; no alteration of old campaign policy"
+      },
+      "execution": {
+        "cpus_per_task": 1,
+        "gpus": 0,
+        "memory_gib": 4,
+        "maximum_total_cpu_core_hours": 14.0,
+        "preparation_reserve_cpu_core_hours": 0.25,
+        "analysis_reserve_cpu_core_hours": 0.5,
+        "automatic_retries": false
+      }
+    },
+    "protocol_hash": "5984f1e1d336071a0fcc053b953e3854b7bd49b67ab26229758799ee962c66d7",
+    "source_commit": "8f2de62a8c4aebe286872fb1ccd81eb73f83772d",
+    "source_hashes": {
+      "src/baselines/__init__.py": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "src/baselines/analytic_scf.py": "9765fe2993d9f016f2c5ba22188fc1c39e7ac2517ce814e51f43698ecb463d7d",
+      "src/baselines/c2st.py": "0f2a9cefe615a3eab4ac8a2c748d11d19bee6939cc6423cdd3516f30c9f14262",
+      "src/baselines/conditional_c2st.py": "d196598f9950dc95dcfbf351b6da89cc1d1f9aa79e08e5c5bda4e1d70ba63e56",
+      "src/baselines/hotelling_t2.py": "ffe0c0303b2fdf945abe08733e7fbf227c9582303ae4a16e7d485ab9a26325b7",
+      "src/baselines/kernel_mmd.py": "6d9c0620c6d7d1ff2a4ad6337699c46b25fd3f7ec359aa064285b10b71a2bb86",
+      "src/baselines/me_scf.py": "398c0bfe74b5055a5b3bb3a0270a144f470ce12655c583322c0c36f1e7dc8344",
+      "src/baselines/rank_chi2.py": "de7ec7c97ebe16a95e86db30ddd86c335647d5d9fa2a86a020003c6b022c35a3",
+      "src/baselines/rank_chi2_subspaces.py": "c21c6137e18ea9ae811d934c09fb3cd0fb590ba96cf05884d3f8fed2dfbe6024",
+      "src/baselines/rff_mmd.py": "7743dd2a0915b84a60d9c04084c455bece923a06c2c2b8c785561fe00b2826a4",
+      "src/baselines/sliced_ot.py": "1a8a696ba98fe2ed0a6beeb50f604d02a017b9ca126227d3b6523c5afa6618f1",
+      "src/baselines/tuned_mmd.py": "967fe2b03ca84c1ecf1bf4434b18cb1cb7db1eb2db8bb22eeafd447560ec2dd2",
+      "src/ranktwosample/__init__.py": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "src/ranktwosample/power_datasets.py": "f47ba8f15a4dca8abbd930625bf5b2fca263d68879d37bcedb0c813caf407cc2",
+      "src/ranktwosample/rank_two_sample.py": "21d31b946d33de5bc1d85d66b949afb5bc6ecb606166b9fe03d6c723a1f6968c",
+      "src/ranktwosample/rank_two_sample_subspaces.py": "7541ae9e617b0d16f2f8522d09cab9e862a72b2f0de967cde01685e766e13caf",
+      "src/scripts/cifar10c_power_rank_subspaces.py": "ce2c107257dc24f38867531921cb6751788b5029a6b44d7ab9e658fbc4a6ff96",
+      "src/scripts/fair_comparator_bench.py": "63211ef07406c5d95f21a3d27d8a058a4d65b95adcb511a73848e6d5203fc6e8",
+      "src/scripts/power_rank_subspaces.py": "805b503b7eae767c969d20fead91922fa1e528c3e5c73b591c558de6a9dd8810",
+      "src/scripts/rotation_bench.py": "3ab6fc5ade4ce59a64795ff415b489c5dc5ce38916b2573fa4891c65d661afd6",
+      "src/scripts/run_power_bench.py": "abbb0a01437ed64a0267c11416a3e3cc3c8080997b8e504e170219ef3dfc9e6a",
+      "pyproject.toml": "287721aa795bea8eb9be7c0d53a1ba650f59bd48dfb44bc035df764d76ba8bf1",
+      "uv.lock": "6304a76e85db71a2f2d5f66afa7288fc2ba6228ac093f308aeca5217cdc9fcbd",
+      "overlay/analyze.py": "823d2ae3427b41f2bdf1c15588dba2bb61a0fc738c42e6daf408f41535e3123d",
+      "overlay/plot.py": "e218988ef4fb1c493d6365658fbb006b15f76ef4a455f2dc5899a42d7f1d5686",
+      "overlay/runner.py": "3abd3b8d6cbb57e44141e86ab81a44ac8c26a489a684bf775c375ba553a90049",
+      "overlay/protocol.json": "3639cbe4828c3d88327b38b83795d50e29df7660bd8981f40adae9fc5f83be2f",
+      "overlay/protocol.md": "63c1b399287820496e054ee152ba18c3b00e6e385358c376a1caf422d872e010",
+      "overlay/verify_dependence_power.py": "deb40aec70a979ba8cdbd29c68a67acf5787c52cc10bff714ebe963395a91e5d"
+    },
+    "shard": "018",
+    "original_raw_sha256": "b0b794fcd83c1c946832e964fea0ae524b5b2801f695b5652345325d152d5957",
+    "public_raw_sha256": "b0b794fcd83c1c946832e964fea0ae524b5b2801f695b5652345325d152d5957"
+  },
+  {
+    "python": "3.12.14 (main, Sep  1 2026, 14:16:52) [Clang 22.1.3 ]",
+    "numpy": "2.5.2",
+    "scipy": "1.18.1",
+    "platform": "Linux-6.8.0-136-generic-x86_64-with-glibc2.35",
+    "cpu_model": "Intel(R) Xeon(R) Gold 6148 CPU @ 2.40GHz",
+    "protocol": {
+      "id": "dependence-power-v1-20261007",
+      "base_source_commit": "8f2de62a8c4aebe286872fb1ccd81eb73f83772d",
+      "base_seed": 2026100723,
+      "alpha": 0.05,
+      "B": 100,
+      "null_repetitions": 4000,
+      "power_repetitions": 500,
+      "pilot_rep_start": 100000,
+      "copula": {
+        "dimensions": [
+          4,
+          20
+        ],
+        "sample_sizes": [
+          1000
+        ],
+        "rho_reference": 0.6,
+        "K": 4,
+        "L": 64,
+        "generators": [
+          "gaussian",
+          "clayton",
+          "gumbel"
+        ],
+        "methods": [
+          "Rank_G_pairs",
+          "ME",
+          "Fourier_unsmoothed",
+          "MMD_exact_median_grid"
+        ],
+        "marginals": "Beta(2,5)"
+      },
+      "gaussian": {
+        "dimensions": [
+          2
+        ],
+        "sample_sizes": [
+          250,
+          500,
+          1000,
+          2000
+        ],
+        "rho_reference": 0.0,
+        "rho_alternatives": [
+          0.2,
+          0.4
+        ],
+        "K": 2,
+        "L": 1,
+        "methods": [
+          "Rank_Pearson_joint",
+          "Rank_Pearson_coordinate0"
+        ],
+        "marginals": "uniform"
+      },
+      "rank": {
+        "alpha0": 0.1,
+        "engine": "auto",
+        "tie": "jitter",
+        "jitter_scale": 1e-12,
+        "decision": "pvalue",
+        "stop_ci": "none",
+        "antithetic": false,
+        "gpu": "off",
+        "reference_mode": "shared_pool",
+        "use_fullY_for_HY": true,
+        "chunk": 512
+      },
+      "features": {
+        "J": 10,
+        "ridge": 1e-06,
+        "bandwidth_scale": 1.0,
+        "median_subsample": 1000
+      },
+      "mmd": {
+        "estimator": "unbiased",
+        "num_scales": 5,
+        "base": 2.0,
+        "median_subsample": 1000
+      },
+      "analysis": {
+        "null_family_size": 32,
+        "null_family_alpha": 0.05,
+        "null_upper_margin": 0.015,
+        "primary_power_family_size": 20,
+        "power_family_alpha": 0.05,
+        "failure_policy": "missing/failed/warning strata NA, no survivor rates",
+        "cohort_policy": "within-study fixed CPU/exact Python-build/library cohort; full platform and kernel recorded, effects/timings stratified; no alteration of old campaign policy"
+      },
+      "execution": {
+        "cpus_per_task": 1,
+        "gpus": 0,
+        "memory_gib": 4,
+        "maximum_total_cpu_core_hours": 14.0,
+        "preparation_reserve_cpu_core_hours": 0.25,
+        "analysis_reserve_cpu_core_hours": 0.5,
+        "automatic_retries": false
+      }
+    },
+    "protocol_hash": "5984f1e1d336071a0fcc053b953e3854b7bd49b67ab26229758799ee962c66d7",
+    "source_commit": "8f2de62a8c4aebe286872fb1ccd81eb73f83772d",
+    "source_hashes": {
+      "src/baselines/__init__.py": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "src/baselines/analytic_scf.py": "9765fe2993d9f016f2c5ba22188fc1c39e7ac2517ce814e51f43698ecb463d7d",
+      "src/baselines/c2st.py": "0f2a9cefe615a3eab4ac8a2c748d11d19bee6939cc6423cdd3516f30c9f14262",
+      "src/baselines/conditional_c2st.py": "d196598f9950dc95dcfbf351b6da89cc1d1f9aa79e08e5c5bda4e1d70ba63e56",
+      "src/baselines/hotelling_t2.py": "ffe0c0303b2fdf945abe08733e7fbf227c9582303ae4a16e7d485ab9a26325b7",
+      "src/baselines/kernel_mmd.py": "6d9c0620c6d7d1ff2a4ad6337699c46b25fd3f7ec359aa064285b10b71a2bb86",
+      "src/baselines/me_scf.py": "398c0bfe74b5055a5b3bb3a0270a144f470ce12655c583322c0c36f1e7dc8344",
+      "src/baselines/rank_chi2.py": "de7ec7c97ebe16a95e86db30ddd86c335647d5d9fa2a86a020003c6b022c35a3",
+      "src/baselines/rank_chi2_subspaces.py": "c21c6137e18ea9ae811d934c09fb3cd0fb590ba96cf05884d3f8fed2dfbe6024",
+      "src/baselines/rff_mmd.py": "7743dd2a0915b84a60d9c04084c455bece923a06c2c2b8c785561fe00b2826a4",
+      "src/baselines/sliced_ot.py": "1a8a696ba98fe2ed0a6beeb50f604d02a017b9ca126227d3b6523c5afa6618f1",
+      "src/baselines/tuned_mmd.py": "967fe2b03ca84c1ecf1bf4434b18cb1cb7db1eb2db8bb22eeafd447560ec2dd2",
+      "src/ranktwosample/__init__.py": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "src/ranktwosample/power_datasets.py": "f47ba8f15a4dca8abbd930625bf5b2fca263d68879d37bcedb0c813caf407cc2",
+      "src/ranktwosample/rank_two_sample.py": "21d31b946d33de5bc1d85d66b949afb5bc6ecb606166b9fe03d6c723a1f6968c",
+      "src/ranktwosample/rank_two_sample_subspaces.py": "7541ae9e617b0d16f2f8522d09cab9e862a72b2f0de967cde01685e766e13caf",
+      "src/scripts/cifar10c_power_rank_subspaces.py": "ce2c107257dc24f38867531921cb6751788b5029a6b44d7ab9e658fbc4a6ff96",
+      "src/scripts/fair_comparator_bench.py": "63211ef07406c5d95f21a3d27d8a058a4d65b95adcb511a73848e6d5203fc6e8",
+      "src/scripts/power_rank_subspaces.py": "805b503b7eae767c969d20fead91922fa1e528c3e5c73b591c558de6a9dd8810",
+      "src/scripts/rotation_bench.py": "3ab6fc5ade4ce59a64795ff415b489c5dc5ce38916b2573fa4891c65d661afd6",
+      "src/scripts/run_power_bench.py": "abbb0a01437ed64a0267c11416a3e3cc3c8080997b8e504e170219ef3dfc9e6a",
+      "pyproject.toml": "287721aa795bea8eb9be7c0d53a1ba650f59bd48dfb44bc035df764d76ba8bf1",
+      "uv.lock": "6304a76e85db71a2f2d5f66afa7288fc2ba6228ac093f308aeca5217cdc9fcbd",
+      "overlay/analyze.py": "823d2ae3427b41f2bdf1c15588dba2bb61a0fc738c42e6daf408f41535e3123d",
+      "overlay/plot.py": "e218988ef4fb1c493d6365658fbb006b15f76ef4a455f2dc5899a42d7f1d5686",
+      "overlay/runner.py": "3abd3b8d6cbb57e44141e86ab81a44ac8c26a489a684bf775c375ba553a90049",
+      "overlay/protocol.json": "3639cbe4828c3d88327b38b83795d50e29df7660bd8981f40adae9fc5f83be2f",
+      "overlay/protocol.md": "63c1b399287820496e054ee152ba18c3b00e6e385358c376a1caf422d872e010",
+      "overlay/verify_dependence_power.py": "deb40aec70a979ba8cdbd29c68a67acf5787c52cc10bff714ebe963395a91e5d"
+    },
+    "shard": "019",
+    "original_raw_sha256": "0f54904d8f98cb8158b14236ff9a1e53999d77440e00de8197692d310d39399b",
+    "public_raw_sha256": "0f54904d8f98cb8158b14236ff9a1e53999d77440e00de8197692d310d39399b"
+  }
+]

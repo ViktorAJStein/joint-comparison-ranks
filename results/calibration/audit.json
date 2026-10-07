@@ -1,0 +1,18 @@
+{
+  "status": "verified",
+  "raw_rows": 203000,
+  "blocks": 32500,
+  "summary_rows": 31,
+  "raw_sha256": "3c4d80c09347a3806de052a3cc7da33d7772a3feadd23fe62c83579e3a7039a9",
+  "summary_sha256": "11f2e71ff87cf9272fe3529a7223c999f65a3b37c923779df6858a66e153b8b6",
+  "whitening_pairs": 17000,
+  "whitening_equal_pairs": 17000,
+  "family_size": 50,
+  "alpha": 0.05,
+  "source_tag": "rank-calibration-20261004-source",
+  "all_variants_actually_executed": true,
+  "pilot_rows_included": 0,
+  "provenance_rows_verified": 203000,
+  "main_reserved_cpu_core_hours": 5.457529563373989,
+  "gpu_hours": 0
+}

@@ -1,0 +1,591 @@
+{
+  "status": "verified_counts_only_environment_guard_unresolved",
+  "d": 20,
+  "audited_calls": 144000,
+  "source_commit": "8f2de62a8c4aebe286872fb1ccd81eb73f83772d",
+  "platforms": {
+    "Linux-6.12.111-1.el8.x86_64-x86_64-with-glibc2.28": 14,
+    "Linux-6.12.110-1.el8.x86_64-x86_64-with-glibc2.28": 26
+  },
+  "metadata_modified": false,
+  "merger_guard_waived": false,
+  "inferential_claims": false,
+  "rates": [
+    {
+      "case": "null_gaussian",
+      "orientation": "raw",
+      "method": "Rank_Singleton_Conservative",
+      "null": true,
+      "repetitions": 4000,
+      "rejections": 204,
+      "rate": 0.051
+    },
+    {
+      "case": "null_gaussian",
+      "orientation": "raw",
+      "method": "Rank_Pairs_Conservative",
+      "null": true,
+      "repetitions": 4000,
+      "rejections": 222,
+      "rate": 0.0555
+    },
+    {
+      "case": "null_gaussian",
+      "orientation": "raw",
+      "method": "SCF_GaussianWindow_Median",
+      "null": true,
+      "repetitions": 4000,
+      "rejections": 215,
+      "rate": 0.05375
+    },
+    {
+      "case": "null_gaussian",
+      "orientation": "raw",
+      "method": "SCF_GaussianWindow_TrainGrid",
+      "null": true,
+      "repetitions": 4000,
+      "rejections": 215,
+      "rate": 0.05375
+    },
+    {
+      "case": "null_gaussian",
+      "orientation": "raw",
+      "method": "MMD_RFF_Median",
+      "null": true,
+      "repetitions": 4000,
+      "rejections": 212,
+      "rate": 0.053
+    },
+    {
+      "case": "null_gaussian",
+      "orientation": "raw",
+      "method": "MMD_RFF_TrainGrid",
+      "null": true,
+      "repetitions": 4000,
+      "rejections": 196,
+      "rate": 0.049
+    },
+    {
+      "case": "null_gaussian",
+      "orientation": "raw",
+      "method": "C2ST_Logistic_Hypergeometric",
+      "null": true,
+      "repetitions": 4000,
+      "rejections": 175,
+      "rate": 0.04375
+    },
+    {
+      "case": "null_gaussian",
+      "orientation": "raw",
+      "method": "C2ST_RBF_Hypergeometric",
+      "null": true,
+      "repetitions": 4000,
+      "rejections": 194,
+      "rate": 0.0485
+    },
+    {
+      "case": "null_gaussian",
+      "orientation": "rotated",
+      "method": "Rank_Singleton_Conservative",
+      "null": true,
+      "repetitions": 4000,
+      "rejections": 173,
+      "rate": 0.04325
+    },
+    {
+      "case": "null_gaussian",
+      "orientation": "rotated",
+      "method": "Rank_Pairs_Conservative",
+      "null": true,
+      "repetitions": 4000,
+      "rejections": 210,
+      "rate": 0.0525
+    },
+    {
+      "case": "null_gaussian",
+      "orientation": "rotated",
+      "method": "SCF_GaussianWindow_Median",
+      "null": true,
+      "repetitions": 4000,
+      "rejections": 187,
+      "rate": 0.04675
+    },
+    {
+      "case": "null_gaussian",
+      "orientation": "rotated",
+      "method": "SCF_GaussianWindow_TrainGrid",
+      "null": true,
+      "repetitions": 4000,
+      "rejections": 173,
+      "rate": 0.04325
+    },
+    {
+      "case": "null_gaussian",
+      "orientation": "rotated",
+      "method": "MMD_RFF_Median",
+      "null": true,
+      "repetitions": 4000,
+      "rejections": 209,
+      "rate": 0.05225
+    },
+    {
+      "case": "null_gaussian",
+      "orientation": "rotated",
+      "method": "MMD_RFF_TrainGrid",
+      "null": true,
+      "repetitions": 4000,
+      "rejections": 209,
+      "rate": 0.05225
+    },
+    {
+      "case": "null_gaussian",
+      "orientation": "rotated",
+      "method": "C2ST_Logistic_Hypergeometric",
+      "null": true,
+      "repetitions": 4000,
+      "rejections": 170,
+      "rate": 0.0425
+    },
+    {
+      "case": "null_gaussian",
+      "orientation": "rotated",
+      "method": "C2ST_RBF_Hypergeometric",
+      "null": true,
+      "repetitions": 4000,
+      "rejections": 207,
+      "rate": 0.05175
+    },
+    {
+      "case": "null_rounded",
+      "orientation": "raw",
+      "method": "Rank_Singleton_Conservative",
+      "null": true,
+      "repetitions": 4000,
+      "rejections": 199,
+      "rate": 0.04975
+    },
+    {
+      "case": "null_rounded",
+      "orientation": "raw",
+      "method": "Rank_Pairs_Conservative",
+      "null": true,
+      "repetitions": 4000,
+      "rejections": 223,
+      "rate": 0.05575
+    },
+    {
+      "case": "null_rounded",
+      "orientation": "raw",
+      "method": "SCF_GaussianWindow_Median",
+      "null": true,
+      "repetitions": 4000,
+      "rejections": 209,
+      "rate": 0.05225
+    },
+    {
+      "case": "null_rounded",
+      "orientation": "raw",
+      "method": "SCF_GaussianWindow_TrainGrid",
+      "null": true,
+      "repetitions": 4000,
+      "rejections": 187,
+      "rate": 0.04675
+    },
+    {
+      "case": "null_rounded",
+      "orientation": "raw",
+      "method": "MMD_RFF_Median",
+      "null": true,
+      "repetitions": 4000,
+      "rejections": 195,
+      "rate": 0.04875
+    },
+    {
+      "case": "null_rounded",
+      "orientation": "raw",
+      "method": "MMD_RFF_TrainGrid",
+      "null": true,
+      "repetitions": 4000,
+      "rejections": 191,
+      "rate": 0.04775
+    },
+    {
+      "case": "null_rounded",
+      "orientation": "raw",
+      "method": "C2ST_Logistic_Hypergeometric",
+      "null": true,
+      "repetitions": 4000,
+      "rejections": 180,
+      "rate": 0.045
+    },
+    {
+      "case": "null_rounded",
+      "orientation": "raw",
+      "method": "C2ST_RBF_Hypergeometric",
+      "null": true,
+      "repetitions": 4000,
+      "rejections": 190,
+      "rate": 0.0475
+    },
+    {
+      "case": "null_ar1",
+      "orientation": "raw",
+      "method": "Rank_Singleton_Conservative",
+      "null": true,
+      "repetitions": 4000,
+      "rejections": 206,
+      "rate": 0.0515
+    },
+    {
+      "case": "null_ar1",
+      "orientation": "raw",
+      "method": "Rank_Pairs_Conservative",
+      "null": true,
+      "repetitions": 4000,
+      "rejections": 191,
+      "rate": 0.04775
+    },
+    {
+      "case": "null_ar1",
+      "orientation": "raw",
+      "method": "SCF_GaussianWindow_Median",
+      "null": true,
+      "repetitions": 4000,
+      "rejections": 208,
+      "rate": 0.052
+    },
+    {
+      "case": "null_ar1",
+      "orientation": "raw",
+      "method": "SCF_GaussianWindow_TrainGrid",
+      "null": true,
+      "repetitions": 4000,
+      "rejections": 205,
+      "rate": 0.05125
+    },
+    {
+      "case": "null_ar1",
+      "orientation": "raw",
+      "method": "MMD_RFF_Median",
+      "null": true,
+      "repetitions": 4000,
+      "rejections": 190,
+      "rate": 0.0475
+    },
+    {
+      "case": "null_ar1",
+      "orientation": "raw",
+      "method": "MMD_RFF_TrainGrid",
+      "null": true,
+      "repetitions": 4000,
+      "rejections": 196,
+      "rate": 0.049
+    },
+    {
+      "case": "null_ar1",
+      "orientation": "raw",
+      "method": "C2ST_Logistic_Hypergeometric",
+      "null": true,
+      "repetitions": 4000,
+      "rejections": 164,
+      "rate": 0.041
+    },
+    {
+      "case": "null_ar1",
+      "orientation": "raw",
+      "method": "C2ST_RBF_Hypergeometric",
+      "null": true,
+      "repetitions": 4000,
+      "rejections": 201,
+      "rate": 0.05025
+    },
+    {
+      "case": "alt_locshift",
+      "orientation": "raw",
+      "method": "Rank_Singleton_Conservative",
+      "null": false,
+      "repetitions": 500,
+      "rejections": 249,
+      "rate": 0.498
+    },
+    {
+      "case": "alt_locshift",
+      "orientation": "raw",
+      "method": "Rank_Pairs_Conservative",
+      "null": false,
+      "repetitions": 500,
+      "rejections": 257,
+      "rate": 0.514
+    },
+    {
+      "case": "alt_locshift",
+      "orientation": "raw",
+      "method": "SCF_GaussianWindow_Median",
+      "null": false,
+      "repetitions": 500,
+      "rejections": 156,
+      "rate": 0.312
+    },
+    {
+      "case": "alt_locshift",
+      "orientation": "raw",
+      "method": "SCF_GaussianWindow_TrainGrid",
+      "null": false,
+      "repetitions": 500,
+      "rejections": 102,
+      "rate": 0.204
+    },
+    {
+      "case": "alt_locshift",
+      "orientation": "raw",
+      "method": "MMD_RFF_Median",
+      "null": false,
+      "repetitions": 500,
+      "rejections": 385,
+      "rate": 0.77
+    },
+    {
+      "case": "alt_locshift",
+      "orientation": "raw",
+      "method": "MMD_RFF_TrainGrid",
+      "null": false,
+      "repetitions": 500,
+      "rejections": 315,
+      "rate": 0.63
+    },
+    {
+      "case": "alt_locshift",
+      "orientation": "raw",
+      "method": "C2ST_Logistic_Hypergeometric",
+      "null": false,
+      "repetitions": 500,
+      "rejections": 158,
+      "rate": 0.316
+    },
+    {
+      "case": "alt_locshift",
+      "orientation": "raw",
+      "method": "C2ST_RBF_Hypergeometric",
+      "null": false,
+      "repetitions": 500,
+      "rejections": 149,
+      "rate": 0.298
+    },
+    {
+      "case": "alt_sparse_scale",
+      "orientation": "raw",
+      "method": "Rank_Singleton_Conservative",
+      "null": false,
+      "repetitions": 500,
+      "rejections": 365,
+      "rate": 0.73
+    },
+    {
+      "case": "alt_sparse_scale",
+      "orientation": "raw",
+      "method": "Rank_Pairs_Conservative",
+      "null": false,
+      "repetitions": 500,
+      "rejections": 398,
+      "rate": 0.796
+    },
+    {
+      "case": "alt_sparse_scale",
+      "orientation": "raw",
+      "method": "SCF_GaussianWindow_Median",
+      "null": false,
+      "repetitions": 500,
+      "rejections": 196,
+      "rate": 0.392
+    },
+    {
+      "case": "alt_sparse_scale",
+      "orientation": "raw",
+      "method": "SCF_GaussianWindow_TrainGrid",
+      "null": false,
+      "repetitions": 500,
+      "rejections": 138,
+      "rate": 0.276
+    },
+    {
+      "case": "alt_sparse_scale",
+      "orientation": "raw",
+      "method": "MMD_RFF_Median",
+      "null": false,
+      "repetitions": 500,
+      "rejections": 95,
+      "rate": 0.19
+    },
+    {
+      "case": "alt_sparse_scale",
+      "orientation": "raw",
+      "method": "MMD_RFF_TrainGrid",
+      "null": false,
+      "repetitions": 500,
+      "rejections": 176,
+      "rate": 0.352
+    },
+    {
+      "case": "alt_sparse_scale",
+      "orientation": "raw",
+      "method": "C2ST_Logistic_Hypergeometric",
+      "null": false,
+      "repetitions": 500,
+      "rejections": 22,
+      "rate": 0.044
+    },
+    {
+      "case": "alt_sparse_scale",
+      "orientation": "raw",
+      "method": "C2ST_RBF_Hypergeometric",
+      "null": false,
+      "repetitions": 500,
+      "rejections": 204,
+      "rate": 0.408
+    },
+    {
+      "case": "alt_sparse_scale",
+      "orientation": "rotated",
+      "method": "Rank_Singleton_Conservative",
+      "null": false,
+      "repetitions": 500,
+      "rejections": 88,
+      "rate": 0.176
+    },
+    {
+      "case": "alt_sparse_scale",
+      "orientation": "rotated",
+      "method": "Rank_Pairs_Conservative",
+      "null": false,
+      "repetitions": 500,
+      "rejections": 187,
+      "rate": 0.374
+    },
+    {
+      "case": "alt_sparse_scale",
+      "orientation": "rotated",
+      "method": "SCF_GaussianWindow_Median",
+      "null": false,
+      "repetitions": 500,
+      "rejections": 200,
+      "rate": 0.4
+    },
+    {
+      "case": "alt_sparse_scale",
+      "orientation": "rotated",
+      "method": "SCF_GaussianWindow_TrainGrid",
+      "null": false,
+      "repetitions": 500,
+      "rejections": 142,
+      "rate": 0.284
+    },
+    {
+      "case": "alt_sparse_scale",
+      "orientation": "rotated",
+      "method": "MMD_RFF_Median",
+      "null": false,
+      "repetitions": 500,
+      "rejections": 97,
+      "rate": 0.194
+    },
+    {
+      "case": "alt_sparse_scale",
+      "orientation": "rotated",
+      "method": "MMD_RFF_TrainGrid",
+      "null": false,
+      "repetitions": 500,
+      "rejections": 169,
+      "rate": 0.338
+    },
+    {
+      "case": "alt_sparse_scale",
+      "orientation": "rotated",
+      "method": "C2ST_Logistic_Hypergeometric",
+      "null": false,
+      "repetitions": 500,
+      "rejections": 22,
+      "rate": 0.044
+    },
+    {
+      "case": "alt_sparse_scale",
+      "orientation": "rotated",
+      "method": "C2ST_RBF_Hypergeometric",
+      "null": false,
+      "repetitions": 500,
+      "rejections": 343,
+      "rate": 0.686
+    },
+    {
+      "case": "alt_gmm_matched",
+      "orientation": "raw",
+      "method": "Rank_Singleton_Conservative",
+      "null": false,
+      "repetitions": 500,
+      "rejections": 36,
+      "rate": 0.072
+    },
+    {
+      "case": "alt_gmm_matched",
+      "orientation": "raw",
+      "method": "Rank_Pairs_Conservative",
+      "null": false,
+      "repetitions": 500,
+      "rejections": 24,
+      "rate": 0.048
+    },
+    {
+      "case": "alt_gmm_matched",
+      "orientation": "raw",
+      "method": "SCF_GaussianWindow_Median",
+      "null": false,
+      "repetitions": 500,
+      "rejections": 22,
+      "rate": 0.044
+    },
+    {
+      "case": "alt_gmm_matched",
+      "orientation": "raw",
+      "method": "SCF_GaussianWindow_TrainGrid",
+      "null": false,
+      "repetitions": 500,
+      "rejections": 23,
+      "rate": 0.046
+    },
+    {
+      "case": "alt_gmm_matched",
+      "orientation": "raw",
+      "method": "MMD_RFF_Median",
+      "null": false,
+      "repetitions": 500,
+      "rejections": 23,
+      "rate": 0.046
+    },
+    {
+      "case": "alt_gmm_matched",
+      "orientation": "raw",
+      "method": "MMD_RFF_TrainGrid",
+      "null": false,
+      "repetitions": 500,
+      "rejections": 33,
+      "rate": 0.066
+    },
+    {
+      "case": "alt_gmm_matched",
+      "orientation": "raw",
+      "method": "C2ST_Logistic_Hypergeometric",
+      "null": false,
+      "repetitions": 500,
+      "rejections": 24,
+      "rate": 0.048
+    },
+    {
+      "case": "alt_gmm_matched",
+      "orientation": "raw",
+      "method": "C2ST_RBF_Hypergeometric",
+      "null": false,
+      "repetitions": 500,
+      "rejections": 19,
+      "rate": 0.038
+    }
+  ]
+}

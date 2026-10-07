@@ -1,0 +1,156 @@
+\section{Empirical-reference dependence experiments}\label{app:dependence-power}
+\paragraph{Gaussian-copula illustration and paired negative control.}
+To complement the population divergence in
+Figure~\ref{fig:gaussian_copula_rank_example}, we compare an independent uniform
+reference on $(0,1)^2$ with Gaussian-copula targets having the same uniform
+marginals and correlation $\rho\in\{.2,.4\}$. We use $d=2$, $K=2$,
+$N=M\in\{250,500,1000,2000\}$ and one joint view. The Gaussian-copula
+construction applies the standard normal cdf coordinatewise to a correlated
+normal vector. Under each allocation, the empirical reference histogram and
+target histogram are rebuilt using a shared size-$K$ reference batch from fixed
+reference-role positions. The statistic is
+\[
+ T_{\rm joint}=N\sum_{j=1}^{9}
+ \frac{(\widehat p_j-\widehat q_j)^2}{\widehat q_j},\qquad
+ \widehat p_j=H_{X,j}/N,\quad
+ \widehat q_j=(H_{Y,j}+.1)/(M+.9).
+\]
+The negative control uses only coordinate 0 and three cells, with denominator
+$M+.3$ in its regularized reference law. The two procedures share data, jitter,
+reference positions and every permutation. It is a \emph{fixed-coordinate}
+control, not an aggregate of evidence from all marginal coordinates.
+The unchanged marginal law motivates the control; the finite-resolution
+joint law can reflect the tested dependence differences.
+
+\paragraph{Clayton and Gumbel alternatives.}
+A separate comparison fixes $d\in\{4,20\}$, $N=M=1000$ and
+$\mathsf{Beta}(2,5)$ marginals. The reference is an equicorrelated Gaussian
+copula with $\rho=.6$; targets are Clayton or Gumbel copulas matched in
+Kendall tau, $\tau=(2/\pi)\arcsin(.6)$, not necessarily Pearson correlation.
+Clayton parameter is $\theta_C=2\tau/(1-\tau)$ and Gumbel parameter is
+$\theta_G=1/(1-\tau)$. Gumbel sampling uses the positive-stable frailty
+construction with denominator exponent $1/\alpha$, $\alpha=1/\theta_G$.
+Both-sample Gaussian, Clayton and Gumbel nulls are included in each dimension.
+Numerical sampler checks compare uniform marginals against the predeclared
+DKW threshold and verify Kendall tau; all pass before the main evaluation.
+
+We compare pair-rank $G$, random-location ME, unsmoothed Fourier features and
+exact unbiased median-grid Gaussian MMD. Rank settings are $K=4$,
+$\gamma=.1$, requested $L=64$ deduplicated pairs (6 actual at $d=4$, 64 at
+$d=20$). All $M$ reference-role observations contribute to each histogram;
+views and reference positions are fixed across the complete statistic's
+allocations. Sum aggregation, shared reference batches and jitter SD $10^{-12}$
+are used as in the Gaussian experiment.
+
+\paragraph{Finite-feature and exact-kernel controls.}
+For pooled observations $z$, ME uses $J=10$ locations $t_j$ sampled without
+labels and $\phi_j(z)=\exp(-\|z-t_j\|^2/(2\eta^2))$.
+Unsmoothed Fourier uses $J=10$ fixed draws
+$\omega_j\sim\mathcal N(0,\eta^{-2}I_d)$ and features
+$(\cos(\omega_j^\top z),\sin(\omega_j^\top z))_{j=1}^{J}$.
+This is not Gaussian-window SCF. The scale $\eta$ is the pooled median
+positive distance from at most 1000 observations; features and scale are
+fixed across permutations. With $\bar\phi_X,\bar\phi_Y$ denoting role means,
+$A_X,A_Y$ their sums of centered outer products, and feature dimension $h$,
+\[
+ \widehat V=\frac{A_X+A_Y}{N+M-1},\qquad
+ T_{\rm feat}=\frac{NM}{N+M}(\bar\phi_X-\bar\phi_Y)^\top
+ (\widehat V+10^{-6}I_h)^{-1}(\bar\phi_X-\bar\phi_Y).
+\]
+Covariance is recomputed for every allocation. These fixed random features
+are not optimized locations or frequencies. The ME64/Fourier64 controls in
+Appendix~\ref{app:axis-mixture} use the same feature statistic with $J=64$.
+Exact MMD uses the equal mixture of five Gaussian bandwidths
+$\eta 2^j$, $j=-2,\ldots,2$, fixed from the pooled median, and the unbiased
+within-role U-statistic (diagonal terms excluded) minus twice the cross-role
+kernel average. It is not a single-bandwidth or random-feature replacement.
+All four controls share the data and label-allocation permutations.
+
+\paragraph{Calibration, repetition and uncertainty.}
+All tests use $\alpha=.05$, $B=100$ independent uniform permutations,
+$p=(1+\sum_b\1\{T_b\ge T_{\rm obs}\})/101$, complete budgets and ties included;
+there is no analytic chi-square critical value, mid-$p$, antithetic pairing or
+stopping. Seed base is 2026100723. There are $R=4000$ blocks per null and
+$R=500$ per alternative, 46000 paired blocks and 144000 method results.
+There are no failed or omitted calls. This empirical-reference procedure is
+not the independent-fresh-batch oracle of the population illustration.
+
+The predeclared 32-screen family resolves a null only if its one-sided exact
+binomial upper bound at confidence $1-.05/32$ is at most $.065$ and the
+Bonferroni32 over-rejection test against $.05$ is not significant. All eight
+Gaussian illustration screens resolve; 25 of 32 resolve overall. Seven copula
+screens remain inconclusive, none significantly over-rejecting (minimum
+adjusted $p=.670741$). The $d=4$ Gaussian-null rank upper bound $.06512$
+is not rounded into passing. Inconclusive is not proof of intrinsic invalidity,
+but the frozen rule withholds all copula power-ranking claims.
+
+The original 20 contrasts consist of 12 pair-rank versus ME/Fourier/MMD
+comparisons and eight joint versus coordinate-0 Pearson comparisons.
+All remain in one family of exact two-sided McNemar tests with Holm20.
+Let $n_{10},n_{01}$ be A-only and B-only rejections;
+$\widehat\Delta=(n_{10}-n_{01})/R$, with descriptive pointwise normal intervals
+using $\widehat{\rm SE}^2=((n_{10}+n_{01})/R-\widehat\Delta^2)/R$.
+The primary inference uses the exact paired tests, not those intervals.
+Qualification additionally requires resolved matching null screens for both
+methods; each copula contrast requires all three common-law nulls at its
+dimension. No hypothesis slot is removed after seeing its size result.
+
+\paragraph{Findings, including non-significant and negative comparisons.}
+Six Gaussian contrasts are size-qualified and Holm-significant: all four
+$\rho=.4$ sizes and $\rho=.2$ at $N=M=1000,2000$. The two remaining
+$\rho=.2$ comparisons are non-significant (Holm $p=1$ at 250 and $.228$ at
+500), not evidence of zero difference. At $N=M=2000$, joint frequencies
+are $.736$ and $.998$ versus coordinate-0 $.036$ and $.052$;
+pointwise exact 95\% intervals for joint power are $[.69504,.77414]$ and
+$[.98891,.99995]$. This demonstrates empirical-reference detection of these
+specific dependence-only alternatives, not universal fixed-$K$ identification,
+consistency, dimension-free sample complexity or failure of multivariate
+geometric tests.
+
+The Clayton/Gumbel results are descriptive rejection frequencies only.
+At $d=4$, Gumbel Fourier rejection is $.970$ versus rank $.576$;
+at $d=20$, Gumbel MMD is $.988$ versus rank $.952$.
+All 12 copula contrasts fail the required size qualification, even where
+Holm-adjusted frequency-difference tests are significant. We retain every
+comparison and screen without relaxing the margin or increasing repetitions
+in response to the result. Tables give full-precision decision flags beside
+rounded displayed bounds.
+
+\paragraph{Hardware, timing and audit.}
+Copula blocks use AMD EPYC 7302 CPUs; Gaussian illustration blocks use Intel
+Xeon Gold 6148. Every paired block shares one CPU, one numerical thread,
+double precision, Python 3.12.14, NumPy 2.5.2 and SciPy 1.18.1;
+exact Python/compiler and kernel records are retained, with secondary
+platform-stratified rates. Source/raw tails and original-worker input replay
+pass, as does an independent full-coverage/tail/interval/McNemar/Holm recount.
+Allocated main CPU cost is $5.6247$ core-hours; qualification adds $.0203$,
+with no GPUs. Copula timing is method-component time plus charged common
+allocation construction, not independently measured standalone latency or
+an equal-time comparison. The paired coordinate-only timing reuses the joint
+construction and is not a separate standalone runtime benchmark.
+Complete statistics, configuration, CSVs and checksums accompany this source
+under \texttt{empirical\_data/dependence\_20261007/}.
+
+\input{empirical_data/dependence_20261007/tables}
+\begin{figure}[t]\centering
+\includegraphics[width=.96\linewidth]{gaussian_copula_empirical_power.pdf}
+\caption{All Gaussian-copula empirical-reference power curves with pointwise
+exact 95\% intervals, $R=500$ per alternative. Coordinate 0 is a fixed marginal
+negative control. All matching size screens resolve; six of eight paired
+comparisons qualify under the original Holm20 family.}
+\label{fig:dependence-gaussian-power}\end{figure}
+\begin{figure}[t]\centering
+\includegraphics[width=.96\linewidth]{copula_corrected_calibrated_power.pdf}
+\caption{All Clayton/Gumbel rejection frequencies with pointwise exact 95\%
+intervals. These are descriptive, not size-qualified comparative-power results.}
+\label{fig:dependence-copula-power}\end{figure}
+\begin{figure}[t]\centering
+\includegraphics[width=.96\linewidth]{dependence_null_calibration.pdf}
+\caption{All 32 null screens: pointwise exact intervals and distinct simultaneous
+one-sided upper bounds. Blue resolved, red inconclusive; fixed ceiling $.065$.}
+\label{fig:dependence-null}\end{figure}
+\begin{figure}[t]\centering
+\includegraphics[width=.96\linewidth]{copula_runtime_components.pdf}
+\caption{Copula timing components with the common allocation charge. These
+are not standalone latency measurements or a uniform speedup claim.}
+\label{fig:dependence-runtime}\end{figure}

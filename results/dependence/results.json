@@ -1,0 +1,4097 @@
+{
+  "protocol": {
+    "id": "dependence-power-v1-20261007",
+    "base_source_commit": "8f2de62a8c4aebe286872fb1ccd81eb73f83772d",
+    "base_seed": 2026100723,
+    "alpha": 0.05,
+    "B": 100,
+    "null_repetitions": 4000,
+    "power_repetitions": 500,
+    "pilot_rep_start": 100000,
+    "copula": {
+      "dimensions": [
+        4,
+        20
+      ],
+      "sample_sizes": [
+        1000
+      ],
+      "rho_reference": 0.6,
+      "K": 4,
+      "L": 64,
+      "generators": [
+        "gaussian",
+        "clayton",
+        "gumbel"
+      ],
+      "methods": [
+        "Rank_G_pairs",
+        "ME",
+        "Fourier_unsmoothed",
+        "MMD_exact_median_grid"
+      ],
+      "marginals": "Beta(2,5)"
+    },
+    "gaussian": {
+      "dimensions": [
+        2
+      ],
+      "sample_sizes": [
+        250,
+        500,
+        1000,
+        2000
+      ],
+      "rho_reference": 0.0,
+      "rho_alternatives": [
+        0.2,
+        0.4
+      ],
+      "K": 2,
+      "L": 1,
+      "methods": [
+        "Rank_Pearson_joint",
+        "Rank_Pearson_coordinate0"
+      ],
+      "marginals": "uniform"
+    },
+    "rank": {
+      "alpha0": 0.1,
+      "engine": "auto",
+      "tie": "jitter",
+      "jitter_scale": 1e-12,
+      "decision": "pvalue",
+      "stop_ci": "none",
+      "antithetic": false,
+      "gpu": "off",
+      "reference_mode": "shared_pool",
+      "use_fullY_for_HY": true,
+      "chunk": 512
+    },
+    "features": {
+      "J": 10,
+      "ridge": 1e-06,
+      "bandwidth_scale": 1.0,
+      "median_subsample": 1000
+    },
+    "mmd": {
+      "estimator": "unbiased",
+      "num_scales": 5,
+      "base": 2.0,
+      "median_subsample": 1000
+    },
+    "analysis": {
+      "null_family_size": 32,
+      "null_family_alpha": 0.05,
+      "null_upper_margin": 0.015,
+      "primary_power_family_size": 20,
+      "power_family_alpha": 0.05,
+      "failure_policy": "missing/failed/warning strata NA, no survivor rates",
+      "cohort_policy": "within-study fixed CPU/exact Python-build/library cohort; full platform and kernel recorded, effects/timings stratified; no alteration of old campaign policy"
+    },
+    "execution": {
+      "cpus_per_task": 1,
+      "gpus": 0,
+      "memory_gib": 4,
+      "maximum_total_cpu_core_hours": 14.0,
+      "preparation_reserve_cpu_core_hours": 0.25,
+      "analysis_reserve_cpu_core_hours": 0.5,
+      "automatic_retries": false
+    }
+  },
+  "protocol_hash": "5984f1e1d336071a0fcc053b953e3854b7bd49b67ab26229758799ee962c66d7",
+  "status": "complete",
+  "blocks": 46000,
+  "method_results": 144000,
+  "cohorts": {
+    "copula": [
+      "AMD EPYC 7302 16-Core Processor",
+      "3.12.14 (main, Aug 24 2026, 11:43:01) [GCC 8.5.0 20210514 (Red Hat 8.5.0-28)]",
+      "2.5.2",
+      "1.18.1"
+    ],
+    "gaussian": [
+      "Intel(R) Xeon(R) Gold 6148 CPU @ 2.40GHz",
+      "3.12.14 (main, Sep  1 2026, 14:16:52) [Clang 22.1.3 ]",
+      "2.5.2",
+      "1.18.1"
+    ]
+  },
+  "rates": [
+    {
+      "stratum": {
+        "study": "copula",
+        "d": 4,
+        "n": 1000,
+        "null": true,
+        "law": "gaussian",
+        "rho": 0.6,
+        "id": 0
+      },
+      "method": "Rank_G_pairs",
+      "rejections": 215,
+      "repetitions": 4000,
+      "rate": 0.05375,
+      "interval95": [
+        0.0469642078424722,
+        0.06119651516544309
+      ],
+      "mean_call_seconds": 0.05329926544104819,
+      "timing_scope": "measured method components plus charged common allocation cost; not independent standalone latency",
+      "simultaneous_null_upper": 0.06511575611315673,
+      "over_rejection_p": 0.14662941264009682,
+      "bonferroni_over_rejection_p": 1.0,
+      "null_resolved": false
+    },
+    {
+      "stratum": {
+        "study": "copula",
+        "d": 4,
+        "n": 1000,
+        "null": true,
+        "law": "gaussian",
+        "rho": 0.6,
+        "id": 0
+      },
+      "method": "ME",
+      "rejections": 204,
+      "repetitions": 4000,
+      "rate": 0.051,
+      "interval95": [
+        0.0443874621524003,
+        0.05827771121270511
+      ],
+      "mean_call_seconds": 0.057385005824966355,
+      "timing_scope": "measured method components plus charged common allocation cost; not independent standalone latency",
+      "simultaneous_null_upper": 0.062112744387825915,
+      "over_rejection_p": 0.3958615144547655,
+      "bonferroni_over_rejection_p": 1.0,
+      "null_resolved": true
+    },
+    {
+      "stratum": {
+        "study": "copula",
+        "d": 4,
+        "n": 1000,
+        "null": true,
+        "law": "gaussian",
+        "rho": 0.6,
+        "id": 0
+      },
+      "method": "Fourier_unsmoothed",
+      "rejections": 226,
+      "repetitions": 4000,
+      "rate": 0.0565,
+      "interval95": [
+        0.04954606882848113,
+        0.06411023652976251
+      ],
+      "mean_call_seconds": 0.06284090803659638,
+      "timing_scope": "measured method components plus charged common allocation cost; not independent standalone latency",
+      "simultaneous_null_upper": 0.06811111975732502,
+      "over_rejection_p": 0.03398238750346699,
+      "bonferroni_over_rejection_p": 1.0,
+      "null_resolved": false
+    },
+    {
+      "stratum": {
+        "study": "copula",
+        "d": 4,
+        "n": 1000,
+        "null": true,
+        "law": "gaussian",
+        "rho": 0.6,
+        "id": 0
+      },
+      "method": "MMD_exact_median_grid",
+      "rejections": 183,
+      "repetitions": 4000,
+      "rate": 0.04575,
+      "interval95": [
+        0.03948390441981533,
+        0.05268987302840957
+      ],
+      "mean_call_seconds": 0.38634312290015804,
+      "timing_scope": "measured method components plus charged common allocation cost; not independent standalone latency",
+      "simultaneous_null_upper": 0.056356286455085634,
+      "over_rejection_p": 0.8991515645293877,
+      "bonferroni_over_rejection_p": 1.0,
+      "null_resolved": true
+    },
+    {
+      "stratum": {
+        "study": "copula",
+        "d": 4,
+        "n": 1000,
+        "null": true,
+        "law": "clayton",
+        "rho": 0.6,
+        "id": 1
+      },
+      "method": "Rank_G_pairs",
+      "rejections": 197,
+      "repetitions": 4000,
+      "rate": 0.04925,
+      "interval95": [
+        0.0427505571977223,
+        0.05641746727502458
+      ],
+      "mean_call_seconds": 0.05361792336482904,
+      "timing_scope": "measured method components plus charged common allocation cost; not independent standalone latency",
+      "simultaneous_null_upper": 0.06019748894307692,
+      "over_rejection_p": 0.5962679856249731,
+      "bonferroni_over_rejection_p": 1.0,
+      "null_resolved": true
+    },
+    {
+      "stratum": {
+        "study": "copula",
+        "d": 4,
+        "n": 1000,
+        "null": true,
+        "law": "clayton",
+        "rho": 0.6,
+        "id": 1
+      },
+      "method": "ME",
+      "rejections": 192,
+      "repetitions": 4000,
+      "rate": 0.048,
+      "interval95": [
+        0.04158276765857945,
+        0.05508730328103787
+      ],
+      "mean_call_seconds": 0.05727736013328831,
+      "timing_scope": "measured method components plus charged common allocation cost; not independent standalone latency",
+      "simultaneous_null_upper": 0.058827315398113304,
+      "over_rejection_p": 0.7290334142871071,
+      "bonferroni_over_rejection_p": 1.0,
+      "null_resolved": true
+    },
+    {
+      "stratum": {
+        "study": "copula",
+        "d": 4,
+        "n": 1000,
+        "null": true,
+        "law": "clayton",
+        "rho": 0.6,
+        "id": 1
+      },
+      "method": "Fourier_unsmoothed",
+      "rejections": 196,
+      "repetitions": 4000,
+      "rate": 0.049,
+      "interval95": [
+        0.0425169022327794,
+        0.05615153084702892
+      ],
+      "mean_call_seconds": 0.06282205201931355,
+      "timing_scope": "measured method components plus charged common allocation cost; not independent standalone latency",
+      "simultaneous_null_upper": 0.05992359922553517,
+      "over_rejection_p": 0.6242644964950101,
+      "bonferroni_over_rejection_p": 1.0,
+      "null_resolved": true
+    },
+    {
+      "stratum": {
+        "study": "copula",
+        "d": 4,
+        "n": 1000,
+        "null": true,
+        "law": "clayton",
+        "rho": 0.6,
+        "id": 1
+      },
+      "method": "MMD_exact_median_grid",
+      "rejections": 219,
+      "repetitions": 4000,
+      "rate": 0.05475,
+      "interval95": [
+        0.04790249380389086,
+        0.062256619214845106
+      ],
+      "mean_call_seconds": 0.38418871050119924,
+      "timing_scope": "measured method components plus charged common allocation cost; not independent standalone latency",
+      "simultaneous_null_upper": 0.06620583550970705,
+      "over_rejection_p": 0.09110746943327472,
+      "bonferroni_over_rejection_p": 1.0,
+      "null_resolved": false
+    },
+    {
+      "stratum": {
+        "study": "copula",
+        "d": 4,
+        "n": 1000,
+        "null": true,
+        "law": "gumbel",
+        "rho": 0.6,
+        "id": 2
+      },
+      "method": "Rank_G_pairs",
+      "rejections": 205,
+      "repetitions": 4000,
+      "rate": 0.05125,
+      "interval95": [
+        0.04462149034631443,
+        0.05854327697643348
+      ],
+      "mean_call_seconds": 0.05361964801786235,
+      "timing_scope": "measured method components plus charged common allocation cost; not independent standalone latency",
+      "simultaneous_null_upper": 0.062386076408217646,
+      "over_rejection_p": 0.3683754699755624,
+      "bonferroni_over_rejection_p": 1.0,
+      "null_resolved": true
+    },
+    {
+      "stratum": {
+        "study": "copula",
+        "d": 4,
+        "n": 1000,
+        "null": true,
+        "law": "gumbel",
+        "rho": 0.6,
+        "id": 2
+      },
+      "method": "ME",
+      "rejections": 200,
+      "repetitions": 4000,
+      "rate": 0.05,
+      "interval95": [
+        0.043451807680963496,
+        0.05721499296172573
+      ],
+      "mean_call_seconds": 0.057221693474712086,
+      "timing_scope": "measured method components plus charged common allocation cost; not independent standalone latency",
+      "simultaneous_null_upper": 0.06101873140879168,
+      "over_rejection_p": 0.5101297340871856,
+      "bonferroni_over_rejection_p": 1.0,
+      "null_resolved": true
+    },
+    {
+      "stratum": {
+        "study": "copula",
+        "d": 4,
+        "n": 1000,
+        "null": true,
+        "law": "gumbel",
+        "rho": 0.6,
+        "id": 2
+      },
+      "method": "Fourier_unsmoothed",
+      "rejections": 213,
+      "repetitions": 4000,
+      "rate": 0.05325,
+      "interval95": [
+        0.04649531722466174,
+        0.06066621238462604
+      ],
+      "mean_call_seconds": 0.06264032777692774,
+      "timing_scope": "measured method components plus charged common allocation cost; not independent standalone latency",
+      "simultaneous_null_upper": 0.06457033908438686,
+      "over_rejection_p": 0.18170410326880818,
+      "bonferroni_over_rejection_p": 1.0,
+      "null_resolved": true
+    },
+    {
+      "stratum": {
+        "study": "copula",
+        "d": 4,
+        "n": 1000,
+        "null": true,
+        "law": "gumbel",
+        "rho": 0.6,
+        "id": 2
+      },
+      "method": "MMD_exact_median_grid",
+      "rejections": 219,
+      "repetitions": 4000,
+      "rate": 0.05475,
+      "interval95": [
+        0.04790249380389086,
+        0.062256619214845106
+      ],
+      "mean_call_seconds": 0.3827160439489526,
+      "timing_scope": "measured method components plus charged common allocation cost; not independent standalone latency",
+      "simultaneous_null_upper": 0.06620583550970705,
+      "over_rejection_p": 0.09110746943327472,
+      "bonferroni_over_rejection_p": 1.0,
+      "null_resolved": false
+    },
+    {
+      "stratum": {
+        "study": "copula",
+        "d": 4,
+        "n": 1000,
+        "null": false,
+        "law": "clayton",
+        "rho": 0.6,
+        "id": 3
+      },
+      "method": "Rank_G_pairs",
+      "rejections": 495,
+      "repetitions": 500,
+      "rate": 0.99,
+      "interval95": [
+        0.9768186119303404,
+        0.9967452785929758
+      ],
+      "mean_call_seconds": 0.053407627774984576,
+      "timing_scope": "measured method components plus charged common allocation cost; not independent standalone latency"
+    },
+    {
+      "stratum": {
+        "study": "copula",
+        "d": 4,
+        "n": 1000,
+        "null": false,
+        "law": "clayton",
+        "rho": 0.6,
+        "id": 3
+      },
+      "method": "ME",
+      "rejections": 419,
+      "repetitions": 500,
+      "rate": 0.838,
+      "interval95": [
+        0.8027236639142744,
+        0.8692172546862146
+      ],
+      "mean_call_seconds": 0.05740469119860791,
+      "timing_scope": "measured method components plus charged common allocation cost; not independent standalone latency"
+    },
+    {
+      "stratum": {
+        "study": "copula",
+        "d": 4,
+        "n": 1000,
+        "null": false,
+        "law": "clayton",
+        "rho": 0.6,
+        "id": 3
+      },
+      "method": "Fourier_unsmoothed",
+      "rejections": 493,
+      "repetitions": 500,
+      "rate": 0.986,
+      "interval95": [
+        0.9713683838166639,
+        0.9943532389296755
+      ],
+      "mean_call_seconds": 0.06282464354659896,
+      "timing_scope": "measured method components plus charged common allocation cost; not independent standalone latency"
+    },
+    {
+      "stratum": {
+        "study": "copula",
+        "d": 4,
+        "n": 1000,
+        "null": false,
+        "law": "clayton",
+        "rho": 0.6,
+        "id": 3
+      },
+      "method": "MMD_exact_median_grid",
+      "rejections": 375,
+      "repetitions": 500,
+      "rate": 0.75,
+      "interval95": [
+        0.7096339931941312,
+        0.7873807366857284
+      ],
+      "mean_call_seconds": 0.3833137727185385,
+      "timing_scope": "measured method components plus charged common allocation cost; not independent standalone latency"
+    },
+    {
+      "stratum": {
+        "study": "copula",
+        "d": 4,
+        "n": 1000,
+        "null": false,
+        "law": "gumbel",
+        "rho": 0.6,
+        "id": 4
+      },
+      "method": "Rank_G_pairs",
+      "rejections": 288,
+      "repetitions": 500,
+      "rate": 0.576,
+      "interval95": [
+        0.5313403297029073,
+        0.6197558233932683
+      ],
+      "mean_call_seconds": 0.053485127175226806,
+      "timing_scope": "measured method components plus charged common allocation cost; not independent standalone latency"
+    },
+    {
+      "stratum": {
+        "study": "copula",
+        "d": 4,
+        "n": 1000,
+        "null": false,
+        "law": "gumbel",
+        "rho": 0.6,
+        "id": 4
+      },
+      "method": "ME",
+      "rejections": 247,
+      "repetitions": 500,
+      "rate": 0.494,
+      "interval95": [
+        0.44932437541706766,
+        0.5387469571386525
+      ],
+      "mean_call_seconds": 0.05741280674643349,
+      "timing_scope": "measured method components plus charged common allocation cost; not independent standalone latency"
+    },
+    {
+      "stratum": {
+        "study": "copula",
+        "d": 4,
+        "n": 1000,
+        "null": false,
+        "law": "gumbel",
+        "rho": 0.6,
+        "id": 4
+      },
+      "method": "Fourier_unsmoothed",
+      "rejections": 485,
+      "repetitions": 500,
+      "rate": 0.97,
+      "interval95": [
+        0.951001774291181,
+        0.9831140157961268
+      ],
+      "mean_call_seconds": 0.06303611950844061,
+      "timing_scope": "measured method components plus charged common allocation cost; not independent standalone latency"
+    },
+    {
+      "stratum": {
+        "study": "copula",
+        "d": 4,
+        "n": 1000,
+        "null": false,
+        "law": "gumbel",
+        "rho": 0.6,
+        "id": 4
+      },
+      "method": "MMD_exact_median_grid",
+      "rejections": 232,
+      "repetitions": 500,
+      "rate": 0.464,
+      "interval95": [
+        0.41961275820755967,
+        0.5088152680263851
+      ],
+      "mean_call_seconds": 0.3837733804880409,
+      "timing_scope": "measured method components plus charged common allocation cost; not independent standalone latency"
+    },
+    {
+      "stratum": {
+        "study": "copula",
+        "d": 20,
+        "n": 1000,
+        "null": true,
+        "law": "gaussian",
+        "rho": 0.6,
+        "id": 5
+      },
+      "method": "Rank_G_pairs",
+      "rejections": 227,
+      "repetitions": 4000,
+      "rate": 0.05675,
+      "interval95": [
+        0.04978102473015014,
+        0.064374880509618
+      ],
+      "mean_call_seconds": 0.3911492677667993,
+      "timing_scope": "measured method components plus charged common allocation cost; not independent standalone latency",
+      "simultaneous_null_upper": 0.06838306471034977,
+      "over_rejection_p": 0.02904457311927225,
+      "bonferroni_over_rejection_p": 0.929426339816712,
+      "null_resolved": false
+    },
+    {
+      "stratum": {
+        "study": "copula",
+        "d": 20,
+        "n": 1000,
+        "null": true,
+        "law": "gaussian",
+        "rho": 0.6,
+        "id": 5
+      },
+      "method": "ME",
+      "rejections": 227,
+      "repetitions": 4000,
+      "rate": 0.05675,
+      "interval95": [
+        0.04978102473015014,
+        0.064374880509618
+      ],
+      "mean_call_seconds": 0.05841512882204552,
+      "timing_scope": "measured method components plus charged common allocation cost; not independent standalone latency",
+      "simultaneous_null_upper": 0.06838306471034977,
+      "over_rejection_p": 0.02904457311927225,
+      "bonferroni_over_rejection_p": 0.929426339816712,
+      "null_resolved": false
+    },
+    {
+      "stratum": {
+        "study": "copula",
+        "d": 20,
+        "n": 1000,
+        "null": true,
+        "law": "gaussian",
+        "rho": 0.6,
+        "id": 5
+      },
+      "method": "Fourier_unsmoothed",
+      "rejections": 179,
+      "repetitions": 4000,
+      "rate": 0.04475,
+      "interval95": [
+        0.038552440408596136,
+        0.051622994586672265
+      ],
+      "mean_call_seconds": 0.06340116447414039,
+      "timing_scope": "measured method components plus charged common allocation cost; not independent standalone latency",
+      "simultaneous_null_upper": 0.055256014628573054,
+      "over_rejection_p": 0.9425344071693685,
+      "bonferroni_over_rejection_p": 1.0,
+      "null_resolved": true
+    },
+    {
+      "stratum": {
+        "study": "copula",
+        "d": 20,
+        "n": 1000,
+        "null": true,
+        "law": "gaussian",
+        "rho": 0.6,
+        "id": 5
+      },
+      "method": "MMD_exact_median_grid",
+      "rejections": 229,
+      "repetitions": 4000,
+      "rate": 0.05725,
+      "interval95": [
+        0.05025105365657799,
+        0.06490405205185076
+      ],
+      "mean_call_seconds": 0.37742550188436874,
+      "timing_scope": "measured method components plus charged common allocation cost; not independent standalone latency",
+      "simultaneous_null_upper": 0.06892677942031689,
+      "over_rejection_p": 0.020960657542171916,
+      "bonferroni_over_rejection_p": 0.6707410413495013,
+      "null_resolved": false
+    },
+    {
+      "stratum": {
+        "study": "copula",
+        "d": 20,
+        "n": 1000,
+        "null": true,
+        "law": "clayton",
+        "rho": 0.6,
+        "id": 6
+      },
+      "method": "Rank_G_pairs",
+      "rejections": 184,
+      "repetitions": 4000,
+      "rate": 0.046,
+      "interval95": [
+        0.039716904298103095,
+        0.052956459780094965
+      ],
+      "mean_call_seconds": 0.39326541218013156,
+      "timing_scope": "measured method components plus charged common allocation cost; not independent standalone latency",
+      "simultaneous_null_upper": 0.0566311545485668,
+      "over_rejection_p": 0.8853445817431838,
+      "bonferroni_over_rejection_p": 1.0,
+      "null_resolved": true
+    },
+    {
+      "stratum": {
+        "study": "copula",
+        "d": 20,
+        "n": 1000,
+        "null": true,
+        "law": "clayton",
+        "rho": 0.6,
+        "id": 6
+      },
+      "method": "ME",
+      "rejections": 172,
+      "repetitions": 4000,
+      "rate": 0.043,
+      "interval95": [
+        0.03692450715685803,
+        0.04975384509308197
+      ],
+      "mean_call_seconds": 0.058439996804983824,
+      "timing_scope": "measured method components plus charged common allocation cost; not independent standalone latency",
+      "simultaneous_null_upper": 0.05332736159484158,
+      "over_rejection_p": 0.9823967601134466,
+      "bonferroni_over_rejection_p": 1.0,
+      "null_resolved": true
+    },
+    {
+      "stratum": {
+        "study": "copula",
+        "d": 20,
+        "n": 1000,
+        "null": true,
+        "law": "clayton",
+        "rho": 0.6,
+        "id": 6
+      },
+      "method": "Fourier_unsmoothed",
+      "rejections": 206,
+      "repetitions": 4000,
+      "rate": 0.0515,
+      "interval95": [
+        0.044855563734847635,
+        0.058808797848915156
+      ],
+      "mean_call_seconds": 0.06339503827103181,
+      "timing_scope": "measured method components plus charged common allocation cost; not independent standalone latency",
+      "simultaneous_null_upper": 0.06265934088318266,
+      "over_rejection_p": 0.3415880438284481,
+      "bonferroni_over_rejection_p": 1.0,
+      "null_resolved": true
+    },
+    {
+      "stratum": {
+        "study": "copula",
+        "d": 20,
+        "n": 1000,
+        "null": true,
+        "law": "clayton",
+        "rho": 0.6,
+        "id": 6
+      },
+      "method": "MMD_exact_median_grid",
+      "rejections": 184,
+      "repetitions": 4000,
+      "rate": 0.046,
+      "interval95": [
+        0.039716904298103095,
+        0.052956459780094965
+      ],
+      "mean_call_seconds": 0.37446600914090233,
+      "timing_scope": "measured method components plus charged common allocation cost; not independent standalone latency",
+      "simultaneous_null_upper": 0.0566311545485668,
+      "over_rejection_p": 0.8853445817431838,
+      "bonferroni_over_rejection_p": 1.0,
+      "null_resolved": true
+    },
+    {
+      "stratum": {
+        "study": "copula",
+        "d": 20,
+        "n": 1000,
+        "null": true,
+        "law": "gumbel",
+        "rho": 0.6,
+        "id": 7
+      },
+      "method": "Rank_G_pairs",
+      "rejections": 201,
+      "repetitions": 4000,
+      "rate": 0.05025,
+      "interval95": [
+        0.04368565190761685,
+        0.05748074144185035
+      ],
+      "mean_call_seconds": 0.39434756267425836,
+      "timing_scope": "measured method components plus charged common allocation cost; not independent standalone latency",
+      "simultaneous_null_upper": 0.06129233834691648,
+      "over_rejection_p": 0.48119950762519687,
+      "bonferroni_over_rejection_p": 1.0,
+      "null_resolved": true
+    },
+    {
+      "stratum": {
+        "study": "copula",
+        "d": 20,
+        "n": 1000,
+        "null": true,
+        "law": "gumbel",
+        "rho": 0.6,
+        "id": 7
+      },
+      "method": "ME",
+      "rejections": 180,
+      "repetitions": 4000,
+      "rate": 0.045,
+      "interval95": [
+        0.038785225238933,
+        0.051889794748425026
+      ],
+      "mean_call_seconds": 0.058337587126457945,
+      "timing_scope": "measured method components plus charged common allocation cost; not independent standalone latency",
+      "simultaneous_null_upper": 0.05553120375914566,
+      "over_rejection_p": 0.933360364370766,
+      "bonferroni_over_rejection_p": 1.0,
+      "null_resolved": true
+    },
+    {
+      "stratum": {
+        "study": "copula",
+        "d": 20,
+        "n": 1000,
+        "null": true,
+        "law": "gumbel",
+        "rho": 0.6,
+        "id": 7
+      },
+      "method": "Fourier_unsmoothed",
+      "rejections": 184,
+      "repetitions": 4000,
+      "rate": 0.046,
+      "interval95": [
+        0.039716904298103095,
+        0.052956459780094965
+      ],
+      "mean_call_seconds": 0.06320270120748318,
+      "timing_scope": "measured method components plus charged common allocation cost; not independent standalone latency",
+      "simultaneous_null_upper": 0.0566311545485668,
+      "over_rejection_p": 0.8853445817431838,
+      "bonferroni_over_rejection_p": 1.0,
+      "null_resolved": true
+    },
+    {
+      "stratum": {
+        "study": "copula",
+        "d": 20,
+        "n": 1000,
+        "null": true,
+        "law": "gumbel",
+        "rho": 0.6,
+        "id": 7
+      },
+      "method": "MMD_exact_median_grid",
+      "rejections": 197,
+      "repetitions": 4000,
+      "rate": 0.04925,
+      "interval95": [
+        0.0427505571977223,
+        0.05641746727502458
+      ],
+      "mean_call_seconds": 0.37529467112777637,
+      "timing_scope": "measured method components plus charged common allocation cost; not independent standalone latency",
+      "simultaneous_null_upper": 0.06019748894307692,
+      "over_rejection_p": 0.5962679856249731,
+      "bonferroni_over_rejection_p": 1.0,
+      "null_resolved": true
+    },
+    {
+      "stratum": {
+        "study": "copula",
+        "d": 20,
+        "n": 1000,
+        "null": false,
+        "law": "clayton",
+        "rho": 0.6,
+        "id": 8
+      },
+      "method": "Rank_G_pairs",
+      "rejections": 500,
+      "repetitions": 500,
+      "rate": 1.0,
+      "interval95": [
+        0.9926493899480923,
+        1.0
+      ],
+      "mean_call_seconds": 0.38549263021687513,
+      "timing_scope": "measured method components plus charged common allocation cost; not independent standalone latency"
+    },
+    {
+      "stratum": {
+        "study": "copula",
+        "d": 20,
+        "n": 1000,
+        "null": false,
+        "law": "clayton",
+        "rho": 0.6,
+        "id": 8
+      },
+      "method": "ME",
+      "rejections": 411,
+      "repetitions": 500,
+      "rate": 0.822,
+      "interval95": [
+        0.7855972579914287,
+        0.8545411932400965
+      ],
+      "mean_call_seconds": 0.05867207343608607,
+      "timing_scope": "measured method components plus charged common allocation cost; not independent standalone latency"
+    },
+    {
+      "stratum": {
+        "study": "copula",
+        "d": 20,
+        "n": 1000,
+        "null": false,
+        "law": "clayton",
+        "rho": 0.6,
+        "id": 8
+      },
+      "method": "Fourier_unsmoothed",
+      "rejections": 456,
+      "repetitions": 500,
+      "rate": 0.912,
+      "interval95": [
+        0.8836648293368344,
+        0.9353315424589416
+      ],
+      "mean_call_seconds": 0.0631141563396668,
+      "timing_scope": "measured method components plus charged common allocation cost; not independent standalone latency"
+    },
+    {
+      "stratum": {
+        "study": "copula",
+        "d": 20,
+        "n": 1000,
+        "null": false,
+        "law": "clayton",
+        "rho": 0.6,
+        "id": 8
+      },
+      "method": "MMD_exact_median_grid",
+      "rejections": 492,
+      "repetitions": 500,
+      "rate": 0.984,
+      "interval95": [
+        0.9687179983101469,
+        0.9930676787975165
+      ],
+      "mean_call_seconds": 0.3748438970017014,
+      "timing_scope": "measured method components plus charged common allocation cost; not independent standalone latency"
+    },
+    {
+      "stratum": {
+        "study": "copula",
+        "d": 20,
+        "n": 1000,
+        "null": false,
+        "law": "gumbel",
+        "rho": 0.6,
+        "id": 9
+      },
+      "method": "Rank_G_pairs",
+      "rejections": 476,
+      "repetitions": 500,
+      "rate": 0.952,
+      "interval95": [
+        0.9294192037426702,
+        0.9690068312064947
+      ],
+      "mean_call_seconds": 0.3847262946869014,
+      "timing_scope": "measured method components plus charged common allocation cost; not independent standalone latency"
+    },
+    {
+      "stratum": {
+        "study": "copula",
+        "d": 20,
+        "n": 1000,
+        "null": false,
+        "law": "gumbel",
+        "rho": 0.6,
+        "id": 9
+      },
+      "method": "ME",
+      "rejections": 322,
+      "repetitions": 500,
+      "rate": 0.644,
+      "interval95": [
+        0.6002760045173359,
+        0.6860098578063744
+      ],
+      "mean_call_seconds": 0.05876644111610949,
+      "timing_scope": "measured method components plus charged common allocation cost; not independent standalone latency"
+    },
+    {
+      "stratum": {
+        "study": "copula",
+        "d": 20,
+        "n": 1000,
+        "null": false,
+        "law": "gumbel",
+        "rho": 0.6,
+        "id": 9
+      },
+      "method": "Fourier_unsmoothed",
+      "rejections": 302,
+      "repetitions": 500,
+      "rate": 0.604,
+      "interval95": [
+        0.5596206689732414,
+        0.6471421139671427
+      ],
+      "mean_call_seconds": 0.06351612210809253,
+      "timing_scope": "measured method components plus charged common allocation cost; not independent standalone latency"
+    },
+    {
+      "stratum": {
+        "study": "copula",
+        "d": 20,
+        "n": 1000,
+        "null": false,
+        "law": "gumbel",
+        "rho": 0.6,
+        "id": 9
+      },
+      "method": "MMD_exact_median_grid",
+      "rejections": 494,
+      "repetitions": 500,
+      "rate": 0.988,
+      "interval95": [
+        0.974065072734663,
+        0.9955838277141984
+      ],
+      "mean_call_seconds": 0.37594989260006695,
+      "timing_scope": "measured method components plus charged common allocation cost; not independent standalone latency"
+    },
+    {
+      "stratum": {
+        "study": "gaussian",
+        "d": 2,
+        "n": 250,
+        "null": true,
+        "law": "gaussian",
+        "rho": 0.0,
+        "id": 10
+      },
+      "method": "Rank_Pearson_joint",
+      "rejections": 185,
+      "repetitions": 4000,
+      "rate": 0.04625,
+      "interval95": [
+        0.03994995689370135,
+        0.05322299421031498
+      ],
+      "mean_call_seconds": 0.004219983565853909,
+      "timing_scope": "shared-field diagnostic only",
+      "simultaneous_null_upper": 0.05690594393178577,
+      "over_rejection_p": 0.8702698525398251,
+      "bonferroni_over_rejection_p": 1.0,
+      "null_resolved": true
+    },
+    {
+      "stratum": {
+        "study": "gaussian",
+        "d": 2,
+        "n": 250,
+        "null": true,
+        "law": "gaussian",
+        "rho": 0.0,
+        "id": 10
+      },
+      "method": "Rank_Pearson_coordinate0",
+      "rejections": 197,
+      "repetitions": 4000,
+      "rate": 0.04925,
+      "interval95": [
+        0.0427505571977223,
+        0.05641746727502458
+      ],
+      "mean_call_seconds": 0.0018581820852123202,
+      "timing_scope": "shared-field diagnostic only",
+      "simultaneous_null_upper": 0.06019748894307692,
+      "over_rejection_p": 0.5962679856249731,
+      "bonferroni_over_rejection_p": 1.0,
+      "null_resolved": true
+    },
+    {
+      "stratum": {
+        "study": "gaussian",
+        "d": 2,
+        "n": 250,
+        "null": false,
+        "law": "gaussian",
+        "rho": 0.2,
+        "id": 11
+      },
+      "method": "Rank_Pearson_joint",
+      "rejections": 27,
+      "repetitions": 500,
+      "rate": 0.054,
+      "interval95": [
+        0.03588425972193365,
+        0.07759746849493715
+      ],
+      "mean_call_seconds": 0.00424475428648293,
+      "timing_scope": "shared-field diagnostic only"
+    },
+    {
+      "stratum": {
+        "study": "gaussian",
+        "d": 2,
+        "n": 250,
+        "null": false,
+        "law": "gaussian",
+        "rho": 0.2,
+        "id": 11
+      },
+      "method": "Rank_Pearson_coordinate0",
+      "rejections": 31,
+      "repetitions": 500,
+      "rate": 0.062,
+      "interval95": [
+        0.04251106129638552,
+        0.08685259747910139
+      ],
+      "mean_call_seconds": 0.0018665300235152244,
+      "timing_scope": "shared-field diagnostic only"
+    },
+    {
+      "stratum": {
+        "study": "gaussian",
+        "d": 2,
+        "n": 250,
+        "null": false,
+        "law": "gaussian",
+        "rho": 0.4,
+        "id": 12
+      },
+      "method": "Rank_Pearson_joint",
+      "rejections": 65,
+      "repetitions": 500,
+      "rate": 0.13,
+      "interval95": [
+        0.10178293283994644,
+        0.1626764819370015
+      ],
+      "mean_call_seconds": 0.004212442059069872,
+      "timing_scope": "shared-field diagnostic only"
+    },
+    {
+      "stratum": {
+        "study": "gaussian",
+        "d": 2,
+        "n": 250,
+        "null": false,
+        "law": "gaussian",
+        "rho": 0.4,
+        "id": 12
+      },
+      "method": "Rank_Pearson_coordinate0",
+      "rejections": 24,
+      "repetitions": 500,
+      "rate": 0.048,
+      "interval95": [
+        0.030993168793505374,
+        0.07058079625732981
+      ],
+      "mean_call_seconds": 0.0018576416485011577,
+      "timing_scope": "shared-field diagnostic only"
+    },
+    {
+      "stratum": {
+        "study": "gaussian",
+        "d": 2,
+        "n": 500,
+        "null": true,
+        "law": "gaussian",
+        "rho": 0.0,
+        "id": 13
+      },
+      "method": "Rank_Pearson_joint",
+      "rejections": 193,
+      "repetitions": 4000,
+      "rate": 0.04825,
+      "interval95": [
+        0.04181622779580235,
+        0.05535343315538602
+      ],
+      "mean_call_seconds": 0.00659785553952679,
+      "timing_scope": "shared-field diagnostic only",
+      "simultaneous_null_upper": 0.05910149615754079,
+      "over_rejection_p": 0.7041640448630988,
+      "bonferroni_over_rejection_p": 1.0,
+      "null_resolved": true
+    },
+    {
+      "stratum": {
+        "study": "gaussian",
+        "d": 2,
+        "n": 500,
+        "null": true,
+        "law": "gaussian",
+        "rho": 0.0,
+        "id": 13
+      },
+      "method": "Rank_Pearson_coordinate0",
+      "rejections": 212,
+      "repetitions": 4000,
+      "rate": 0.053,
+      "interval95": [
+        0.04626093598309949,
+        0.06040099733942754
+      ],
+      "mean_call_seconds": 0.0027564304689876736,
+      "timing_scope": "shared-field diagnostic only",
+      "simultaneous_null_upper": 0.06429753478579832,
+      "over_rejection_p": 0.20110620869014809,
+      "bonferroni_over_rejection_p": 1.0,
+      "null_resolved": true
+    },
+    {
+      "stratum": {
+        "study": "gaussian",
+        "d": 2,
+        "n": 500,
+        "null": false,
+        "law": "gaussian",
+        "rho": 0.2,
+        "id": 14
+      },
+      "method": "Rank_Pearson_joint",
+      "rejections": 40,
+      "repetitions": 500,
+      "rate": 0.08,
+      "interval95": [
+        0.057766119928834334,
+        0.10734546435635238
+      ],
+      "mean_call_seconds": 0.006784707259386778,
+      "timing_scope": "shared-field diagnostic only"
+    },
+    {
+      "stratum": {
+        "study": "gaussian",
+        "d": 2,
+        "n": 500,
+        "null": false,
+        "law": "gaussian",
+        "rho": 0.2,
+        "id": 14
+      },
+      "method": "Rank_Pearson_coordinate0",
+      "rejections": 26,
+      "repetitions": 500,
+      "rate": 0.052,
+      "interval95": [
+        0.034245698082767936,
+        0.07526637103062216
+      ],
+      "mean_call_seconds": 0.0027976885233074425,
+      "timing_scope": "shared-field diagnostic only"
+    },
+    {
+      "stratum": {
+        "study": "gaussian",
+        "d": 2,
+        "n": 500,
+        "null": false,
+        "law": "gaussian",
+        "rho": 0.4,
+        "id": 15
+      },
+      "method": "Rank_Pearson_joint",
+      "rejections": 259,
+      "repetitions": 500,
+      "rate": 0.518,
+      "interval95": [
+        0.47320683518771745,
+        0.5625791636239124
+      ],
+      "mean_call_seconds": 0.006613173527643085,
+      "timing_scope": "shared-field diagnostic only"
+    },
+    {
+      "stratum": {
+        "study": "gaussian",
+        "d": 2,
+        "n": 500,
+        "null": false,
+        "law": "gaussian",
+        "rho": 0.4,
+        "id": 15
+      },
+      "method": "Rank_Pearson_coordinate0",
+      "rejections": 19,
+      "repetitions": 500,
+      "rate": 0.038,
+      "interval95": [
+        0.02303077080624761,
+        0.05870729046322855
+      ],
+      "mean_call_seconds": 0.0027645582146942614,
+      "timing_scope": "shared-field diagnostic only"
+    },
+    {
+      "stratum": {
+        "study": "gaussian",
+        "d": 2,
+        "n": 1000,
+        "null": true,
+        "law": "gaussian",
+        "rho": 0.0,
+        "id": 16
+      },
+      "method": "Rank_Pearson_joint",
+      "rejections": 168,
+      "repetitions": 4000,
+      "rate": 0.042,
+      "interval95": [
+        0.035995526717926545,
+        0.048684502677787914
+      ],
+      "mean_call_seconds": 0.01748631006712094,
+      "timing_scope": "shared-field diagnostic only",
+      "simultaneous_null_upper": 0.052223383405930184,
+      "over_rejection_p": 0.9920591118927541,
+      "bonferroni_over_rejection_p": 1.0,
+      "null_resolved": true
+    },
+    {
+      "stratum": {
+        "study": "gaussian",
+        "d": 2,
+        "n": 1000,
+        "null": true,
+        "law": "gaussian",
+        "rho": 0.0,
+        "id": 16
+      },
+      "method": "Rank_Pearson_coordinate0",
+      "rejections": 184,
+      "repetitions": 4000,
+      "rate": 0.046,
+      "interval95": [
+        0.039716904298103095,
+        0.052956459780094965
+      ],
+      "mean_call_seconds": 0.0050308250365778805,
+      "timing_scope": "shared-field diagnostic only",
+      "simultaneous_null_upper": 0.0566311545485668,
+      "over_rejection_p": 0.8853445817431838,
+      "bonferroni_over_rejection_p": 1.0,
+      "null_resolved": true
+    },
+    {
+      "stratum": {
+        "study": "gaussian",
+        "d": 2,
+        "n": 1000,
+        "null": false,
+        "law": "gaussian",
+        "rho": 0.2,
+        "id": 17
+      },
+      "method": "Rank_Pearson_joint",
+      "rejections": 148,
+      "repetitions": 500,
+      "rate": 0.296,
+      "interval95": [
+        0.256295640615404,
+        0.338136247078856
+      ],
+      "mean_call_seconds": 0.017780006816610693,
+      "timing_scope": "shared-field diagnostic only"
+    },
+    {
+      "stratum": {
+        "study": "gaussian",
+        "d": 2,
+        "n": 1000,
+        "null": false,
+        "law": "gaussian",
+        "rho": 0.2,
+        "id": 17
+      },
+      "method": "Rank_Pearson_coordinate0",
+      "rejections": 16,
+      "repetitions": 500,
+      "rate": 0.032,
+      "interval95": [
+        0.01839918532363991,
+        0.05144676829164562
+      ],
+      "mean_call_seconds": 0.005104147285223007,
+      "timing_scope": "shared-field diagnostic only"
+    },
+    {
+      "stratum": {
+        "study": "gaussian",
+        "d": 2,
+        "n": 1000,
+        "null": false,
+        "law": "gaussian",
+        "rho": 0.4,
+        "id": 18
+      },
+      "method": "Rank_Pearson_joint",
+      "rejections": 460,
+      "repetitions": 500,
+      "rate": 0.92,
+      "interval95": [
+        0.8926545356436476,
+        0.9422338800711657
+      ],
+      "mean_call_seconds": 0.01796508091315627,
+      "timing_scope": "shared-field diagnostic only"
+    },
+    {
+      "stratum": {
+        "study": "gaussian",
+        "d": 2,
+        "n": 1000,
+        "null": false,
+        "law": "gaussian",
+        "rho": 0.4,
+        "id": 18
+      },
+      "method": "Rank_Pearson_coordinate0",
+      "rejections": 30,
+      "repetitions": 500,
+      "rate": 0.06,
+      "interval95": [
+        0.0408441817627769,
+        0.08454855370760009
+      ],
+      "mean_call_seconds": 0.0051788844466209415,
+      "timing_scope": "shared-field diagnostic only"
+    },
+    {
+      "stratum": {
+        "study": "gaussian",
+        "d": 2,
+        "n": 2000,
+        "null": true,
+        "law": "gaussian",
+        "rho": 0.0,
+        "id": 19
+      },
+      "method": "Rank_Pearson_joint",
+      "rejections": 203,
+      "repetitions": 4000,
+      "rate": 0.05075,
+      "interval95": [
+        0.044153479468095794,
+        0.05801210024641338
+      ],
+      "mean_call_seconds": 0.03796339507983066,
+      "timing_scope": "shared-field diagnostic only",
+      "simultaneous_null_upper": 0.06183934435414571,
+      "over_rejection_p": 0.42391943081014677,
+      "bonferroni_over_rejection_p": 1.0,
+      "null_resolved": true
+    },
+    {
+      "stratum": {
+        "study": "gaussian",
+        "d": 2,
+        "n": 2000,
+        "null": true,
+        "law": "gaussian",
+        "rho": 0.0,
+        "id": 19
+      },
+      "method": "Rank_Pearson_coordinate0",
+      "rejections": 205,
+      "repetitions": 4000,
+      "rate": 0.05125,
+      "interval95": [
+        0.04462149034631443,
+        0.05854327697643348
+      ],
+      "mean_call_seconds": 0.012421604845672845,
+      "timing_scope": "shared-field diagnostic only",
+      "simultaneous_null_upper": 0.062386076408217646,
+      "over_rejection_p": 0.3683754699755624,
+      "bonferroni_over_rejection_p": 1.0,
+      "null_resolved": true
+    },
+    {
+      "stratum": {
+        "study": "gaussian",
+        "d": 2,
+        "n": 2000,
+        "null": false,
+        "law": "gaussian",
+        "rho": 0.2,
+        "id": 20
+      },
+      "method": "Rank_Pearson_joint",
+      "rejections": 368,
+      "repetitions": 500,
+      "rate": 0.736,
+      "interval95": [
+        0.695039567366933,
+        0.7741439627112715
+      ],
+      "mean_call_seconds": 0.03900230798684061,
+      "timing_scope": "shared-field diagnostic only"
+    },
+    {
+      "stratum": {
+        "study": "gaussian",
+        "d": 2,
+        "n": 2000,
+        "null": false,
+        "law": "gaussian",
+        "rho": 0.2,
+        "id": 20
+      },
+      "method": "Rank_Pearson_coordinate0",
+      "rejections": 18,
+      "repetitions": 500,
+      "rate": 0.036,
+      "interval95": [
+        0.021472856586093287,
+        0.05630017620179107
+      ],
+      "mean_call_seconds": 0.012915706792846322,
+      "timing_scope": "shared-field diagnostic only"
+    },
+    {
+      "stratum": {
+        "study": "gaussian",
+        "d": 2,
+        "n": 2000,
+        "null": false,
+        "law": "gaussian",
+        "rho": 0.4,
+        "id": 21
+      },
+      "method": "Rank_Pearson_joint",
+      "rejections": 499,
+      "repetitions": 500,
+      "rate": 0.998,
+      "interval95": [
+        0.9889075231010312,
+        0.9999493656659926
+      ],
+      "mean_call_seconds": 0.03967944379150867,
+      "timing_scope": "shared-field diagnostic only"
+    },
+    {
+      "stratum": {
+        "study": "gaussian",
+        "d": 2,
+        "n": 2000,
+        "null": false,
+        "law": "gaussian",
+        "rho": 0.4,
+        "id": 21
+      },
+      "method": "Rank_Pearson_coordinate0",
+      "rejections": 26,
+      "repetitions": 500,
+      "rate": 0.052,
+      "interval95": [
+        0.034245698082767936,
+        0.07526637103062216
+      ],
+      "mean_call_seconds": 0.013144898811355233,
+      "timing_scope": "shared-field diagnostic only"
+    }
+  ],
+  "contrasts": [
+    {
+      "id": "3:Rank_G_pairs:ME",
+      "stratum": {
+        "study": "copula",
+        "d": 4,
+        "n": 1000,
+        "null": false,
+        "law": "clayton",
+        "rho": 0.6,
+        "id": 3
+      },
+      "method_a": "Rank_G_pairs",
+      "method_b": "ME",
+      "a_only": 78,
+      "b_only": 2,
+      "repetitions": 500,
+      "difference": 0.152,
+      "paired_se": 0.016546661294653976,
+      "pointwise_normal_interval95": [
+        0.1195685438624782,
+        0.1844314561375218
+      ],
+      "pvalue": 5.3617847305687254e-21,
+      "matching_null_ids": [
+        0,
+        1,
+        2
+      ],
+      "calibration_eligible": false,
+      "holm_pvalue": 5.3617847305687254e-20,
+      "qualified_difference": false
+    },
+    {
+      "id": "3:Rank_G_pairs:Fourier_unsmoothed",
+      "stratum": {
+        "study": "copula",
+        "d": 4,
+        "n": 1000,
+        "null": false,
+        "law": "clayton",
+        "rho": 0.6,
+        "id": 3
+      },
+      "method_a": "Rank_G_pairs",
+      "method_b": "Fourier_unsmoothed",
+      "a_only": 7,
+      "b_only": 5,
+      "repetitions": 500,
+      "difference": 0.004,
+      "paired_se": 0.006925893444170218,
+      "pointwise_normal_interval95": [
+        -0.009574751150573626,
+        0.017574751150573626
+      ],
+      "pvalue": 0.7744140625,
+      "matching_null_ids": [
+        0,
+        1,
+        2
+      ],
+      "calibration_eligible": false,
+      "holm_pvalue": 1.0,
+      "qualified_difference": false
+    },
+    {
+      "id": "3:Rank_G_pairs:MMD_exact_median_grid",
+      "stratum": {
+        "study": "copula",
+        "d": 4,
+        "n": 1000,
+        "null": false,
+        "law": "clayton",
+        "rho": 0.6,
+        "id": 3
+      },
+      "method_a": "Rank_G_pairs",
+      "method_b": "MMD_exact_median_grid",
+      "a_only": 120,
+      "b_only": 0,
+      "repetitions": 500,
+      "difference": 0.24,
+      "paired_se": 0.019099738218101316,
+      "pointwise_normal_interval95": [
+        0.2025645130925214,
+        0.27743548690747855
+      ],
+      "pvalue": 1.504632769052528e-36,
+      "matching_null_ids": [
+        0,
+        1,
+        2
+      ],
+      "calibration_eligible": false,
+      "holm_pvalue": 2.1064858766735392e-35,
+      "qualified_difference": false
+    },
+    {
+      "id": "4:Rank_G_pairs:ME",
+      "stratum": {
+        "study": "copula",
+        "d": 4,
+        "n": 1000,
+        "null": false,
+        "law": "gumbel",
+        "rho": 0.6,
+        "id": 4
+      },
+      "method_a": "Rank_G_pairs",
+      "method_b": "ME",
+      "a_only": 120,
+      "b_only": 79,
+      "repetitions": 500,
+      "difference": 0.082,
+      "paired_se": 0.027974130906964743,
+      "pointwise_normal_interval95": [
+        0.02717070342234911,
+        0.1368292965776509
+      ],
+      "pvalue": 0.004455031170218078,
+      "matching_null_ids": [
+        0,
+        1,
+        2
+      ],
+      "calibration_eligible": false,
+      "holm_pvalue": 0.02227515585109039,
+      "qualified_difference": false
+    },
+    {
+      "id": "4:Rank_G_pairs:Fourier_unsmoothed",
+      "stratum": {
+        "study": "copula",
+        "d": 4,
+        "n": 1000,
+        "null": false,
+        "law": "gumbel",
+        "rho": 0.6,
+        "id": 4
+      },
+      "method_a": "Rank_G_pairs",
+      "method_b": "Fourier_unsmoothed",
+      "a_only": 9,
+      "b_only": 206,
+      "repetitions": 500,
+      "difference": -0.394,
+      "paired_se": 0.02344201356539152,
+      "pointwise_normal_interval95": [
+        -0.4399463465881674,
+        -0.34805365341183264
+      ],
+      "pvalue": 9.062960686912777e-50,
+      "matching_null_ids": [
+        0,
+        1,
+        2
+      ],
+      "calibration_eligible": false,
+      "holm_pvalue": 1.4500737099060444e-48,
+      "qualified_difference": false
+    },
+    {
+      "id": "4:Rank_G_pairs:MMD_exact_median_grid",
+      "stratum": {
+        "study": "copula",
+        "d": 4,
+        "n": 1000,
+        "null": false,
+        "law": "gumbel",
+        "rho": 0.6,
+        "id": 4
+      },
+      "method_a": "Rank_G_pairs",
+      "method_b": "MMD_exact_median_grid",
+      "a_only": 123,
+      "b_only": 67,
+      "repetitions": 500,
+      "difference": 0.112,
+      "paired_se": 0.02710926041042064,
+      "pointwise_normal_interval95": [
+        0.058865849595575545,
+        0.16513415040442447
+      ],
+      "pvalue": 5.892957532849599e-05,
+      "matching_null_ids": [
+        0,
+        1,
+        2
+      ],
+      "calibration_eligible": false,
+      "holm_pvalue": 0.00041250702729947193,
+      "qualified_difference": false
+    },
+    {
+      "id": "8:Rank_G_pairs:ME",
+      "stratum": {
+        "study": "copula",
+        "d": 20,
+        "n": 1000,
+        "null": false,
+        "law": "clayton",
+        "rho": 0.6,
+        "id": 8
+      },
+      "method_a": "Rank_G_pairs",
+      "method_b": "ME",
+      "a_only": 89,
+      "b_only": 0,
+      "repetitions": 500,
+      "difference": 0.178,
+      "paired_se": 0.017106489996489636,
+      "pointwise_normal_interval95": [
+        0.1444712796068803,
+        0.21152872039311968
+      ],
+      "pvalue": 3.2311742677852644e-27,
+      "matching_null_ids": [
+        5,
+        6,
+        7
+      ],
+      "calibration_eligible": false,
+      "holm_pvalue": 3.554291694563791e-26,
+      "qualified_difference": false
+    },
+    {
+      "id": "8:Rank_G_pairs:Fourier_unsmoothed",
+      "stratum": {
+        "study": "copula",
+        "d": 20,
+        "n": 1000,
+        "null": false,
+        "law": "clayton",
+        "rho": 0.6,
+        "id": 8
+      },
+      "method_a": "Rank_G_pairs",
+      "method_b": "Fourier_unsmoothed",
+      "a_only": 44,
+      "b_only": 0,
+      "repetitions": 500,
+      "difference": 0.088,
+      "paired_se": 0.012669333052690659,
+      "pointwise_normal_interval95": [
+        0.0631681072167263,
+        0.11283189278327369
+      ],
+      "pvalue": 1.1368683772161603e-13,
+      "matching_null_ids": [
+        5,
+        6,
+        7
+      ],
+      "calibration_eligible": false,
+      "holm_pvalue": 1.0231815394945443e-12,
+      "qualified_difference": false
+    },
+    {
+      "id": "8:Rank_G_pairs:MMD_exact_median_grid",
+      "stratum": {
+        "study": "copula",
+        "d": 20,
+        "n": 1000,
+        "null": false,
+        "law": "clayton",
+        "rho": 0.6,
+        "id": 8
+      },
+      "method_a": "Rank_G_pairs",
+      "method_b": "MMD_exact_median_grid",
+      "a_only": 8,
+      "b_only": 0,
+      "repetitions": 500,
+      "difference": 0.016,
+      "paired_se": 0.005611416933360059,
+      "pointwise_normal_interval95": [
+        0.005001622810614285,
+        0.026998377189385716
+      ],
+      "pvalue": 0.0078125,
+      "matching_null_ids": [
+        5,
+        6,
+        7
+      ],
+      "calibration_eligible": false,
+      "holm_pvalue": 0.03125,
+      "qualified_difference": false
+    },
+    {
+      "id": "9:Rank_G_pairs:ME",
+      "stratum": {
+        "study": "copula",
+        "d": 20,
+        "n": 1000,
+        "null": false,
+        "law": "gumbel",
+        "rho": 0.6,
+        "id": 9
+      },
+      "method_a": "Rank_G_pairs",
+      "method_b": "ME",
+      "a_only": 166,
+      "b_only": 12,
+      "repetitions": 500,
+      "difference": 0.308,
+      "paired_se": 0.022853271100654278,
+      "pointwise_normal_interval95": [
+        0.2632075886427176,
+        0.3527924113572824
+      ],
+      "pvalue": 8.127113244139915e-36,
+      "matching_null_ids": [
+        5,
+        6,
+        7
+      ],
+      "calibration_eligible": false,
+      "holm_pvalue": 1.056524721738189e-34,
+      "qualified_difference": false
+    },
+    {
+      "id": "9:Rank_G_pairs:Fourier_unsmoothed",
+      "stratum": {
+        "study": "copula",
+        "d": 20,
+        "n": 1000,
+        "null": false,
+        "law": "gumbel",
+        "rho": 0.6,
+        "id": 9
+      },
+      "method_a": "Rank_G_pairs",
+      "method_b": "Fourier_unsmoothed",
+      "a_only": 179,
+      "b_only": 5,
+      "repetitions": 500,
+      "difference": 0.348,
+      "paired_se": 0.022221431097028833,
+      "pointwise_normal_interval95": [
+        0.30444599504982345,
+        0.3915540049501765
+      ],
+      "pvalue": 1.3956733652494036e-46,
+      "matching_null_ids": [
+        5,
+        6,
+        7
+      ],
+      "calibration_eligible": false,
+      "holm_pvalue": 2.0935100478741054e-45,
+      "qualified_difference": false
+    },
+    {
+      "id": "9:Rank_G_pairs:MMD_exact_median_grid",
+      "stratum": {
+        "study": "copula",
+        "d": 20,
+        "n": 1000,
+        "null": false,
+        "law": "gumbel",
+        "rho": 0.6,
+        "id": 9
+      },
+      "method_a": "Rank_G_pairs",
+      "method_b": "MMD_exact_median_grid",
+      "a_only": 3,
+      "b_only": 21,
+      "repetitions": 500,
+      "difference": -0.036,
+      "paired_se": 0.009664781425360845,
+      "pointwise_normal_interval95": [
+        -0.05494297159370726,
+        -0.01705702840629274
+      ],
+      "pvalue": 0.0002771615982055664,
+      "matching_null_ids": [
+        5,
+        6,
+        7
+      ],
+      "calibration_eligible": false,
+      "holm_pvalue": 0.0016629695892333984,
+      "qualified_difference": false
+    },
+    {
+      "id": "11:Rank_Pearson_joint:Rank_Pearson_coordinate0",
+      "stratum": {
+        "study": "gaussian",
+        "d": 2,
+        "n": 250,
+        "null": false,
+        "law": "gaussian",
+        "rho": 0.2,
+        "id": 11
+      },
+      "method_a": "Rank_Pearson_joint",
+      "method_b": "Rank_Pearson_coordinate0",
+      "a_only": 23,
+      "b_only": 27,
+      "repetitions": 500,
+      "difference": -0.008,
+      "paired_se": 0.014137609416022216,
+      "pointwise_normal_interval95": [
+        -0.03570971445540354,
+        0.01970971445540354
+      ],
+      "pvalue": 0.6718110337653656,
+      "matching_null_ids": [
+        10
+      ],
+      "calibration_eligible": true,
+      "holm_pvalue": 1.0,
+      "qualified_difference": false
+    },
+    {
+      "id": "12:Rank_Pearson_joint:Rank_Pearson_coordinate0",
+      "stratum": {
+        "study": "gaussian",
+        "d": 2,
+        "n": 250,
+        "null": false,
+        "law": "gaussian",
+        "rho": 0.4,
+        "id": 12
+      },
+      "method_a": "Rank_Pearson_joint",
+      "method_b": "Rank_Pearson_coordinate0",
+      "a_only": 57,
+      "b_only": 16,
+      "repetitions": 500,
+      "difference": 0.082,
+      "paired_se": 0.016689877171507283,
+      "pointwise_normal_interval95": [
+        0.04928784074384573,
+        0.11471215925615427
+      ],
+      "pvalue": 1.5256583158538737e-06,
+      "matching_null_ids": [
+        10
+      ],
+      "calibration_eligible": true,
+      "holm_pvalue": 1.220526652683099e-05,
+      "qualified_difference": true
+    },
+    {
+      "id": "14:Rank_Pearson_joint:Rank_Pearson_coordinate0",
+      "stratum": {
+        "study": "gaussian",
+        "d": 2,
+        "n": 500,
+        "null": false,
+        "law": "gaussian",
+        "rho": 0.2,
+        "id": 14
+      },
+      "method_a": "Rank_Pearson_joint",
+      "method_b": "Rank_Pearson_coordinate0",
+      "a_only": 34,
+      "b_only": 20,
+      "repetitions": 500,
+      "difference": 0.028,
+      "paired_se": 0.014643496850137949,
+      "pointwise_normal_interval95": [
+        -0.0007012538262703774,
+        0.05670125382627038
+      ],
+      "pvalue": 0.0759047294891014,
+      "matching_null_ids": [
+        13
+      ],
+      "calibration_eligible": true,
+      "holm_pvalue": 0.2277141884673042,
+      "qualified_difference": false
+    },
+    {
+      "id": "15:Rank_Pearson_joint:Rank_Pearson_coordinate0",
+      "stratum": {
+        "study": "gaussian",
+        "d": 2,
+        "n": 500,
+        "null": false,
+        "law": "gaussian",
+        "rho": 0.4,
+        "id": 15
+      },
+      "method_a": "Rank_Pearson_joint",
+      "method_b": "Rank_Pearson_coordinate0",
+      "a_only": 245,
+      "b_only": 5,
+      "repetitions": 500,
+      "difference": 0.48,
+      "paired_se": 0.02322068043791999,
+      "pointwise_normal_interval95": [
+        0.4344874663416768,
+        0.5255125336583232
+      ],
+      "pvalue": 8.819690233198441e-66,
+      "matching_null_ids": [
+        13
+      ],
+      "calibration_eligible": true,
+      "holm_pvalue": 1.499347339643735e-64,
+      "qualified_difference": true
+    },
+    {
+      "id": "17:Rank_Pearson_joint:Rank_Pearson_coordinate0",
+      "stratum": {
+        "study": "gaussian",
+        "d": 2,
+        "n": 1000,
+        "null": false,
+        "law": "gaussian",
+        "rho": 0.2,
+        "id": 17
+      },
+      "method_a": "Rank_Pearson_joint",
+      "method_b": "Rank_Pearson_coordinate0",
+      "a_only": 137,
+      "b_only": 5,
+      "repetitions": 500,
+      "difference": 0.264,
+      "paired_se": 0.020702850045343998,
+      "pointwise_normal_interval95": [
+        0.22342241391112577,
+        0.30457758608887425
+      ],
+      "pvalue": 1.6673314648897893e-34,
+      "matching_null_ids": [
+        16
+      ],
+      "calibration_eligible": true,
+      "holm_pvalue": 2.0007977578677472e-33,
+      "qualified_difference": true
+    },
+    {
+      "id": "18:Rank_Pearson_joint:Rank_Pearson_coordinate0",
+      "stratum": {
+        "study": "gaussian",
+        "d": 2,
+        "n": 1000,
+        "null": false,
+        "law": "gaussian",
+        "rho": 0.4,
+        "id": 18
+      },
+      "method_a": "Rank_Pearson_joint",
+      "method_b": "Rank_Pearson_coordinate0",
+      "a_only": 430,
+      "b_only": 0,
+      "repetitions": 500,
+      "difference": 0.86,
+      "paired_se": 0.015517731793016663,
+      "pointwise_normal_interval95": [
+        0.8295852456856874,
+        0.8904147543143126
+      ],
+      "pvalue": 7.213264545145106e-130,
+      "matching_null_ids": [
+        16
+      ],
+      "calibration_eligible": true,
+      "holm_pvalue": 1.3705202635775702e-128,
+      "qualified_difference": true
+    },
+    {
+      "id": "20:Rank_Pearson_joint:Rank_Pearson_coordinate0",
+      "stratum": {
+        "study": "gaussian",
+        "d": 2,
+        "n": 2000,
+        "null": false,
+        "law": "gaussian",
+        "rho": 0.2,
+        "id": 20
+      },
+      "method_a": "Rank_Pearson_joint",
+      "method_b": "Rank_Pearson_coordinate0",
+      "a_only": 351,
+      "b_only": 1,
+      "repetitions": 500,
+      "difference": 0.7,
+      "paired_se": 0.0206881608655772,
+      "pointwise_normal_interval95": [
+        0.6594512047034686,
+        0.7405487952965313
+      ],
+      "pvalue": 7.695666296437131e-104,
+      "matching_null_ids": [
+        19
+      ],
+      "calibration_eligible": true,
+      "holm_pvalue": 1.3852199333586836e-102,
+      "qualified_difference": true
+    },
+    {
+      "id": "21:Rank_Pearson_joint:Rank_Pearson_coordinate0",
+      "stratum": {
+        "study": "gaussian",
+        "d": 2,
+        "n": 2000,
+        "null": false,
+        "law": "gaussian",
+        "rho": 0.4,
+        "id": 21
+      },
+      "method_a": "Rank_Pearson_joint",
+      "method_b": "Rank_Pearson_coordinate0",
+      "a_only": 473,
+      "b_only": 0,
+      "repetitions": 500,
+      "difference": 0.946,
+      "paired_se": 0.010107818755794943,
+      "pointwise_normal_interval95": [
+        0.9261886752386419,
+        0.965811324761358
+      ],
+      "pvalue": 8.200532357869981e-143,
+      "matching_null_ids": [
+        19
+      ],
+      "calibration_eligible": true,
+      "holm_pvalue": 1.6401064715739963e-141,
+      "qualified_difference": true
+    }
+  ],
+  "platform_stratified_rates": [
+    {
+      "stratum": {
+        "study": "copula",
+        "d": 4,
+        "n": 1000,
+        "null": true,
+        "law": "gaussian",
+        "rho": 0.6,
+        "id": 0
+      },
+      "platform": "Linux-6.12.111-1.el8.x86_64-x86_64-with-glibc2.28",
+      "cpu_model": "AMD EPYC 7302 16-Core Processor",
+      "method": "Rank_G_pairs",
+      "repetitions": 3250,
+      "rate": 0.051076923076923075,
+      "mean_call_seconds": 0.05342617455744543,
+      "scope": "secondary platform-stratified descriptive; not a replacement primary cohort"
+    },
+    {
+      "stratum": {
+        "study": "copula",
+        "d": 4,
+        "n": 1000,
+        "null": true,
+        "law": "gaussian",
+        "rho": 0.6,
+        "id": 0
+      },
+      "platform": "Linux-6.12.111-1.el8.x86_64-x86_64-with-glibc2.28",
+      "cpu_model": "AMD EPYC 7302 16-Core Processor",
+      "method": "ME",
+      "repetitions": 3250,
+      "rate": 0.049846153846153846,
+      "mean_call_seconds": 0.05749404203626685,
+      "scope": "secondary platform-stratified descriptive; not a replacement primary cohort"
+    },
+    {
+      "stratum": {
+        "study": "copula",
+        "d": 4,
+        "n": 1000,
+        "null": true,
+        "law": "gaussian",
+        "rho": 0.6,
+        "id": 0
+      },
+      "platform": "Linux-6.12.111-1.el8.x86_64-x86_64-with-glibc2.28",
+      "cpu_model": "AMD EPYC 7302 16-Core Processor",
+      "method": "Fourier_unsmoothed",
+      "repetitions": 3250,
+      "rate": 0.056,
+      "mean_call_seconds": 0.06291640203492715,
+      "scope": "secondary platform-stratified descriptive; not a replacement primary cohort"
+    },
+    {
+      "stratum": {
+        "study": "copula",
+        "d": 4,
+        "n": 1000,
+        "null": true,
+        "law": "gaussian",
+        "rho": 0.6,
+        "id": 0
+      },
+      "platform": "Linux-6.12.111-1.el8.x86_64-x86_64-with-glibc2.28",
+      "cpu_model": "AMD EPYC 7302 16-Core Processor",
+      "method": "MMD_exact_median_grid",
+      "repetitions": 3250,
+      "rate": 0.044307692307692305,
+      "mean_call_seconds": 0.3874895530981907,
+      "scope": "secondary platform-stratified descriptive; not a replacement primary cohort"
+    },
+    {
+      "stratum": {
+        "study": "copula",
+        "d": 4,
+        "n": 1000,
+        "null": true,
+        "law": "clayton",
+        "rho": 0.6,
+        "id": 1
+      },
+      "platform": "Linux-6.12.111-1.el8.x86_64-x86_64-with-glibc2.28",
+      "cpu_model": "AMD EPYC 7302 16-Core Processor",
+      "method": "Rank_G_pairs",
+      "repetitions": 3250,
+      "rate": 0.04830769230769231,
+      "mean_call_seconds": 0.0538431500095086,
+      "scope": "secondary platform-stratified descriptive; not a replacement primary cohort"
+    },
+    {
+      "stratum": {
+        "study": "copula",
+        "d": 4,
+        "n": 1000,
+        "null": true,
+        "law": "clayton",
+        "rho": 0.6,
+        "id": 1
+      },
+      "platform": "Linux-6.12.111-1.el8.x86_64-x86_64-with-glibc2.28",
+      "cpu_model": "AMD EPYC 7302 16-Core Processor",
+      "method": "ME",
+      "repetitions": 3250,
+      "rate": 0.04676923076923077,
+      "mean_call_seconds": 0.05739745803555259,
+      "scope": "secondary platform-stratified descriptive; not a replacement primary cohort"
+    },
+    {
+      "stratum": {
+        "study": "copula",
+        "d": 4,
+        "n": 1000,
+        "null": true,
+        "law": "clayton",
+        "rho": 0.6,
+        "id": 1
+      },
+      "platform": "Linux-6.12.111-1.el8.x86_64-x86_64-with-glibc2.28",
+      "cpu_model": "AMD EPYC 7302 16-Core Processor",
+      "method": "Fourier_unsmoothed",
+      "repetitions": 3250,
+      "rate": 0.04923076923076923,
+      "mean_call_seconds": 0.06284608582566635,
+      "scope": "secondary platform-stratified descriptive; not a replacement primary cohort"
+    },
+    {
+      "stratum": {
+        "study": "copula",
+        "d": 4,
+        "n": 1000,
+        "null": true,
+        "law": "clayton",
+        "rho": 0.6,
+        "id": 1
+      },
+      "platform": "Linux-6.12.111-1.el8.x86_64-x86_64-with-glibc2.28",
+      "cpu_model": "AMD EPYC 7302 16-Core Processor",
+      "method": "MMD_exact_median_grid",
+      "repetitions": 3250,
+      "rate": 0.05384615384615385,
+      "mean_call_seconds": 0.38480849852314436,
+      "scope": "secondary platform-stratified descriptive; not a replacement primary cohort"
+    },
+    {
+      "stratum": {
+        "study": "copula",
+        "d": 4,
+        "n": 1000,
+        "null": true,
+        "law": "gumbel",
+        "rho": 0.6,
+        "id": 2
+      },
+      "platform": "Linux-6.12.111-1.el8.x86_64-x86_64-with-glibc2.28",
+      "cpu_model": "AMD EPYC 7302 16-Core Processor",
+      "method": "Rank_G_pairs",
+      "repetitions": 3250,
+      "rate": 0.04953846153846154,
+      "mean_call_seconds": 0.05383750946218004,
+      "scope": "secondary platform-stratified descriptive; not a replacement primary cohort"
+    },
+    {
+      "stratum": {
+        "study": "copula",
+        "d": 4,
+        "n": 1000,
+        "null": true,
+        "law": "gumbel",
+        "rho": 0.6,
+        "id": 2
+      },
+      "platform": "Linux-6.12.111-1.el8.x86_64-x86_64-with-glibc2.28",
+      "cpu_model": "AMD EPYC 7302 16-Core Processor",
+      "method": "ME",
+      "repetitions": 3250,
+      "rate": 0.047692307692307694,
+      "mean_call_seconds": 0.05732935459356612,
+      "scope": "secondary platform-stratified descriptive; not a replacement primary cohort"
+    },
+    {
+      "stratum": {
+        "study": "copula",
+        "d": 4,
+        "n": 1000,
+        "null": true,
+        "law": "gumbel",
+        "rho": 0.6,
+        "id": 2
+      },
+      "platform": "Linux-6.12.111-1.el8.x86_64-x86_64-with-glibc2.28",
+      "cpu_model": "AMD EPYC 7302 16-Core Processor",
+      "method": "Fourier_unsmoothed",
+      "repetitions": 3250,
+      "rate": 0.05076923076923077,
+      "mean_call_seconds": 0.06271513994829729,
+      "scope": "secondary platform-stratified descriptive; not a replacement primary cohort"
+    },
+    {
+      "stratum": {
+        "study": "copula",
+        "d": 4,
+        "n": 1000,
+        "null": true,
+        "law": "gumbel",
+        "rho": 0.6,
+        "id": 2
+      },
+      "platform": "Linux-6.12.111-1.el8.x86_64-x86_64-with-glibc2.28",
+      "cpu_model": "AMD EPYC 7302 16-Core Processor",
+      "method": "MMD_exact_median_grid",
+      "repetitions": 3250,
+      "rate": 0.05015384615384615,
+      "mean_call_seconds": 0.38346692505242447,
+      "scope": "secondary platform-stratified descriptive; not a replacement primary cohort"
+    },
+    {
+      "stratum": {
+        "study": "copula",
+        "d": 4,
+        "n": 1000,
+        "null": false,
+        "law": "clayton",
+        "rho": 0.6,
+        "id": 3
+      },
+      "platform": "Linux-6.12.111-1.el8.x86_64-x86_64-with-glibc2.28",
+      "cpu_model": "AMD EPYC 7302 16-Core Processor",
+      "method": "Rank_G_pairs",
+      "repetitions": 250,
+      "rate": 0.988,
+      "mean_call_seconds": 0.05361631037038751,
+      "scope": "secondary platform-stratified descriptive; not a replacement primary cohort"
+    },
+    {
+      "stratum": {
+        "study": "copula",
+        "d": 4,
+        "n": 1000,
+        "null": false,
+        "law": "clayton",
+        "rho": 0.6,
+        "id": 3
+      },
+      "platform": "Linux-6.12.111-1.el8.x86_64-x86_64-with-glibc2.28",
+      "cpu_model": "AMD EPYC 7302 16-Core Processor",
+      "method": "ME",
+      "repetitions": 250,
+      "rate": 0.844,
+      "mean_call_seconds": 0.05760098876385018,
+      "scope": "secondary platform-stratified descriptive; not a replacement primary cohort"
+    },
+    {
+      "stratum": {
+        "study": "copula",
+        "d": 4,
+        "n": 1000,
+        "null": false,
+        "law": "clayton",
+        "rho": 0.6,
+        "id": 3
+      },
+      "platform": "Linux-6.12.111-1.el8.x86_64-x86_64-with-glibc2.28",
+      "cpu_model": "AMD EPYC 7302 16-Core Processor",
+      "method": "Fourier_unsmoothed",
+      "repetitions": 250,
+      "rate": 0.988,
+      "mean_call_seconds": 0.0632791860809084,
+      "scope": "secondary platform-stratified descriptive; not a replacement primary cohort"
+    },
+    {
+      "stratum": {
+        "study": "copula",
+        "d": 4,
+        "n": 1000,
+        "null": false,
+        "law": "clayton",
+        "rho": 0.6,
+        "id": 3
+      },
+      "platform": "Linux-6.12.111-1.el8.x86_64-x86_64-with-glibc2.28",
+      "cpu_model": "AMD EPYC 7302 16-Core Processor",
+      "method": "MMD_exact_median_grid",
+      "repetitions": 250,
+      "rate": 0.756,
+      "mean_call_seconds": 0.384341207700083,
+      "scope": "secondary platform-stratified descriptive; not a replacement primary cohort"
+    },
+    {
+      "stratum": {
+        "study": "copula",
+        "d": 4,
+        "n": 1000,
+        "null": false,
+        "law": "gumbel",
+        "rho": 0.6,
+        "id": 4
+      },
+      "platform": "Linux-6.12.111-1.el8.x86_64-x86_64-with-glibc2.28",
+      "cpu_model": "AMD EPYC 7302 16-Core Processor",
+      "method": "Rank_G_pairs",
+      "repetitions": 250,
+      "rate": 0.588,
+      "mean_call_seconds": 0.053714194999076426,
+      "scope": "secondary platform-stratified descriptive; not a replacement primary cohort"
+    },
+    {
+      "stratum": {
+        "study": "copula",
+        "d": 4,
+        "n": 1000,
+        "null": false,
+        "law": "gumbel",
+        "rho": 0.6,
+        "id": 4
+      },
+      "platform": "Linux-6.12.111-1.el8.x86_64-x86_64-with-glibc2.28",
+      "cpu_model": "AMD EPYC 7302 16-Core Processor",
+      "method": "ME",
+      "repetitions": 250,
+      "rate": 0.512,
+      "mean_call_seconds": 0.057678077060496435,
+      "scope": "secondary platform-stratified descriptive; not a replacement primary cohort"
+    },
+    {
+      "stratum": {
+        "study": "copula",
+        "d": 4,
+        "n": 1000,
+        "null": false,
+        "law": "gumbel",
+        "rho": 0.6,
+        "id": 4
+      },
+      "platform": "Linux-6.12.111-1.el8.x86_64-x86_64-with-glibc2.28",
+      "cpu_model": "AMD EPYC 7302 16-Core Processor",
+      "method": "Fourier_unsmoothed",
+      "repetitions": 250,
+      "rate": 0.968,
+      "mean_call_seconds": 0.06343465437064878,
+      "scope": "secondary platform-stratified descriptive; not a replacement primary cohort"
+    },
+    {
+      "stratum": {
+        "study": "copula",
+        "d": 4,
+        "n": 1000,
+        "null": false,
+        "law": "gumbel",
+        "rho": 0.6,
+        "id": 4
+      },
+      "platform": "Linux-6.12.111-1.el8.x86_64-x86_64-with-glibc2.28",
+      "cpu_model": "AMD EPYC 7302 16-Core Processor",
+      "method": "MMD_exact_median_grid",
+      "repetitions": 250,
+      "rate": 0.468,
+      "mean_call_seconds": 0.3850580437022727,
+      "scope": "secondary platform-stratified descriptive; not a replacement primary cohort"
+    },
+    {
+      "stratum": {
+        "study": "copula",
+        "d": 20,
+        "n": 1000,
+        "null": true,
+        "law": "gaussian",
+        "rho": 0.6,
+        "id": 5
+      },
+      "platform": "Linux-6.12.111-1.el8.x86_64-x86_64-with-glibc2.28",
+      "cpu_model": "AMD EPYC 7302 16-Core Processor",
+      "method": "Rank_G_pairs",
+      "repetitions": 3250,
+      "rate": 0.05846153846153846,
+      "mean_call_seconds": 0.39225303337314665,
+      "scope": "secondary platform-stratified descriptive; not a replacement primary cohort"
+    },
+    {
+      "stratum": {
+        "study": "copula",
+        "d": 20,
+        "n": 1000,
+        "null": true,
+        "law": "gaussian",
+        "rho": 0.6,
+        "id": 5
+      },
+      "platform": "Linux-6.12.111-1.el8.x86_64-x86_64-with-glibc2.28",
+      "cpu_model": "AMD EPYC 7302 16-Core Processor",
+      "method": "ME",
+      "repetitions": 3250,
+      "rate": 0.05815384615384615,
+      "mean_call_seconds": 0.05847158525405953,
+      "scope": "secondary platform-stratified descriptive; not a replacement primary cohort"
+    },
+    {
+      "stratum": {
+        "study": "copula",
+        "d": 20,
+        "n": 1000,
+        "null": true,
+        "law": "gaussian",
+        "rho": 0.6,
+        "id": 5
+      },
+      "platform": "Linux-6.12.111-1.el8.x86_64-x86_64-with-glibc2.28",
+      "cpu_model": "AMD EPYC 7302 16-Core Processor",
+      "method": "Fourier_unsmoothed",
+      "repetitions": 3250,
+      "rate": 0.046153846153846156,
+      "mean_call_seconds": 0.06341775278202616,
+      "scope": "secondary platform-stratified descriptive; not a replacement primary cohort"
+    },
+    {
+      "stratum": {
+        "study": "copula",
+        "d": 20,
+        "n": 1000,
+        "null": true,
+        "law": "gaussian",
+        "rho": 0.6,
+        "id": 5
+      },
+      "platform": "Linux-6.12.111-1.el8.x86_64-x86_64-with-glibc2.28",
+      "cpu_model": "AMD EPYC 7302 16-Core Processor",
+      "method": "MMD_exact_median_grid",
+      "repetitions": 3250,
+      "rate": 0.06061538461538461,
+      "mean_call_seconds": 0.3775572776224894,
+      "scope": "secondary platform-stratified descriptive; not a replacement primary cohort"
+    },
+    {
+      "stratum": {
+        "study": "copula",
+        "d": 20,
+        "n": 1000,
+        "null": true,
+        "law": "clayton",
+        "rho": 0.6,
+        "id": 6
+      },
+      "platform": "Linux-6.12.111-1.el8.x86_64-x86_64-with-glibc2.28",
+      "cpu_model": "AMD EPYC 7302 16-Core Processor",
+      "method": "Rank_G_pairs",
+      "repetitions": 3250,
+      "rate": 0.046153846153846156,
+      "mean_call_seconds": 0.3944186089741281,
+      "scope": "secondary platform-stratified descriptive; not a replacement primary cohort"
+    },
+    {
+      "stratum": {
+        "study": "copula",
+        "d": 20,
+        "n": 1000,
+        "null": true,
+        "law": "clayton",
+        "rho": 0.6,
+        "id": 6
+      },
+      "platform": "Linux-6.12.111-1.el8.x86_64-x86_64-with-glibc2.28",
+      "cpu_model": "AMD EPYC 7302 16-Core Processor",
+      "method": "ME",
+      "repetitions": 3250,
+      "rate": 0.04369230769230769,
+      "mean_call_seconds": 0.05843621139572217,
+      "scope": "secondary platform-stratified descriptive; not a replacement primary cohort"
+    },
+    {
+      "stratum": {
+        "study": "copula",
+        "d": 20,
+        "n": 1000,
+        "null": true,
+        "law": "clayton",
+        "rho": 0.6,
+        "id": 6
+      },
+      "platform": "Linux-6.12.111-1.el8.x86_64-x86_64-with-glibc2.28",
+      "cpu_model": "AMD EPYC 7302 16-Core Processor",
+      "method": "Fourier_unsmoothed",
+      "repetitions": 3250,
+      "rate": 0.052,
+      "mean_call_seconds": 0.06338491723808246,
+      "scope": "secondary platform-stratified descriptive; not a replacement primary cohort"
+    },
+    {
+      "stratum": {
+        "study": "copula",
+        "d": 20,
+        "n": 1000,
+        "null": true,
+        "law": "clayton",
+        "rho": 0.6,
+        "id": 6
+      },
+      "platform": "Linux-6.12.111-1.el8.x86_64-x86_64-with-glibc2.28",
+      "cpu_model": "AMD EPYC 7302 16-Core Processor",
+      "method": "MMD_exact_median_grid",
+      "repetitions": 3250,
+      "rate": 0.046153846153846156,
+      "mean_call_seconds": 0.3744360499289066,
+      "scope": "secondary platform-stratified descriptive; not a replacement primary cohort"
+    },
+    {
+      "stratum": {
+        "study": "copula",
+        "d": 20,
+        "n": 1000,
+        "null": true,
+        "law": "gumbel",
+        "rho": 0.6,
+        "id": 7
+      },
+      "platform": "Linux-6.12.111-1.el8.x86_64-x86_64-with-glibc2.28",
+      "cpu_model": "AMD EPYC 7302 16-Core Processor",
+      "method": "Rank_G_pairs",
+      "repetitions": 3250,
+      "rate": 0.04923076923076923,
+      "mean_call_seconds": 0.39592973428004635,
+      "scope": "secondary platform-stratified descriptive; not a replacement primary cohort"
+    },
+    {
+      "stratum": {
+        "study": "copula",
+        "d": 20,
+        "n": 1000,
+        "null": true,
+        "law": "gumbel",
+        "rho": 0.6,
+        "id": 7
+      },
+      "platform": "Linux-6.12.111-1.el8.x86_64-x86_64-with-glibc2.28",
+      "cpu_model": "AMD EPYC 7302 16-Core Processor",
+      "method": "ME",
+      "repetitions": 3250,
+      "rate": 0.044307692307692305,
+      "mean_call_seconds": 0.05833186925859907,
+      "scope": "secondary platform-stratified descriptive; not a replacement primary cohort"
+    },
+    {
+      "stratum": {
+        "study": "copula",
+        "d": 20,
+        "n": 1000,
+        "null": true,
+        "law": "gumbel",
+        "rho": 0.6,
+        "id": 7
+      },
+      "platform": "Linux-6.12.111-1.el8.x86_64-x86_64-with-glibc2.28",
+      "cpu_model": "AMD EPYC 7302 16-Core Processor",
+      "method": "Fourier_unsmoothed",
+      "repetitions": 3250,
+      "rate": 0.046461538461538464,
+      "mean_call_seconds": 0.06314560873999905,
+      "scope": "secondary platform-stratified descriptive; not a replacement primary cohort"
+    },
+    {
+      "stratum": {
+        "study": "copula",
+        "d": 20,
+        "n": 1000,
+        "null": true,
+        "law": "gumbel",
+        "rho": 0.6,
+        "id": 7
+      },
+      "platform": "Linux-6.12.111-1.el8.x86_64-x86_64-with-glibc2.28",
+      "cpu_model": "AMD EPYC 7302 16-Core Processor",
+      "method": "MMD_exact_median_grid",
+      "repetitions": 3250,
+      "rate": 0.04953846153846154,
+      "mean_call_seconds": 0.3750774203974109,
+      "scope": "secondary platform-stratified descriptive; not a replacement primary cohort"
+    },
+    {
+      "stratum": {
+        "study": "copula",
+        "d": 20,
+        "n": 1000,
+        "null": false,
+        "law": "clayton",
+        "rho": 0.6,
+        "id": 8
+      },
+      "platform": "Linux-6.12.111-1.el8.x86_64-x86_64-with-glibc2.28",
+      "cpu_model": "AMD EPYC 7302 16-Core Processor",
+      "method": "Rank_G_pairs",
+      "repetitions": 250,
+      "rate": 1.0,
+      "mean_call_seconds": 0.38838571176235565,
+      "scope": "secondary platform-stratified descriptive; not a replacement primary cohort"
+    },
+    {
+      "stratum": {
+        "study": "copula",
+        "d": 20,
+        "n": 1000,
+        "null": false,
+        "law": "clayton",
+        "rho": 0.6,
+        "id": 8
+      },
+      "platform": "Linux-6.12.111-1.el8.x86_64-x86_64-with-glibc2.28",
+      "cpu_model": "AMD EPYC 7302 16-Core Processor",
+      "method": "ME",
+      "repetitions": 250,
+      "rate": 0.812,
+      "mean_call_seconds": 0.05890757116605528,
+      "scope": "secondary platform-stratified descriptive; not a replacement primary cohort"
+    },
+    {
+      "stratum": {
+        "study": "copula",
+        "d": 20,
+        "n": 1000,
+        "null": false,
+        "law": "clayton",
+        "rho": 0.6,
+        "id": 8
+      },
+      "platform": "Linux-6.12.111-1.el8.x86_64-x86_64-with-glibc2.28",
+      "cpu_model": "AMD EPYC 7302 16-Core Processor",
+      "method": "Fourier_unsmoothed",
+      "repetitions": 250,
+      "rate": 0.904,
+      "mean_call_seconds": 0.06348103389958851,
+      "scope": "secondary platform-stratified descriptive; not a replacement primary cohort"
+    },
+    {
+      "stratum": {
+        "study": "copula",
+        "d": 20,
+        "n": 1000,
+        "null": false,
+        "law": "clayton",
+        "rho": 0.6,
+        "id": 8
+      },
+      "platform": "Linux-6.12.111-1.el8.x86_64-x86_64-with-glibc2.28",
+      "cpu_model": "AMD EPYC 7302 16-Core Processor",
+      "method": "MMD_exact_median_grid",
+      "repetitions": 250,
+      "rate": 0.988,
+      "mean_call_seconds": 0.3771772338065784,
+      "scope": "secondary platform-stratified descriptive; not a replacement primary cohort"
+    },
+    {
+      "stratum": {
+        "study": "copula",
+        "d": 20,
+        "n": 1000,
+        "null": false,
+        "law": "gumbel",
+        "rho": 0.6,
+        "id": 9
+      },
+      "platform": "Linux-6.12.111-1.el8.x86_64-x86_64-with-glibc2.28",
+      "cpu_model": "AMD EPYC 7302 16-Core Processor",
+      "method": "Rank_G_pairs",
+      "repetitions": 250,
+      "rate": 0.964,
+      "mean_call_seconds": 0.38672156547266057,
+      "scope": "secondary platform-stratified descriptive; not a replacement primary cohort"
+    },
+    {
+      "stratum": {
+        "study": "copula",
+        "d": 20,
+        "n": 1000,
+        "null": false,
+        "law": "gumbel",
+        "rho": 0.6,
+        "id": 9
+      },
+      "platform": "Linux-6.12.111-1.el8.x86_64-x86_64-with-glibc2.28",
+      "cpu_model": "AMD EPYC 7302 16-Core Processor",
+      "method": "ME",
+      "repetitions": 250,
+      "rate": 0.64,
+      "mean_call_seconds": 0.059078585756011305,
+      "scope": "secondary platform-stratified descriptive; not a replacement primary cohort"
+    },
+    {
+      "stratum": {
+        "study": "copula",
+        "d": 20,
+        "n": 1000,
+        "null": false,
+        "law": "gumbel",
+        "rho": 0.6,
+        "id": 9
+      },
+      "platform": "Linux-6.12.111-1.el8.x86_64-x86_64-with-glibc2.28",
+      "cpu_model": "AMD EPYC 7302 16-Core Processor",
+      "method": "Fourier_unsmoothed",
+      "repetitions": 250,
+      "rate": 0.596,
+      "mean_call_seconds": 0.06385062340414152,
+      "scope": "secondary platform-stratified descriptive; not a replacement primary cohort"
+    },
+    {
+      "stratum": {
+        "study": "copula",
+        "d": 20,
+        "n": 1000,
+        "null": false,
+        "law": "gumbel",
+        "rho": 0.6,
+        "id": 9
+      },
+      "platform": "Linux-6.12.111-1.el8.x86_64-x86_64-with-glibc2.28",
+      "cpu_model": "AMD EPYC 7302 16-Core Processor",
+      "method": "MMD_exact_median_grid",
+      "repetitions": 250,
+      "rate": 0.996,
+      "mean_call_seconds": 0.3780102985650301,
+      "scope": "secondary platform-stratified descriptive; not a replacement primary cohort"
+    },
+    {
+      "stratum": {
+        "study": "copula",
+        "d": 4,
+        "n": 1000,
+        "null": true,
+        "law": "gaussian",
+        "rho": 0.6,
+        "id": 0
+      },
+      "platform": "Linux-6.12.110-1.el8.x86_64-x86_64-with-glibc2.28",
+      "cpu_model": "AMD EPYC 7302 16-Core Processor",
+      "method": "Rank_G_pairs",
+      "repetitions": 750,
+      "rate": 0.06533333333333333,
+      "mean_call_seconds": 0.05274932593666017,
+      "scope": "secondary platform-stratified descriptive; not a replacement primary cohort"
+    },
+    {
+      "stratum": {
+        "study": "copula",
+        "d": 4,
+        "n": 1000,
+        "null": true,
+        "law": "gaussian",
+        "rho": 0.6,
+        "id": 0
+      },
+      "platform": "Linux-6.12.110-1.el8.x86_64-x86_64-with-glibc2.28",
+      "cpu_model": "AMD EPYC 7302 16-Core Processor",
+      "method": "ME",
+      "repetitions": 750,
+      "rate": 0.056,
+      "mean_call_seconds": 0.05691251557599753,
+      "scope": "secondary platform-stratified descriptive; not a replacement primary cohort"
+    },
+    {
+      "stratum": {
+        "study": "copula",
+        "d": 4,
+        "n": 1000,
+        "null": true,
+        "law": "gaussian",
+        "rho": 0.6,
+        "id": 0
+      },
+      "platform": "Linux-6.12.110-1.el8.x86_64-x86_64-with-glibc2.28",
+      "cpu_model": "AMD EPYC 7302 16-Core Processor",
+      "method": "Fourier_unsmoothed",
+      "repetitions": 750,
+      "rate": 0.058666666666666666,
+      "mean_call_seconds": 0.06251376737716298,
+      "scope": "secondary platform-stratified descriptive; not a replacement primary cohort"
+    },
+    {
+      "stratum": {
+        "study": "copula",
+        "d": 4,
+        "n": 1000,
+        "null": true,
+        "law": "gaussian",
+        "rho": 0.6,
+        "id": 0
+      },
+      "platform": "Linux-6.12.110-1.el8.x86_64-x86_64-with-glibc2.28",
+      "cpu_model": "AMD EPYC 7302 16-Core Processor",
+      "method": "MMD_exact_median_grid",
+      "repetitions": 750,
+      "rate": 0.052,
+      "mean_call_seconds": 0.38137525870868316,
+      "scope": "secondary platform-stratified descriptive; not a replacement primary cohort"
+    },
+    {
+      "stratum": {
+        "study": "copula",
+        "d": 4,
+        "n": 1000,
+        "null": true,
+        "law": "clayton",
+        "rho": 0.6,
+        "id": 1
+      },
+      "platform": "Linux-6.12.110-1.el8.x86_64-x86_64-with-glibc2.28",
+      "cpu_model": "AMD EPYC 7302 16-Core Processor",
+      "method": "Rank_G_pairs",
+      "repetitions": 750,
+      "rate": 0.05333333333333334,
+      "mean_call_seconds": 0.052641941237884265,
+      "scope": "secondary platform-stratified descriptive; not a replacement primary cohort"
+    },
+    {
+      "stratum": {
+        "study": "copula",
+        "d": 4,
+        "n": 1000,
+        "null": true,
+        "law": "clayton",
+        "rho": 0.6,
+        "id": 1
+      },
+      "platform": "Linux-6.12.110-1.el8.x86_64-x86_64-with-glibc2.28",
+      "cpu_model": "AMD EPYC 7302 16-Core Processor",
+      "method": "ME",
+      "repetitions": 750,
+      "rate": 0.05333333333333334,
+      "mean_call_seconds": 0.05675693589014311,
+      "scope": "secondary platform-stratified descriptive; not a replacement primary cohort"
+    },
+    {
+      "stratum": {
+        "study": "copula",
+        "d": 4,
+        "n": 1000,
+        "null": true,
+        "law": "clayton",
+        "rho": 0.6,
+        "id": 1
+      },
+      "platform": "Linux-6.12.110-1.el8.x86_64-x86_64-with-glibc2.28",
+      "cpu_model": "AMD EPYC 7302 16-Core Processor",
+      "method": "Fourier_unsmoothed",
+      "repetitions": 750,
+      "rate": 0.048,
+      "mean_call_seconds": 0.0627179055251181,
+      "scope": "secondary platform-stratified descriptive; not a replacement primary cohort"
+    },
+    {
+      "stratum": {
+        "study": "copula",
+        "d": 4,
+        "n": 1000,
+        "null": true,
+        "law": "clayton",
+        "rho": 0.6,
+        "id": 1
+      },
+      "platform": "Linux-6.12.110-1.el8.x86_64-x86_64-with-glibc2.28",
+      "cpu_model": "AMD EPYC 7302 16-Core Processor",
+      "method": "MMD_exact_median_grid",
+      "repetitions": 750,
+      "rate": 0.058666666666666666,
+      "mean_call_seconds": 0.3815029624061038,
+      "scope": "secondary platform-stratified descriptive; not a replacement primary cohort"
+    },
+    {
+      "stratum": {
+        "study": "copula",
+        "d": 4,
+        "n": 1000,
+        "null": true,
+        "law": "gumbel",
+        "rho": 0.6,
+        "id": 2
+      },
+      "platform": "Linux-6.12.110-1.el8.x86_64-x86_64-with-glibc2.28",
+      "cpu_model": "AMD EPYC 7302 16-Core Processor",
+      "method": "Rank_G_pairs",
+      "repetitions": 750,
+      "rate": 0.058666666666666666,
+      "mean_call_seconds": 0.052675581759152316,
+      "scope": "secondary platform-stratified descriptive; not a replacement primary cohort"
+    },
+    {
+      "stratum": {
+        "study": "copula",
+        "d": 4,
+        "n": 1000,
+        "null": true,
+        "law": "gumbel",
+        "rho": 0.6,
+        "id": 2
+      },
+      "platform": "Linux-6.12.110-1.el8.x86_64-x86_64-with-glibc2.28",
+      "cpu_model": "AMD EPYC 7302 16-Core Processor",
+      "method": "ME",
+      "repetitions": 750,
+      "rate": 0.06,
+      "mean_call_seconds": 0.05675516195967793,
+      "scope": "secondary platform-stratified descriptive; not a replacement primary cohort"
+    },
+    {
+      "stratum": {
+        "study": "copula",
+        "d": 4,
+        "n": 1000,
+        "null": true,
+        "law": "gumbel",
+        "rho": 0.6,
+        "id": 2
+      },
+      "platform": "Linux-6.12.110-1.el8.x86_64-x86_64-with-glibc2.28",
+      "cpu_model": "AMD EPYC 7302 16-Core Processor",
+      "method": "Fourier_unsmoothed",
+      "repetitions": 750,
+      "rate": 0.064,
+      "mean_call_seconds": 0.062316141700992984,
+      "scope": "secondary platform-stratified descriptive; not a replacement primary cohort"
+    },
+    {
+      "stratum": {
+        "study": "copula",
+        "d": 4,
+        "n": 1000,
+        "null": true,
+        "law": "gumbel",
+        "rho": 0.6,
+        "id": 2
+      },
+      "platform": "Linux-6.12.110-1.el8.x86_64-x86_64-with-glibc2.28",
+      "cpu_model": "AMD EPYC 7302 16-Core Processor",
+      "method": "MMD_exact_median_grid",
+      "repetitions": 750,
+      "rate": 0.07466666666666667,
+      "mean_call_seconds": 0.3794622258339077,
+      "scope": "secondary platform-stratified descriptive; not a replacement primary cohort"
+    },
+    {
+      "stratum": {
+        "study": "copula",
+        "d": 4,
+        "n": 1000,
+        "null": false,
+        "law": "clayton",
+        "rho": 0.6,
+        "id": 3
+      },
+      "platform": "Linux-6.12.110-1.el8.x86_64-x86_64-with-glibc2.28",
+      "cpu_model": "AMD EPYC 7302 16-Core Processor",
+      "method": "Rank_G_pairs",
+      "repetitions": 250,
+      "rate": 0.992,
+      "mean_call_seconds": 0.05319894517958164,
+      "scope": "secondary platform-stratified descriptive; not a replacement primary cohort"
+    },
+    {
+      "stratum": {
+        "study": "copula",
+        "d": 4,
+        "n": 1000,
+        "null": false,
+        "law": "clayton",
+        "rho": 0.6,
+        "id": 3
+      },
+      "platform": "Linux-6.12.110-1.el8.x86_64-x86_64-with-glibc2.28",
+      "cpu_model": "AMD EPYC 7302 16-Core Processor",
+      "method": "ME",
+      "repetitions": 250,
+      "rate": 0.832,
+      "mean_call_seconds": 0.057208393633365634,
+      "scope": "secondary platform-stratified descriptive; not a replacement primary cohort"
+    },
+    {
+      "stratum": {
+        "study": "copula",
+        "d": 4,
+        "n": 1000,
+        "null": false,
+        "law": "clayton",
+        "rho": 0.6,
+        "id": 3
+      },
+      "platform": "Linux-6.12.110-1.el8.x86_64-x86_64-with-glibc2.28",
+      "cpu_model": "AMD EPYC 7302 16-Core Processor",
+      "method": "Fourier_unsmoothed",
+      "repetitions": 250,
+      "rate": 0.984,
+      "mean_call_seconds": 0.06237010101228952,
+      "scope": "secondary platform-stratified descriptive; not a replacement primary cohort"
+    },
+    {
+      "stratum": {
+        "study": "copula",
+        "d": 4,
+        "n": 1000,
+        "null": false,
+        "law": "clayton",
+        "rho": 0.6,
+        "id": 3
+      },
+      "platform": "Linux-6.12.110-1.el8.x86_64-x86_64-with-glibc2.28",
+      "cpu_model": "AMD EPYC 7302 16-Core Processor",
+      "method": "MMD_exact_median_grid",
+      "repetitions": 250,
+      "rate": 0.744,
+      "mean_call_seconds": 0.38228633773699405,
+      "scope": "secondary platform-stratified descriptive; not a replacement primary cohort"
+    },
+    {
+      "stratum": {
+        "study": "copula",
+        "d": 4,
+        "n": 1000,
+        "null": false,
+        "law": "gumbel",
+        "rho": 0.6,
+        "id": 4
+      },
+      "platform": "Linux-6.12.110-1.el8.x86_64-x86_64-with-glibc2.28",
+      "cpu_model": "AMD EPYC 7302 16-Core Processor",
+      "method": "Rank_G_pairs",
+      "repetitions": 250,
+      "rate": 0.564,
+      "mean_call_seconds": 0.053256059351377186,
+      "scope": "secondary platform-stratified descriptive; not a replacement primary cohort"
+    },
+    {
+      "stratum": {
+        "study": "copula",
+        "d": 4,
+        "n": 1000,
+        "null": false,
+        "law": "gumbel",
+        "rho": 0.6,
+        "id": 4
+      },
+      "platform": "Linux-6.12.110-1.el8.x86_64-x86_64-with-glibc2.28",
+      "cpu_model": "AMD EPYC 7302 16-Core Processor",
+      "method": "ME",
+      "repetitions": 250,
+      "rate": 0.476,
+      "mean_call_seconds": 0.05714753643237054,
+      "scope": "secondary platform-stratified descriptive; not a replacement primary cohort"
+    },
+    {
+      "stratum": {
+        "study": "copula",
+        "d": 4,
+        "n": 1000,
+        "null": false,
+        "law": "gumbel",
+        "rho": 0.6,
+        "id": 4
+      },
+      "platform": "Linux-6.12.110-1.el8.x86_64-x86_64-with-glibc2.28",
+      "cpu_model": "AMD EPYC 7302 16-Core Processor",
+      "method": "Fourier_unsmoothed",
+      "repetitions": 250,
+      "rate": 0.972,
+      "mean_call_seconds": 0.06263758464623242,
+      "scope": "secondary platform-stratified descriptive; not a replacement primary cohort"
+    },
+    {
+      "stratum": {
+        "study": "copula",
+        "d": 4,
+        "n": 1000,
+        "null": false,
+        "law": "gumbel",
+        "rho": 0.6,
+        "id": 4
+      },
+      "platform": "Linux-6.12.110-1.el8.x86_64-x86_64-with-glibc2.28",
+      "cpu_model": "AMD EPYC 7302 16-Core Processor",
+      "method": "MMD_exact_median_grid",
+      "repetitions": 250,
+      "rate": 0.46,
+      "mean_call_seconds": 0.382488717273809,
+      "scope": "secondary platform-stratified descriptive; not a replacement primary cohort"
+    },
+    {
+      "stratum": {
+        "study": "copula",
+        "d": 20,
+        "n": 1000,
+        "null": true,
+        "law": "gaussian",
+        "rho": 0.6,
+        "id": 5
+      },
+      "platform": "Linux-6.12.110-1.el8.x86_64-x86_64-with-glibc2.28",
+      "cpu_model": "AMD EPYC 7302 16-Core Processor",
+      "method": "Rank_G_pairs",
+      "repetitions": 750,
+      "rate": 0.04933333333333333,
+      "mean_call_seconds": 0.3863662834726274,
+      "scope": "secondary platform-stratified descriptive; not a replacement primary cohort"
+    },
+    {
+      "stratum": {
+        "study": "copula",
+        "d": 20,
+        "n": 1000,
+        "null": true,
+        "law": "gaussian",
+        "rho": 0.6,
+        "id": 5
+      },
+      "platform": "Linux-6.12.110-1.el8.x86_64-x86_64-with-glibc2.28",
+      "cpu_model": "AMD EPYC 7302 16-Core Processor",
+      "method": "ME",
+      "repetitions": 750,
+      "rate": 0.050666666666666665,
+      "mean_call_seconds": 0.05817048428331812,
+      "scope": "secondary platform-stratified descriptive; not a replacement primary cohort"
+    },
+    {
+      "stratum": {
+        "study": "copula",
+        "d": 20,
+        "n": 1000,
+        "null": true,
+        "law": "gaussian",
+        "rho": 0.6,
+        "id": 5
+      },
+      "platform": "Linux-6.12.110-1.el8.x86_64-x86_64-with-glibc2.28",
+      "cpu_model": "AMD EPYC 7302 16-Core Processor",
+      "method": "Fourier_unsmoothed",
+      "repetitions": 750,
+      "rate": 0.03866666666666667,
+      "mean_call_seconds": 0.06332928180663536,
+      "scope": "secondary platform-stratified descriptive; not a replacement primary cohort"
+    },
+    {
+      "stratum": {
+        "study": "copula",
+        "d": 20,
+        "n": 1000,
+        "null": true,
+        "law": "gaussian",
+        "rho": 0.6,
+        "id": 5
+      },
+      "platform": "Linux-6.12.110-1.el8.x86_64-x86_64-with-glibc2.28",
+      "cpu_model": "AMD EPYC 7302 16-Core Processor",
+      "method": "MMD_exact_median_grid",
+      "repetitions": 750,
+      "rate": 0.042666666666666665,
+      "mean_call_seconds": 0.37685447368584574,
+      "scope": "secondary platform-stratified descriptive; not a replacement primary cohort"
+    },
+    {
+      "stratum": {
+        "study": "copula",
+        "d": 20,
+        "n": 1000,
+        "null": true,
+        "law": "clayton",
+        "rho": 0.6,
+        "id": 6
+      },
+      "platform": "Linux-6.12.110-1.el8.x86_64-x86_64-with-glibc2.28",
+      "cpu_model": "AMD EPYC 7302 16-Core Processor",
+      "method": "Rank_G_pairs",
+      "repetitions": 750,
+      "rate": 0.04533333333333334,
+      "mean_call_seconds": 0.3882682260728131,
+      "scope": "secondary platform-stratified descriptive; not a replacement primary cohort"
+    },
+    {
+      "stratum": {
+        "study": "copula",
+        "d": 20,
+        "n": 1000,
+        "null": true,
+        "law": "clayton",
+        "rho": 0.6,
+        "id": 6
+      },
+      "platform": "Linux-6.12.110-1.el8.x86_64-x86_64-with-glibc2.28",
+      "cpu_model": "AMD EPYC 7302 16-Core Processor",
+      "method": "ME",
+      "repetitions": 750,
+      "rate": 0.04,
+      "mean_call_seconds": 0.05845640024511765,
+      "scope": "secondary platform-stratified descriptive; not a replacement primary cohort"
+    },
+    {
+      "stratum": {
+        "study": "copula",
+        "d": 20,
+        "n": 1000,
+        "null": true,
+        "law": "clayton",
+        "rho": 0.6,
+        "id": 6
+      },
+      "platform": "Linux-6.12.110-1.el8.x86_64-x86_64-with-glibc2.28",
+      "cpu_model": "AMD EPYC 7302 16-Core Processor",
+      "method": "Fourier_unsmoothed",
+      "repetitions": 750,
+      "rate": 0.04933333333333333,
+      "mean_call_seconds": 0.06343889608047902,
+      "scope": "secondary platform-stratified descriptive; not a replacement primary cohort"
+    },
+    {
+      "stratum": {
+        "study": "copula",
+        "d": 20,
+        "n": 1000,
+        "null": true,
+        "law": "clayton",
+        "rho": 0.6,
+        "id": 6
+      },
+      "platform": "Linux-6.12.110-1.el8.x86_64-x86_64-with-glibc2.28",
+      "cpu_model": "AMD EPYC 7302 16-Core Processor",
+      "method": "MMD_exact_median_grid",
+      "repetitions": 750,
+      "rate": 0.04533333333333334,
+      "mean_call_seconds": 0.3745958323928838,
+      "scope": "secondary platform-stratified descriptive; not a replacement primary cohort"
+    },
+    {
+      "stratum": {
+        "study": "copula",
+        "d": 20,
+        "n": 1000,
+        "null": true,
+        "law": "gumbel",
+        "rho": 0.6,
+        "id": 7
+      },
+      "platform": "Linux-6.12.110-1.el8.x86_64-x86_64-with-glibc2.28",
+      "cpu_model": "AMD EPYC 7302 16-Core Processor",
+      "method": "Rank_G_pairs",
+      "repetitions": 750,
+      "rate": 0.05466666666666667,
+      "mean_call_seconds": 0.38749148571584374,
+      "scope": "secondary platform-stratified descriptive; not a replacement primary cohort"
+    },
+    {
+      "stratum": {
+        "study": "copula",
+        "d": 20,
+        "n": 1000,
+        "null": true,
+        "law": "gumbel",
+        "rho": 0.6,
+        "id": 7
+      },
+      "platform": "Linux-6.12.110-1.el8.x86_64-x86_64-with-glibc2.28",
+      "cpu_model": "AMD EPYC 7302 16-Core Processor",
+      "method": "ME",
+      "repetitions": 750,
+      "rate": 0.048,
+      "mean_call_seconds": 0.05836236455384642,
+      "scope": "secondary platform-stratified descriptive; not a replacement primary cohort"
+    },
+    {
+      "stratum": {
+        "study": "copula",
+        "d": 20,
+        "n": 1000,
+        "null": true,
+        "law": "gumbel",
+        "rho": 0.6,
+        "id": 7
+      },
+      "platform": "Linux-6.12.110-1.el8.x86_64-x86_64-with-glibc2.28",
+      "cpu_model": "AMD EPYC 7302 16-Core Processor",
+      "method": "Fourier_unsmoothed",
+      "repetitions": 750,
+      "rate": 0.044,
+      "mean_call_seconds": 0.06345010189991444,
+      "scope": "secondary platform-stratified descriptive; not a replacement primary cohort"
+    },
+    {
+      "stratum": {
+        "study": "copula",
+        "d": 20,
+        "n": 1000,
+        "null": true,
+        "law": "gumbel",
+        "rho": 0.6,
+        "id": 7
+      },
+      "platform": "Linux-6.12.110-1.el8.x86_64-x86_64-with-glibc2.28",
+      "cpu_model": "AMD EPYC 7302 16-Core Processor",
+      "method": "MMD_exact_median_grid",
+      "repetitions": 750,
+      "rate": 0.048,
+      "mean_call_seconds": 0.3762360909593602,
+      "scope": "secondary platform-stratified descriptive; not a replacement primary cohort"
+    },
+    {
+      "stratum": {
+        "study": "copula",
+        "d": 20,
+        "n": 1000,
+        "null": false,
+        "law": "clayton",
+        "rho": 0.6,
+        "id": 8
+      },
+      "platform": "Linux-6.12.110-1.el8.x86_64-x86_64-with-glibc2.28",
+      "cpu_model": "AMD EPYC 7302 16-Core Processor",
+      "method": "Rank_G_pairs",
+      "repetitions": 250,
+      "rate": 1.0,
+      "mean_call_seconds": 0.38259954867139456,
+      "scope": "secondary platform-stratified descriptive; not a replacement primary cohort"
+    },
+    {
+      "stratum": {
+        "study": "copula",
+        "d": 20,
+        "n": 1000,
+        "null": false,
+        "law": "clayton",
+        "rho": 0.6,
+        "id": 8
+      },
+      "platform": "Linux-6.12.110-1.el8.x86_64-x86_64-with-glibc2.28",
+      "cpu_model": "AMD EPYC 7302 16-Core Processor",
+      "method": "ME",
+      "repetitions": 250,
+      "rate": 0.832,
+      "mean_call_seconds": 0.05843657570611686,
+      "scope": "secondary platform-stratified descriptive; not a replacement primary cohort"
+    },
+    {
+      "stratum": {
+        "study": "copula",
+        "d": 20,
+        "n": 1000,
+        "null": false,
+        "law": "clayton",
+        "rho": 0.6,
+        "id": 8
+      },
+      "platform": "Linux-6.12.110-1.el8.x86_64-x86_64-with-glibc2.28",
+      "cpu_model": "AMD EPYC 7302 16-Core Processor",
+      "method": "Fourier_unsmoothed",
+      "repetitions": 250,
+      "rate": 0.92,
+      "mean_call_seconds": 0.0627472787797451,
+      "scope": "secondary platform-stratified descriptive; not a replacement primary cohort"
+    },
+    {
+      "stratum": {
+        "study": "copula",
+        "d": 20,
+        "n": 1000,
+        "null": false,
+        "law": "clayton",
+        "rho": 0.6,
+        "id": 8
+      },
+      "platform": "Linux-6.12.110-1.el8.x86_64-x86_64-with-glibc2.28",
+      "cpu_model": "AMD EPYC 7302 16-Core Processor",
+      "method": "MMD_exact_median_grid",
+      "repetitions": 250,
+      "rate": 0.98,
+      "mean_call_seconds": 0.3725105601968244,
+      "scope": "secondary platform-stratified descriptive; not a replacement primary cohort"
+    },
+    {
+      "stratum": {
+        "study": "copula",
+        "d": 20,
+        "n": 1000,
+        "null": false,
+        "law": "gumbel",
+        "rho": 0.6,
+        "id": 9
+      },
+      "platform": "Linux-6.12.110-1.el8.x86_64-x86_64-with-glibc2.28",
+      "cpu_model": "AMD EPYC 7302 16-Core Processor",
+      "method": "Rank_G_pairs",
+      "repetitions": 250,
+      "rate": 0.94,
+      "mean_call_seconds": 0.38273102390114216,
+      "scope": "secondary platform-stratified descriptive; not a replacement primary cohort"
+    },
+    {
+      "stratum": {
+        "study": "copula",
+        "d": 20,
+        "n": 1000,
+        "null": false,
+        "law": "gumbel",
+        "rho": 0.6,
+        "id": 9
+      },
+      "platform": "Linux-6.12.110-1.el8.x86_64-x86_64-with-glibc2.28",
+      "cpu_model": "AMD EPYC 7302 16-Core Processor",
+      "method": "ME",
+      "repetitions": 250,
+      "rate": 0.648,
+      "mean_call_seconds": 0.05845429647620767,
+      "scope": "secondary platform-stratified descriptive; not a replacement primary cohort"
+    },
+    {
+      "stratum": {
+        "study": "copula",
+        "d": 20,
+        "n": 1000,
+        "null": false,
+        "law": "gumbel",
+        "rho": 0.6,
+        "id": 9
+      },
+      "platform": "Linux-6.12.110-1.el8.x86_64-x86_64-with-glibc2.28",
+      "cpu_model": "AMD EPYC 7302 16-Core Processor",
+      "method": "Fourier_unsmoothed",
+      "repetitions": 250,
+      "rate": 0.612,
+      "mean_call_seconds": 0.06318162081204355,
+      "scope": "secondary platform-stratified descriptive; not a replacement primary cohort"
+    },
+    {
+      "stratum": {
+        "study": "copula",
+        "d": 20,
+        "n": 1000,
+        "null": false,
+        "law": "gumbel",
+        "rho": 0.6,
+        "id": 9
+      },
+      "platform": "Linux-6.12.110-1.el8.x86_64-x86_64-with-glibc2.28",
+      "cpu_model": "AMD EPYC 7302 16-Core Processor",
+      "method": "MMD_exact_median_grid",
+      "repetitions": 250,
+      "rate": 0.98,
+      "mean_call_seconds": 0.3738894866351038,
+      "scope": "secondary platform-stratified descriptive; not a replacement primary cohort"
+    },
+    {
+      "stratum": {
+        "study": "gaussian",
+        "d": 2,
+        "n": 250,
+        "null": true,
+        "law": "gaussian",
+        "rho": 0.0,
+        "id": 10
+      },
+      "platform": "Linux-6.8.0-136-generic-x86_64-with-glibc2.35",
+      "cpu_model": "Intel(R) Xeon(R) Gold 6148 CPU @ 2.40GHz",
+      "method": "Rank_Pearson_joint",
+      "repetitions": 4000,
+      "rate": 0.04625,
+      "mean_call_seconds": 0.004219983565853909,
+      "scope": "secondary platform-stratified descriptive; not a replacement primary cohort"
+    },
+    {
+      "stratum": {
+        "study": "gaussian",
+        "d": 2,
+        "n": 250,
+        "null": true,
+        "law": "gaussian",
+        "rho": 0.0,
+        "id": 10
+      },
+      "platform": "Linux-6.8.0-136-generic-x86_64-with-glibc2.35",
+      "cpu_model": "Intel(R) Xeon(R) Gold 6148 CPU @ 2.40GHz",
+      "method": "Rank_Pearson_coordinate0",
+      "repetitions": 4000,
+      "rate": 0.04925,
+      "mean_call_seconds": 0.0018581820852123202,
+      "scope": "secondary platform-stratified descriptive; not a replacement primary cohort"
+    },
+    {
+      "stratum": {
+        "study": "gaussian",
+        "d": 2,
+        "n": 250,
+        "null": false,
+        "law": "gaussian",
+        "rho": 0.2,
+        "id": 11
+      },
+      "platform": "Linux-6.8.0-136-generic-x86_64-with-glibc2.35",
+      "cpu_model": "Intel(R) Xeon(R) Gold 6148 CPU @ 2.40GHz",
+      "method": "Rank_Pearson_joint",
+      "repetitions": 500,
+      "rate": 0.054,
+      "mean_call_seconds": 0.00424475428648293,
+      "scope": "secondary platform-stratified descriptive; not a replacement primary cohort"
+    },
+    {
+      "stratum": {
+        "study": "gaussian",
+        "d": 2,
+        "n": 250,
+        "null": false,
+        "law": "gaussian",
+        "rho": 0.2,
+        "id": 11
+      },
+      "platform": "Linux-6.8.0-136-generic-x86_64-with-glibc2.35",
+      "cpu_model": "Intel(R) Xeon(R) Gold 6148 CPU @ 2.40GHz",
+      "method": "Rank_Pearson_coordinate0",
+      "repetitions": 500,
+      "rate": 0.062,
+      "mean_call_seconds": 0.0018665300235152244,
+      "scope": "secondary platform-stratified descriptive; not a replacement primary cohort"
+    },
+    {
+      "stratum": {
+        "study": "gaussian",
+        "d": 2,
+        "n": 250,
+        "null": false,
+        "law": "gaussian",
+        "rho": 0.4,
+        "id": 12
+      },
+      "platform": "Linux-6.8.0-136-generic-x86_64-with-glibc2.35",
+      "cpu_model": "Intel(R) Xeon(R) Gold 6148 CPU @ 2.40GHz",
+      "method": "Rank_Pearson_joint",
+      "repetitions": 500,
+      "rate": 0.13,
+      "mean_call_seconds": 0.004212442059069872,
+      "scope": "secondary platform-stratified descriptive; not a replacement primary cohort"
+    },
+    {
+      "stratum": {
+        "study": "gaussian",
+        "d": 2,
+        "n": 250,
+        "null": false,
+        "law": "gaussian",
+        "rho": 0.4,
+        "id": 12
+      },
+      "platform": "Linux-6.8.0-136-generic-x86_64-with-glibc2.35",
+      "cpu_model": "Intel(R) Xeon(R) Gold 6148 CPU @ 2.40GHz",
+      "method": "Rank_Pearson_coordinate0",
+      "repetitions": 500,
+      "rate": 0.048,
+      "mean_call_seconds": 0.0018576416485011577,
+      "scope": "secondary platform-stratified descriptive; not a replacement primary cohort"
+    },
+    {
+      "stratum": {
+        "study": "gaussian",
+        "d": 2,
+        "n": 500,
+        "null": true,
+        "law": "gaussian",
+        "rho": 0.0,
+        "id": 13
+      },
+      "platform": "Linux-6.8.0-136-generic-x86_64-with-glibc2.35",
+      "cpu_model": "Intel(R) Xeon(R) Gold 6148 CPU @ 2.40GHz",
+      "method": "Rank_Pearson_joint",
+      "repetitions": 4000,
+      "rate": 0.04825,
+      "mean_call_seconds": 0.00659785553952679,
+      "scope": "secondary platform-stratified descriptive; not a replacement primary cohort"
+    },
+    {
+      "stratum": {
+        "study": "gaussian",
+        "d": 2,
+        "n": 500,
+        "null": true,
+        "law": "gaussian",
+        "rho": 0.0,
+        "id": 13
+      },
+      "platform": "Linux-6.8.0-136-generic-x86_64-with-glibc2.35",
+      "cpu_model": "Intel(R) Xeon(R) Gold 6148 CPU @ 2.40GHz",
+      "method": "Rank_Pearson_coordinate0",
+      "repetitions": 4000,
+      "rate": 0.053,
+      "mean_call_seconds": 0.0027564304689876736,
+      "scope": "secondary platform-stratified descriptive; not a replacement primary cohort"
+    },
+    {
+      "stratum": {
+        "study": "gaussian",
+        "d": 2,
+        "n": 500,
+        "null": false,
+        "law": "gaussian",
+        "rho": 0.2,
+        "id": 14
+      },
+      "platform": "Linux-6.8.0-136-generic-x86_64-with-glibc2.35",
+      "cpu_model": "Intel(R) Xeon(R) Gold 6148 CPU @ 2.40GHz",
+      "method": "Rank_Pearson_joint",
+      "repetitions": 500,
+      "rate": 0.08,
+      "mean_call_seconds": 0.006784707259386778,
+      "scope": "secondary platform-stratified descriptive; not a replacement primary cohort"
+    },
+    {
+      "stratum": {
+        "study": "gaussian",
+        "d": 2,
+        "n": 500,
+        "null": false,
+        "law": "gaussian",
+        "rho": 0.2,
+        "id": 14
+      },
+      "platform": "Linux-6.8.0-136-generic-x86_64-with-glibc2.35",
+      "cpu_model": "Intel(R) Xeon(R) Gold 6148 CPU @ 2.40GHz",
+      "method": "Rank_Pearson_coordinate0",
+      "repetitions": 500,
+      "rate": 0.052,
+      "mean_call_seconds": 0.0027976885233074425,
+      "scope": "secondary platform-stratified descriptive; not a replacement primary cohort"
+    },
+    {
+      "stratum": {
+        "study": "gaussian",
+        "d": 2,
+        "n": 500,
+        "null": false,
+        "law": "gaussian",
+        "rho": 0.4,
+        "id": 15
+      },
+      "platform": "Linux-6.8.0-136-generic-x86_64-with-glibc2.35",
+      "cpu_model": "Intel(R) Xeon(R) Gold 6148 CPU @ 2.40GHz",
+      "method": "Rank_Pearson_joint",
+      "repetitions": 500,
+      "rate": 0.518,
+      "mean_call_seconds": 0.006613173527643085,
+      "scope": "secondary platform-stratified descriptive; not a replacement primary cohort"
+    },
+    {
+      "stratum": {
+        "study": "gaussian",
+        "d": 2,
+        "n": 500,
+        "null": false,
+        "law": "gaussian",
+        "rho": 0.4,
+        "id": 15
+      },
+      "platform": "Linux-6.8.0-136-generic-x86_64-with-glibc2.35",
+      "cpu_model": "Intel(R) Xeon(R) Gold 6148 CPU @ 2.40GHz",
+      "method": "Rank_Pearson_coordinate0",
+      "repetitions": 500,
+      "rate": 0.038,
+      "mean_call_seconds": 0.0027645582146942614,
+      "scope": "secondary platform-stratified descriptive; not a replacement primary cohort"
+    },
+    {
+      "stratum": {
+        "study": "gaussian",
+        "d": 2,
+        "n": 1000,
+        "null": true,
+        "law": "gaussian",
+        "rho": 0.0,
+        "id": 16
+      },
+      "platform": "Linux-6.8.0-136-generic-x86_64-with-glibc2.35",
+      "cpu_model": "Intel(R) Xeon(R) Gold 6148 CPU @ 2.40GHz",
+      "method": "Rank_Pearson_joint",
+      "repetitions": 4000,
+      "rate": 0.042,
+      "mean_call_seconds": 0.01748631006712094,
+      "scope": "secondary platform-stratified descriptive; not a replacement primary cohort"
+    },
+    {
+      "stratum": {
+        "study": "gaussian",
+        "d": 2,
+        "n": 1000,
+        "null": true,
+        "law": "gaussian",
+        "rho": 0.0,
+        "id": 16
+      },
+      "platform": "Linux-6.8.0-136-generic-x86_64-with-glibc2.35",
+      "cpu_model": "Intel(R) Xeon(R) Gold 6148 CPU @ 2.40GHz",
+      "method": "Rank_Pearson_coordinate0",
+      "repetitions": 4000,
+      "rate": 0.046,
+      "mean_call_seconds": 0.0050308250365778805,
+      "scope": "secondary platform-stratified descriptive; not a replacement primary cohort"
+    },
+    {
+      "stratum": {
+        "study": "gaussian",
+        "d": 2,
+        "n": 1000,
+        "null": false,
+        "law": "gaussian",
+        "rho": 0.2,
+        "id": 17
+      },
+      "platform": "Linux-6.8.0-136-generic-x86_64-with-glibc2.35",
+      "cpu_model": "Intel(R) Xeon(R) Gold 6148 CPU @ 2.40GHz",
+      "method": "Rank_Pearson_joint",
+      "repetitions": 500,
+      "rate": 0.296,
+      "mean_call_seconds": 0.017780006816610693,
+      "scope": "secondary platform-stratified descriptive; not a replacement primary cohort"
+    },
+    {
+      "stratum": {
+        "study": "gaussian",
+        "d": 2,
+        "n": 1000,
+        "null": false,
+        "law": "gaussian",
+        "rho": 0.2,
+        "id": 17
+      },
+      "platform": "Linux-6.8.0-136-generic-x86_64-with-glibc2.35",
+      "cpu_model": "Intel(R) Xeon(R) Gold 6148 CPU @ 2.40GHz",
+      "method": "Rank_Pearson_coordinate0",
+      "repetitions": 500,
+      "rate": 0.032,
+      "mean_call_seconds": 0.005104147285223007,
+      "scope": "secondary platform-stratified descriptive; not a replacement primary cohort"
+    },
+    {
+      "stratum": {
+        "study": "gaussian",
+        "d": 2,
+        "n": 1000,
+        "null": false,
+        "law": "gaussian",
+        "rho": 0.4,
+        "id": 18
+      },
+      "platform": "Linux-6.8.0-136-generic-x86_64-with-glibc2.35",
+      "cpu_model": "Intel(R) Xeon(R) Gold 6148 CPU @ 2.40GHz",
+      "method": "Rank_Pearson_joint",
+      "repetitions": 500,
+      "rate": 0.92,
+      "mean_call_seconds": 0.01796508091315627,
+      "scope": "secondary platform-stratified descriptive; not a replacement primary cohort"
+    },
+    {
+      "stratum": {
+        "study": "gaussian",
+        "d": 2,
+        "n": 1000,
+        "null": false,
+        "law": "gaussian",
+        "rho": 0.4,
+        "id": 18
+      },
+      "platform": "Linux-6.8.0-136-generic-x86_64-with-glibc2.35",
+      "cpu_model": "Intel(R) Xeon(R) Gold 6148 CPU @ 2.40GHz",
+      "method": "Rank_Pearson_coordinate0",
+      "repetitions": 500,
+      "rate": 0.06,
+      "mean_call_seconds": 0.0051788844466209415,
+      "scope": "secondary platform-stratified descriptive; not a replacement primary cohort"
+    },
+    {
+      "stratum": {
+        "study": "gaussian",
+        "d": 2,
+        "n": 2000,
+        "null": true,
+        "law": "gaussian",
+        "rho": 0.0,
+        "id": 19
+      },
+      "platform": "Linux-6.8.0-136-generic-x86_64-with-glibc2.35",
+      "cpu_model": "Intel(R) Xeon(R) Gold 6148 CPU @ 2.40GHz",
+      "method": "Rank_Pearson_joint",
+      "repetitions": 4000,
+      "rate": 0.05075,
+      "mean_call_seconds": 0.03796339507983066,
+      "scope": "secondary platform-stratified descriptive; not a replacement primary cohort"
+    },
+    {
+      "stratum": {
+        "study": "gaussian",
+        "d": 2,
+        "n": 2000,
+        "null": true,
+        "law": "gaussian",
+        "rho": 0.0,
+        "id": 19
+      },
+      "platform": "Linux-6.8.0-136-generic-x86_64-with-glibc2.35",
+      "cpu_model": "Intel(R) Xeon(R) Gold 6148 CPU @ 2.40GHz",
+      "method": "Rank_Pearson_coordinate0",
+      "repetitions": 4000,
+      "rate": 0.05125,
+      "mean_call_seconds": 0.012421604845672845,
+      "scope": "secondary platform-stratified descriptive; not a replacement primary cohort"
+    },
+    {
+      "stratum": {
+        "study": "gaussian",
+        "d": 2,
+        "n": 2000,
+        "null": false,
+        "law": "gaussian",
+        "rho": 0.2,
+        "id": 20
+      },
+      "platform": "Linux-6.8.0-136-generic-x86_64-with-glibc2.35",
+      "cpu_model": "Intel(R) Xeon(R) Gold 6148 CPU @ 2.40GHz",
+      "method": "Rank_Pearson_joint",
+      "repetitions": 500,
+      "rate": 0.736,
+      "mean_call_seconds": 0.03900230798684061,
+      "scope": "secondary platform-stratified descriptive; not a replacement primary cohort"
+    },
+    {
+      "stratum": {
+        "study": "gaussian",
+        "d": 2,
+        "n": 2000,
+        "null": false,
+        "law": "gaussian",
+        "rho": 0.2,
+        "id": 20
+      },
+      "platform": "Linux-6.8.0-136-generic-x86_64-with-glibc2.35",
+      "cpu_model": "Intel(R) Xeon(R) Gold 6148 CPU @ 2.40GHz",
+      "method": "Rank_Pearson_coordinate0",
+      "repetitions": 500,
+      "rate": 0.036,
+      "mean_call_seconds": 0.012915706792846322,
+      "scope": "secondary platform-stratified descriptive; not a replacement primary cohort"
+    },
+    {
+      "stratum": {
+        "study": "gaussian",
+        "d": 2,
+        "n": 2000,
+        "null": false,
+        "law": "gaussian",
+        "rho": 0.4,
+        "id": 21
+      },
+      "platform": "Linux-6.8.0-136-generic-x86_64-with-glibc2.35",
+      "cpu_model": "Intel(R) Xeon(R) Gold 6148 CPU @ 2.40GHz",
+      "method": "Rank_Pearson_joint",
+      "repetitions": 500,
+      "rate": 0.998,
+      "mean_call_seconds": 0.03967944379150867,
+      "scope": "secondary platform-stratified descriptive; not a replacement primary cohort"
+    },
+    {
+      "stratum": {
+        "study": "gaussian",
+        "d": 2,
+        "n": 2000,
+        "null": false,
+        "law": "gaussian",
+        "rho": 0.4,
+        "id": 21
+      },
+      "platform": "Linux-6.8.0-136-generic-x86_64-with-glibc2.35",
+      "cpu_model": "Intel(R) Xeon(R) Gold 6148 CPU @ 2.40GHz",
+      "method": "Rank_Pearson_coordinate0",
+      "repetitions": 500,
+      "rate": 0.052,
+      "mean_call_seconds": 0.013144898811355233,
+      "scope": "secondary platform-stratified descriptive; not a replacement primary cohort"
+    }
+  ],
+  "null_resolved": 25,
+  "null_screens": 32,
+  "qualified_contrasts": 6
+}

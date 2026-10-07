@@ -1,0 +1,42 @@
+[
+  {
+    "study": "calibration",
+    "file": "calibration-raw.tar.gz",
+    "size_bytes": 11981786,
+    "sha256": "efcbf13175d3b7102fd1da2c085067700a9a8def753ff1fbc78707b535134748",
+    "shards": 1,
+    "published_url": null
+  },
+  {
+    "study": "comparator",
+    "file": "comparator-raw.tar.gz",
+    "size_bytes": 54247226,
+    "sha256": "0490352acb5cbb7b0bb8b03c5d1789623ebf8fd3bb5c4b3e9cb156c4edb37691",
+    "shards": 80,
+    "published_url": null
+  },
+  {
+    "study": "generator",
+    "file": "generator-raw.tar.gz",
+    "size_bytes": 281984397,
+    "sha256": "19a39476858c8418a0187d6383b2bedea73677da7d287fd9425020a71181760a",
+    "shards": 16,
+    "published_url": null
+  },
+  {
+    "study": "axis",
+    "file": "axis-raw.tar.gz",
+    "size_bytes": 56357176,
+    "sha256": "ad6340646039ee01327fa98fda7dad9fe2f7b89251ad8d9ce57b2b642a9d0799",
+    "shards": 80,
+    "published_url": null
+  },
+  {
+    "study": "dependence",
+    "file": "dependence-raw.tar.gz",
+    "size_bytes": 171637023,
+    "sha256": "1eb242bca96b9bab8fbb9cfdd59ba59b11a6e7c1ad834267e63eeaa526c50901",
+    "shards": 20,
+    "published_url": null
+  }
+]

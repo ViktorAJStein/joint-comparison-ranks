@@ -1,0 +1,166 @@
+% Matched-f study; keep cohort/backend-specific timing scopes.
+{\color{purple}
+\paragraph{Protocol and statistic.}
+We compare Pearson, $G$ (centered KL), Freeman--Tukey (FT), and
+Cressie--Read $\lambda=2$ (CR$_2$), without selecting $f$ on the evaluation
+outcomes. For $d\in\{20,50\}$, each class supplies 200 independent training
+observations and $N=M=500$ evaluation observations. The pooled training mean
+centers both evaluation samples; training labels are not used for choosing $f$.
+We hold $K=4$, $L=64$ distinct random coordinate pairs ($d_{\rm sub}=2$),
+reference pseudocount $\gamma=.1$, Gaussian jitter SD $10^{-12}$, and
+$\alpha=.05$ fixed. Every data block shares its data, coordinate pairs,
+reference-position draws, jitter and permutations across all four generators.
+A shared reference batch per view is reconstructed from fixed reference-role
+positions for every allocation; all $M$ observations assigned the reference
+role contribute to its histogram. In each view $\ell\in\{1,\ldots,L\}$
+with $m=(K+1)^2=25$ cells, indexed by $j\in\{1,\ldots,m\}$, write
+\[
+ \widehat p_{\ell j}=\frac{H_{X,\ell j}}{N},\qquad
+ \widehat q_{\ell j}=\frac{H_{Y,\ell j}+\gamma}{M+\gamma m},\qquad
+ T_f=c_fN\sum_{\ell=1}^{L}\sum_{j=1}^{m}
+ \widehat q_{\ell j}f(\widehat p_{\ell j}/\widehat q_{\ell j}).
+\]
+Here $H_{X,\ell j},H_{Y,\ell j}$ are the target/reference cell counts for the
+current allocation, and $c_f=2/f''(1)$. The generators are
+$(t-1)^2$, $t\log t-t+1$, $2(\sqrt t-1)^2$, and $(t^3-3t+2)/6$,
+with $c_f=1,2,2,2$, respectively and continuous endpoint conventions.
+All four have finite $f(0)$; FT also has finite recession slope 2. Since
+$\gamma>0$, this experiment does not exercise a zero-reference-mass recession
+term. Calibration uses $B=199$ independent uniform permutations, the complete
+fixed budget and the plus-one upper tail, including ties. Batched count
+arithmetic is an implementation optimization of these same statistics;
+840 scalar/batched equivalence checks precede decision-scale evaluation.
+
+\paragraph{Data and scope.}
+Nulls are standard Gaussian, independently rotated standard Gaussian,
+integer-rounded standard Gaussian, and Gaussian AR1 with covariance
+$\Sigma_{ij}=.6^{|i-j|}$, $i,j\in\{1,\ldots,d\}$.
+The AR1 alternative shifts the target mean by $.4d^{-1/2}\mathbf1$.
+The sparse-scale target has covariance $\operatorname{diag}(1.5^2,1,\ldots,1)$
+against a standard Gaussian reference, in raw and independently rotated
+coordinates. A common orthogonal matrix from a Gaussian QR decomposition
+rotates both classes, including their training observations, within a paired
+base block. The matched-moment mixture has equiprobable component means
+$\pm\mu$, $\mu=(.8/\sqrt2,.8/\sqrt2,0,\ldots,0)$, and within-component
+covariance $I_d-\mu\mu^\top$ against a standard Gaussian reference; the
+implementation adds $10^{-10}I_d$ to this covariance for numerical sampling.
+This is not the axis-aligned multi-component mixture diagnostic elsewhere.
+
+There are $R=4000$ blocks per null representation and $R=500$ per alternative
+representation. Seeds are independent of the comparator and representation cohorts. All 27000 base blocks, 36000 paired representation groups and 144000
+generator results completed, with no failures or warnings; qualification data
+are excluded. This pair-view/$B=199$ study is distinct from the
+singleton-view/$B=100$ PCA audit. Its empirical results do not extend the
+independent-fresh-batch oracle consistency theorem.
+
+\paragraph{Calibration and paired inference.}
+The predeclared 32 null screens use one-sided exact binomial over-rejection
+tests with Bonferroni correction at family level $.05$. A screen is resolved
+only if it has no significant adjusted over-rejection and its simultaneous
+one-sided exact upper size bound is at most $.065$ (bound confidence
+$1-.05/32$ per screen). Frequencies range from $.04425$ to $.05775$;
+23 screens resolve and 9 are inconclusive, with no significant adjusted
+over-rejection (Table~\ref{tab:matched-f-null}); Figure~\ref{fig:matched-f-null}
+shows the distinct pointwise intervals. Inconclusive does not mean
+proven miscalibration. Pointwise exact 95\% intervals are not simultaneous.
+
+All six generator pairs in each of eight alternative/dimension/representation
+strata form one family of 48 exact two-sided paired McNemar tests, with Holm
+correction at $.05$. Let $n_{10},n_{01}$ count blocks rejected only by generator
+A or B. The paired frequency difference is
+$\widehat\Delta=(n_{10}-n_{01})/R$; reported pointwise normal95\% intervals use
+$\widehat{\rm SE}^2=(n_{10}+n_{01}-(n_{10}-n_{01})^2/R)/(R(R-1))$.
+These intervals are descriptive, not simultaneous substitutes for Holm.
+Of 26 significant frequency differences, 12 additionally have both matching
+null screens resolved; the other 14 are not promoted to controlled-size
+superiority. Tables~\ref{tab:matched-f-contrasts-locshift},
+\ref{tab:matched-f-contrasts-sparse-scale} and
+\ref{tab:matched-f-contrasts-gmm-matched} give all 48 contrasts.
+AR1 shifts use the AR1 null; raw/rotated scale use the corresponding
+Gaussian null, and the mixture uses the raw Gaussian null. All planned strata,
+not just favorable comparisons, remain visible.
+
+\paragraph{Findings.}
+Table~\ref{tab:matched-f-power} and Figure~\ref{fig:matched-f-power} show all
+alternative frequencies. On rotated scale at $d=20$, G exceeds FT by $.100$
+(pointwise paired 95\% CI $[.06935,.13065]$, Holm $p=5.03\times10^{-9}$).
+On raw scale at $d=50$, G exceeds Pearson by $.186$
+(CI $[.14416,.22784]$, Holm $p=1.03\times10^{-15}$).
+Both matching null screens resolve for each highlighted comparison.
+FT also exceeds CR$_2$ on the $d=20$ AR1 shift by $.448$, Holm
+$p=9.17\times10^{-53}$, with resolved matching screens.
+G and FT shift differences are not Holm-significant, no adjusted difference
+is significant for rotated scale at $d=50$, and all four choices remain near
+nominal rejection on the tested matched-moment mixture.
+Generator choice therefore affects finite-sample detection under this fixed
+procedure, not a universal ordering or a validated adaptive-$f$ selector.
+Rare-reference-cell noise amplification is a possible explanation, not a
+contribution-level mechanism verified by this experiment.
+
+\paragraph{Runtime and reproducibility.}
+The fixed first 32 blocks per stratum are timed in randomized generator order,
+running each complete single-generator test routine on already-prepared
+evaluation arrays. This includes jitter/ranks, all permutations, count hashing
+inside the routine, and a common scalar-G initialization/check overhead for
+EVERY generator; it excludes data generation, training-only centering and
+pairwise-distance preprocessing, external input hashing, archival I/O and
+replay. Shared multi-generator costs are not standalone latency.
+Tables~\ref{tab:matched-f-runtime-null}--\ref{tab:matched-f-runtime-alternative}
+report all means, medians and interquartile ranges; these are descriptive,
+not confidence-adjusted runtime rankings. Figure~\ref{fig:matched-f-runtime}
+shows every alternative/runtime point, without treating a noisy empirical
+maximum as a proven winner. Descriptive runtime-budget selections require
+an explicit eligible set, measured test-routine budget, calibration screens
+and selection rule, not a new test chosen on evaluation labels.
+
+All runs use one AMD EPYC 7302 CPU, Python 3.12.14, NumPy 2.5.2, SciPy 1.18.1
+and scikit-learn 1.9.0, with one numerical thread and no GPU. The prospective
+cohort permits Linux 6.12.110/111 with the same exact Python build/packages;
+full platform metadata and secondary kernel-stratified summaries are retained
+without replacing primary denominators. All standalone timing observations
+come from the 6.12.111 stratum. These batched-backend, prepared-input timings
+must not be combined with external-comparator backend/hardware/pipeline
+timings into a speedup or dominance claim. Main parent allocations cost
+3.602 CPU-core-hours; retaining the full preparation and central-analysis
+reserves gives a conservative inclusive bound 4.352 hours.
+
+The source archive includes the anonymous configuration subset, all 32 null
+screens, 32 alternative frequency cells, 48 paired contrasts, 64 timing
+distributions and 128 kernel-stratified secondary rows under
+\texttt{empirical\_data/generator\_comparison\_20261007/}, with bound
+checksums. Original raw tails and input/source/replay receipts are retained
+in the private campaign archive; the updated anonymous runnable-code/raw-data
+release remains pending (Appendix~\ref{app:release-scope}). Independent checks
+reconstructed all 144000 plus-one tails and the protected 32/48 families.
+
+\input{empirical_data/generator_comparison_20261007/tables}
+
+\begin{figure}[t]
+\centering
+\includegraphics[width=.96\linewidth]{generator_comparison_v1_power.pdf}
+\caption{Matched-generator alternative rejection frequencies, $R=500$,
+with pointwise exact 95\% intervals. All four generators and eight strata are
+shown. Matching null-screen qualifications are in Table~\ref{tab:matched-f-power};
+point estimates alone do not certify controlled-size superiority.}
+\label{fig:matched-f-power}
+\end{figure}
+\begin{figure}[t]
+\centering
+\includegraphics[width=.96\linewidth]{generator_comparison_v1_nulls.pdf}
+\caption{All matched-generator null frequencies, $R=4000$, and pointwise
+exact 95\% intervals. Hollow markers indicate unresolved simultaneous-upper-bound
+screens. The dashed line is nominal $.05$; see Table~\ref{tab:matched-f-null}
+for the distinct simultaneous bounds and the 32-test screen.}
+\label{fig:matched-f-null}
+\end{figure}
+\begin{figure}[t]
+\centering
+\includegraphics[width=.96\linewidth]{generator_comparison_v1_power_runtime.pdf}
+\caption{Every matched-generator alternative frequency versus mean single-test
+routine latency over the fixed 32 timing blocks per stratum. No amortized shared
+latency or external-comparator timing is substituted. These are descriptive
+points, not significance-tested winners; calibration qualifications and timing
+distributions remain in the complete tables.}
+\label{fig:matched-f-runtime}
+\end{figure}
+}

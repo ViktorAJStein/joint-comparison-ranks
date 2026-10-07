@@ -1,0 +1,243 @@
+% Deterministically generated; numeric rows must not be hand-edited.
+\begin{table}[t]
+\caption{Complete alternative rejection frequencies, $R=500$ per row. $\dagger$ denotes an unresolved matching null-size screen, not significant over-rejection. No point-estimate maximum is designated a superior test. All pointwise exact 95\% intervals are shown in Figure~\ref{fig:matched-f-power} and archived with these tables.}
+\label{tab:matched-f-power}
+\centering\small
+\setlength{\tabcolsep}{8pt}\renewcommand{\arraystretch}{1.2}
+\begin{tabular}{lllrrrr}
+\toprule
+Alternative & $d$ & Representation & $\chi^2$ & $G$ & FT & CR$_2$ \\
+\midrule
+AR1 shift & 20 & raw & $0.132^{\dagger}$ & $0.514^{\dagger}$ & $0.520$ & $0.072$ \\
+AR1 shift & 50 & raw & $0.076^{\dagger}$ & $0.244$ & $0.252$ & $0.050$ \\
+Sparse scale & 20 & raw & $0.432^{\dagger}$ & $0.808^{\dagger}$ & $0.746$ & $0.272^{\dagger}$ \\
+Sparse scale & 20 & rotated & $0.216$ & $0.392$ & $0.292$ & $0.124$ \\
+Sparse scale & 50 & raw & $0.190$ & $0.376$ & $0.346^{\dagger}$ & $0.130$ \\
+Sparse scale & 50 & rotated & $0.086$ & $0.094$ & $0.072$ & $0.066$ \\
+Matched GMM & 20 & raw & $0.048^{\dagger}$ & $0.036^{\dagger}$ & $0.052$ & $0.042^{\dagger}$ \\
+Matched GMM & 50 & raw & $0.060$ & $0.048$ & $0.052^{\dagger}$ & $0.052$ \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\begin{table}[t]
+\caption{All 32 null screens, $R=4000$. Frequencies and pointwise exact 95\% intervals are distinct from the simultaneous one-sided upper bounds (Bonferroni family 32). \emph{Resolved} additionally requires no adjusted over-rejection and an upper bound $\le .065$. No screen has significant adjusted over-rejection; nine are inconclusive.}
+\label{tab:matched-f-null}
+\centering\small
+\setlength{\tabcolsep}{8pt}\renewcommand{\arraystretch}{1.2}
+\begin{tabular}{lllrrrl}
+\toprule
+Null & $d$ & $f$ & Frequency & 95\% interval & Upper bound & Resolved \\
+\midrule
+Gaussian (raw) & 20 & $\chi^2$ & $0.05775$ & $[0.051, 0.065]$ & $0.06947$ & no \\
+Gaussian (raw) & 20 & $G$ & $0.05425$ & $[0.047, 0.062]$ & $0.06566$ & no \\
+Gaussian (raw) & 20 & FT & $0.05100$ & $[0.044, 0.058]$ & $0.06211$ & yes \\
+Gaussian (raw) & 20 & CR$_2$ & $0.05500$ & $[0.048, 0.063]$ & $0.06648$ & no \\
+Gaussian (rotated) & 20 & $\chi^2$ & $0.04775$ & $[0.041, 0.055]$ & $0.05855$ & yes \\
+Gaussian (rotated) & 20 & $G$ & $0.04675$ & $[0.040, 0.054]$ & $0.05746$ & yes \\
+Gaussian (rotated) & 20 & FT & $0.04725$ & $[0.041, 0.054]$ & $0.05800$ & yes \\
+Gaussian (rotated) & 20 & CR$_2$ & $0.04775$ & $[0.041, 0.055]$ & $0.05855$ & yes \\
+Gaussian (raw) & 50 & $\chi^2$ & $0.05125$ & $[0.045, 0.059]$ & $0.06239$ & yes \\
+Gaussian (raw) & 50 & $G$ & $0.05225$ & $[0.046, 0.060]$ & $0.06348$ & yes \\
+Gaussian (raw) & 50 & FT & $0.05575$ & $[0.049, 0.063]$ & $0.06729$ & no \\
+Gaussian (raw) & 50 & CR$_2$ & $0.05100$ & $[0.044, 0.058]$ & $0.06211$ & yes \\
+Gaussian (rotated) & 50 & $\chi^2$ & $0.05300$ & $[0.046, 0.060]$ & $0.06430$ & yes \\
+Gaussian (rotated) & 50 & $G$ & $0.05025$ & $[0.044, 0.057]$ & $0.06129$ & yes \\
+Gaussian (rotated) & 50 & FT & $0.05025$ & $[0.044, 0.057]$ & $0.06129$ & yes \\
+Gaussian (rotated) & 50 & CR$_2$ & $0.05175$ & $[0.045, 0.059]$ & $0.06293$ & yes \\
+Rounded (raw) & 20 & $\chi^2$ & $0.04475$ & $[0.039, 0.052]$ & $0.05526$ & yes \\
+Rounded (raw) & 20 & $G$ & $0.05000$ & $[0.043, 0.057]$ & $0.06102$ & yes \\
+Rounded (raw) & 20 & FT & $0.04925$ & $[0.043, 0.056]$ & $0.06020$ & yes \\
+Rounded (raw) & 20 & CR$_2$ & $0.04425$ & $[0.038, 0.051]$ & $0.05471$ & yes \\
+Rounded (raw) & 50 & $\chi^2$ & $0.05625$ & $[0.049, 0.064]$ & $0.06784$ & no \\
+Rounded (raw) & 50 & $G$ & $0.05125$ & $[0.045, 0.059]$ & $0.06239$ & yes \\
+Rounded (raw) & 50 & FT & $0.05125$ & $[0.045, 0.059]$ & $0.06239$ & yes \\
+Rounded (raw) & 50 & CR$_2$ & $0.05500$ & $[0.048, 0.063]$ & $0.06648$ & no \\
+AR1 null (raw) & 20 & $\chi^2$ & $0.05450$ & $[0.048, 0.062]$ & $0.06593$ & no \\
+AR1 null (raw) & 20 & $G$ & $0.05400$ & $[0.047, 0.061]$ & $0.06539$ & no \\
+AR1 null (raw) & 20 & FT & $0.05350$ & $[0.047, 0.061]$ & $0.06484$ & yes \\
+AR1 null (raw) & 20 & CR$_2$ & $0.05250$ & $[0.046, 0.060]$ & $0.06375$ & yes \\
+AR1 null (raw) & 50 & $\chi^2$ & $0.05500$ & $[0.048, 0.063]$ & $0.06648$ & no \\
+AR1 null (raw) & 50 & $G$ & $0.05250$ & $[0.046, 0.060]$ & $0.06375$ & yes \\
+AR1 null (raw) & 50 & FT & $0.05100$ & $[0.044, 0.058]$ & $0.06211$ & yes \\
+AR1 null (raw) & 50 & CR$_2$ & $0.05200$ & $[0.045, 0.059]$ & $0.06321$ & yes \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\begin{table}[t]
+\caption{AR1 shift: all paired contrasts, $R=500$ per representation. Differences are A minus B, with pointwise normal 95\% intervals; adjusted $p$-values use the single family of ALL 48 contrasts, not a separate family per table. \emph{Qualified} requires Holm $p\le .05$ AND both matching null-size screens resolved.}
+\label{tab:matched-f-contrasts-locshift}
+\centering\small
+\setlength{\tabcolsep}{8pt}\renewcommand{\arraystretch}{1.2}
+\begin{tabular}{lllrrrl}
+\toprule
+$d$ & Rep. & $A-B$ & $\Delta$ & 95\% interval & Holm $p$ & Qualified \\
+\midrule
+20 & raw & $\chi^2-G$ & $-0.382$ & $[-0.426, -0.338]$ & $7.30\!\times\!10^{-50}$ & no \\
+20 & raw & $\chi^2-\mathrm{FT}$ & $-0.388$ & $[-0.435, -0.341]$ & $1.68\!\times\!10^{-44}$ & no \\
+20 & raw & $\chi^2-\mathrm{CR}_2$ & $0.060$ & $[0.033, 0.087]$ & $3.65\!\times\!10^{-4}$ & no \\
+20 & raw & $G-\mathrm{FT}$ & $-0.006$ & $[-0.033, 0.021]$ & $1$ & no \\
+20 & raw & $G-\mathrm{CR}_2$ & $0.442$ & $[0.395, 0.489]$ & $6.66\!\times\!10^{-55}$ & no \\
+20 & raw & $\mathrm{FT}-\mathrm{CR}_2$ & $0.448$ & $[0.400, 0.496]$ & $9.17\!\times\!10^{-53}$ & yes \\
+50 & raw & $\chi^2-G$ & $-0.168$ & $[-0.206, -0.130]$ & $2.70\!\times\!10^{-16}$ & no \\
+50 & raw & $\chi^2-\mathrm{FT}$ & $-0.176$ & $[-0.217, -0.135]$ & $7.41\!\times\!10^{-15}$ & no \\
+50 & raw & $\chi^2-\mathrm{CR}_2$ & $0.026$ & $[0.008, 0.044]$ & $0.1583$ & no \\
+50 & raw & $G-\mathrm{FT}$ & $-0.008$ & $[-0.036, 0.020]$ & $1$ & no \\
+50 & raw & $G-\mathrm{CR}_2$ & $0.194$ & $[0.155, 0.233]$ & $1.30\!\times\!10^{-19}$ & yes \\
+50 & raw & $\mathrm{FT}-\mathrm{CR}_2$ & $0.202$ & $[0.160, 0.244]$ & $1.37\!\times\!10^{-18}$ & yes \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\begin{table}[t]
+\caption{Sparse scale: all paired contrasts, $R=500$ per representation. Differences are A minus B, with pointwise normal 95\% intervals; adjusted $p$-values use the single family of ALL 48 contrasts, not a separate family per table. \emph{Qualified} requires Holm $p\le .05$ AND both matching null-size screens resolved.}
+\label{tab:matched-f-contrasts-sparse-scale}
+\centering\small
+\setlength{\tabcolsep}{8pt}\renewcommand{\arraystretch}{1.2}
+\begin{tabular}{lllrrrl}
+\toprule
+$d$ & Rep. & $A-B$ & $\Delta$ & 95\% interval & Holm $p$ & Qualified \\
+\midrule
+20 & raw & $\chi^2-G$ & $-0.376$ & $[-0.420, -0.332]$ & $5.30\!\times\!10^{-49}$ & no \\
+20 & raw & $\chi^2-\mathrm{FT}$ & $-0.314$ & $[-0.362, -0.266]$ & $3.67\!\times\!10^{-30}$ & no \\
+20 & raw & $\chi^2-\mathrm{CR}_2$ & $0.160$ & $[0.127, 0.193]$ & $1.40\!\times\!10^{-20}$ & no \\
+20 & raw & $G-\mathrm{FT}$ & $0.062$ & $[0.037, 0.087]$ & $2.04\!\times\!10^{-5}$ & no \\
+20 & raw & $G-\mathrm{CR}_2$ & $0.536$ & $[0.490, 0.582]$ & $3.31\!\times\!10^{-70}$ & no \\
+20 & raw & $\mathrm{FT}-\mathrm{CR}_2$ & $0.474$ & $[0.424, 0.524]$ & $4.07\!\times\!10^{-53}$ & no \\
+20 & rotated & $\chi^2-G$ & $-0.176$ & $[-0.218, -0.134]$ & $8.87\!\times\!10^{-14}$ & yes \\
+20 & rotated & $\chi^2-\mathrm{FT}$ & $-0.076$ & $[-0.120, -0.032]$ & $0.0208$ & yes \\
+20 & rotated & $\chi^2-\mathrm{CR}_2$ & $0.092$ & $[0.063, 0.121]$ & $8.53\!\times\!10^{-9}$ & yes \\
+20 & rotated & $G-\mathrm{FT}$ & $0.100$ & $[0.069, 0.131]$ & $5.03\!\times\!10^{-9}$ & yes \\
+20 & rotated & $G-\mathrm{CR}_2$ & $0.268$ & $[0.222, 0.314]$ & $3.27\!\times\!10^{-25}$ & yes \\
+20 & rotated & $\mathrm{FT}-\mathrm{CR}_2$ & $0.168$ & $[0.123, 0.213]$ & $6.59\!\times\!10^{-11}$ & yes \\
+50 & raw & $\chi^2-G$ & $-0.186$ & $[-0.228, -0.144]$ & $1.03\!\times\!10^{-15}$ & yes \\
+50 & raw & $\chi^2-\mathrm{FT}$ & $-0.156$ & $[-0.202, -0.110]$ & $4.82\!\times\!10^{-9}$ & no \\
+50 & raw & $\chi^2-\mathrm{CR}_2$ & $0.060$ & $[0.034, 0.086]$ & $2.31\!\times\!10^{-4}$ & yes \\
+50 & raw & $G-\mathrm{FT}$ & $0.030$ & $[-0.001, 0.061]$ & $1$ & no \\
+50 & raw & $G-\mathrm{CR}_2$ & $0.246$ & $[0.200, 0.292]$ & $1.73\!\times\!10^{-21}$ & yes \\
+50 & raw & $\mathrm{FT}-\mathrm{CR}_2$ & $0.216$ & $[0.168, 0.264]$ & $8.83\!\times\!10^{-16}$ & no \\
+50 & rotated & $\chi^2-G$ & $-0.008$ & $[-0.036, 0.020]$ & $1$ & no \\
+50 & rotated & $\chi^2-\mathrm{FT}$ & $0.014$ & $[-0.015, 0.043]$ & $1$ & no \\
+50 & rotated & $\chi^2-\mathrm{CR}_2$ & $0.020$ & $[0.001, 0.039]$ & $1$ & no \\
+50 & rotated & $G-\mathrm{FT}$ & $0.022$ & $[0.003, 0.041]$ & $0.7285$ & no \\
+50 & rotated & $G-\mathrm{CR}_2$ & $0.028$ & $[-0.001, 0.057]$ & $1$ & no \\
+50 & rotated & $\mathrm{FT}-\mathrm{CR}_2$ & $0.006$ & $[-0.023, 0.035]$ & $1$ & no \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\begin{table}[t]
+\caption{Matched GMM: all paired contrasts, $R=500$ per representation. Differences are A minus B, with pointwise normal 95\% intervals; adjusted $p$-values use the single family of ALL 48 contrasts, not a separate family per table. \emph{Qualified} requires Holm $p\le .05$ AND both matching null-size screens resolved.}
+\label{tab:matched-f-contrasts-gmm-matched}
+\centering\small
+\setlength{\tabcolsep}{8pt}\renewcommand{\arraystretch}{1.2}
+\begin{tabular}{lllrrrl}
+\toprule
+$d$ & Rep. & $A-B$ & $\Delta$ & 95\% interval & Holm $p$ & Qualified \\
+\midrule
+20 & raw & $\chi^2-G$ & $0.012$ & $[-0.009, 0.033]$ & $1$ & no \\
+20 & raw & $\chi^2-\mathrm{FT}$ & $-0.004$ & $[-0.031, 0.023]$ & $1$ & no \\
+20 & raw & $\chi^2-\mathrm{CR}_2$ & $0.006$ & $[-0.009, 0.021]$ & $1$ & no \\
+20 & raw & $G-\mathrm{FT}$ & $-0.016$ & $[-0.034, 0.002]$ & $1$ & no \\
+20 & raw & $G-\mathrm{CR}_2$ & $-0.006$ & $[-0.029, 0.017]$ & $1$ & no \\
+20 & raw & $\mathrm{FT}-\mathrm{CR}_2$ & $0.010$ & $[-0.017, 0.037]$ & $1$ & no \\
+50 & raw & $\chi^2-G$ & $0.012$ & $[-0.011, 0.035]$ & $1$ & no \\
+50 & raw & $\chi^2-\mathrm{FT}$ & $0.008$ & $[-0.019, 0.035]$ & $1$ & no \\
+50 & raw & $\chi^2-\mathrm{CR}_2$ & $0.008$ & $[-0.008, 0.024]$ & $1$ & no \\
+50 & raw & $G-\mathrm{FT}$ & $-0.004$ & $[-0.022, 0.014]$ & $1$ & no \\
+50 & raw & $G-\mathrm{CR}_2$ & $-0.004$ & $[-0.028, 0.020]$ & $1$ & no \\
+50 & raw & $\mathrm{FT}-\mathrm{CR}_2$ & $0.000$ & $[-0.027, 0.027]$ & $1$ & no \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\begin{table}[t]
+\caption{Complete null test-routine timings in ms, fixed first 32 blocks per stratum, randomized generator order. Mean, median and interquartile range are descriptive, not confidence-adjusted rankings or end-to-end pipeline timings.}
+\label{tab:matched-f-runtime-null}
+\centering\small
+\setlength{\tabcolsep}{8pt}\renewcommand{\arraystretch}{1.2}
+\begin{tabular}{lllrrr}
+\toprule
+Setting & $d$ & $f$ & Mean & Median & IQR \\
+\midrule
+Gaussian (raw) & 20 & $\chi^2$ & 262.3 & 262.2 & $[260.6, 265.4]$ \\
+Gaussian (raw) & 20 & $G$ & 273.9 & 274.3 & $[271.6, 277.2]$ \\
+Gaussian (raw) & 20 & FT & 263.7 & 264.5 & $[262.6, 266.2]$ \\
+Gaussian (raw) & 20 & CR$_2$ & 280.8 & 281.4 & $[278.2, 285.3]$ \\
+Gaussian (rotated) & 20 & $\chi^2$ & 259.8 & 261.3 & $[257.9, 262.6]$ \\
+Gaussian (rotated) & 20 & $G$ & 274.0 & 274.8 & $[270.2, 278.1]$ \\
+Gaussian (rotated) & 20 & FT & 263.5 & 264.3 & $[261.9, 266.1]$ \\
+Gaussian (rotated) & 20 & CR$_2$ & 281.7 & 282.9 & $[279.6, 286.9]$ \\
+Gaussian (raw) & 50 & $\chi^2$ & 267.3 & 267.4 & $[265.3, 270.4]$ \\
+Gaussian (raw) & 50 & $G$ & 279.6 & 280.0 & $[277.5, 283.7]$ \\
+Gaussian (raw) & 50 & FT & 269.7 & 270.4 & $[267.5, 272.5]$ \\
+Gaussian (raw) & 50 & CR$_2$ & 287.9 & 288.5 & $[284.7, 290.6]$ \\
+Gaussian (rotated) & 50 & $\chi^2$ & 265.8 & 266.2 & $[263.6, 268.7]$ \\
+Gaussian (rotated) & 50 & $G$ & 277.7 & 278.4 & $[275.9, 281.2]$ \\
+Gaussian (rotated) & 50 & FT & 268.3 & 269.2 & $[267.3, 271.5]$ \\
+Gaussian (rotated) & 50 & CR$_2$ & 287.0 & 286.4 & $[283.7, 291.7]$ \\
+Rounded (raw) & 20 & $\chi^2$ & 261.3 & 262.1 & $[259.4, 264.0]$ \\
+Rounded (raw) & 20 & $G$ & 273.4 & 274.5 & $[270.8, 276.7]$ \\
+Rounded (raw) & 20 & FT & 262.9 & 263.5 & $[260.4, 266.0]$ \\
+Rounded (raw) & 20 & CR$_2$ & 282.8 & 281.4 & $[279.5, 286.2]$ \\
+Rounded (raw) & 50 & $\chi^2$ & 265.3 & 265.1 & $[262.4, 267.5]$ \\
+Rounded (raw) & 50 & $G$ & 277.4 & 278.5 & $[275.0, 282.1]$ \\
+Rounded (raw) & 50 & FT & 266.3 & 266.5 & $[264.7, 269.8]$ \\
+Rounded (raw) & 50 & CR$_2$ & 284.3 & 284.6 & $[282.1, 286.9]$ \\
+AR1 null (raw) & 20 & $\chi^2$ & 258.9 & 260.4 & $[258.6, 263.1]$ \\
+AR1 null (raw) & 20 & $G$ & 271.7 & 273.9 & $[270.7, 276.0]$ \\
+AR1 null (raw) & 20 & FT & 262.0 & 263.1 & $[260.8, 266.2]$ \\
+AR1 null (raw) & 20 & CR$_2$ & 279.3 & 281.1 & $[278.8, 285.3]$ \\
+AR1 null (raw) & 50 & $\chi^2$ & 258.3 & 262.2 & $[251.0, 264.4]$ \\
+AR1 null (raw) & 50 & $G$ & 271.5 & 272.4 & $[265.8, 278.4]$ \\
+AR1 null (raw) & 50 & FT & 261.2 & 264.1 & $[253.4, 268.8]$ \\
+AR1 null (raw) & 50 & CR$_2$ & 276.7 & 281.5 & $[264.9, 283.8]$ \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\begin{table}[t]
+\caption{Complete alternative test-routine timings in ms, fixed first 32 blocks per stratum, randomized generator order. Mean, median and interquartile range are descriptive, not confidence-adjusted rankings or end-to-end pipeline timings.}
+\label{tab:matched-f-runtime-alternative}
+\centering\small
+\setlength{\tabcolsep}{8pt}\renewcommand{\arraystretch}{1.2}
+\begin{tabular}{lllrrr}
+\toprule
+Setting & $d$ & $f$ & Mean & Median & IQR \\
+\midrule
+AR1 shift (raw) & 20 & $\chi^2$ & 261.4 & 261.5 & $[258.7, 265.2]$ \\
+AR1 shift (raw) & 20 & $G$ & 273.0 & 275.1 & $[270.5, 276.9]$ \\
+AR1 shift (raw) & 20 & FT & 263.1 & 263.7 & $[261.6, 266.2]$ \\
+AR1 shift (raw) & 20 & CR$_2$ & 280.3 & 280.3 & $[278.8, 285.6]$ \\
+AR1 shift (raw) & 50 & $\chi^2$ & 263.9 & 265.0 & $[262.7, 268.9]$ \\
+AR1 shift (raw) & 50 & $G$ & 277.1 & 278.4 & $[275.5, 281.3]$ \\
+AR1 shift (raw) & 50 & FT & 265.9 & 266.0 & $[263.9, 268.5]$ \\
+AR1 shift (raw) & 50 & CR$_2$ & 285.5 & 285.7 & $[283.6, 290.4]$ \\
+Sparse scale (raw) & 20 & $\chi^2$ & 260.3 & 262.2 & $[258.0, 265.7]$ \\
+Sparse scale (raw) & 20 & $G$ & 271.7 & 273.1 & $[270.2, 276.8]$ \\
+Sparse scale (raw) & 20 & FT & 261.2 & 263.2 & $[260.1, 264.8]$ \\
+Sparse scale (raw) & 20 & CR$_2$ & 279.5 & 281.5 & $[277.2, 283.7]$ \\
+Sparse scale (rotated) & 20 & $\chi^2$ & 260.1 & 262.9 & $[258.7, 264.0]$ \\
+Sparse scale (rotated) & 20 & $G$ & 270.7 & 272.7 & $[269.0, 277.2]$ \\
+Sparse scale (rotated) & 20 & FT & 262.1 & 264.1 & $[260.2, 267.0]$ \\
+Sparse scale (rotated) & 20 & CR$_2$ & 280.3 & 281.3 & $[278.5, 283.8]$ \\
+Sparse scale (raw) & 50 & $\chi^2$ & 262.8 & 263.0 & $[260.8, 267.1]$ \\
+Sparse scale (raw) & 50 & $G$ & 275.8 & 276.7 & $[274.3, 278.8]$ \\
+Sparse scale (raw) & 50 & FT & 265.1 & 265.8 & $[263.0, 268.9]$ \\
+Sparse scale (raw) & 50 & CR$_2$ & 285.5 & 285.8 & $[283.9, 288.2]$ \\
+Sparse scale (rotated) & 50 & $\chi^2$ & 263.1 & 263.2 & $[260.6, 265.0]$ \\
+Sparse scale (rotated) & 50 & $G$ & 276.6 & 276.2 & $[275.2, 278.1]$ \\
+Sparse scale (rotated) & 50 & FT & 264.9 & 265.0 & $[262.6, 267.4]$ \\
+Sparse scale (rotated) & 50 & CR$_2$ & 284.2 & 285.9 & $[282.0, 287.3]$ \\
+Matched GMM (raw) & 20 & $\chi^2$ & 263.5 & 263.6 & $[261.6, 266.0]$ \\
+Matched GMM (raw) & 20 & $G$ & 274.5 & 274.2 & $[272.3, 277.0]$ \\
+Matched GMM (raw) & 20 & FT & 263.0 & 263.2 & $[261.1, 266.0]$ \\
+Matched GMM (raw) & 20 & CR$_2$ & 281.5 & 281.6 & $[279.9, 284.9]$ \\
+Matched GMM (raw) & 50 & $\chi^2$ & 264.9 & 264.8 & $[261.9, 268.0]$ \\
+Matched GMM (raw) & 50 & $G$ & 276.9 & 276.5 & $[274.4, 279.4]$ \\
+Matched GMM (raw) & 50 & FT & 265.5 & 265.4 & $[263.4, 268.0]$ \\
+Matched GMM (raw) & 50 & CR$_2$ & 285.3 & 284.4 & $[281.3, 287.8]$ \\
+\bottomrule
+\end{tabular}
+\end{table}

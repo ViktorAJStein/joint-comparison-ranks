@@ -1,0 +1,27 @@
+{
+  "id": "generator-comparison-v1-20261007",
+  "base_source_commit": "8f2de62a8c4aebe286872fb1ccd81eb73f83772d",
+  "alpha": 0.05,
+  "dimensions": [20, 50],
+  "training_per_class": 200,
+  "evaluation_per_class": 500,
+  "evaluation_permutations": 199,
+  "null_repetitions": 4000,
+  "power_repetitions": 500,
+  "base_seed": 202610071,
+  "pilot_rep_start": 100000,
+  "standalone_timing_repetitions": 32,
+  "generators": ["chi2", "gtest", "freeman_tukey", "cr:2"],
+  "subspace_dimension": 2,
+  "rank": {"K_ref": 4, "alpha0": 0.1, "L": 64, "engine": "auto", "tie": "jitter", "jitter_scale": 1e-12, "decision": "pvalue", "stop_ci": "none", "antithetic": false, "stat": "gtest", "gpu": "off", "reference_mode": "shared_pool", "use_fullY_for_HY": true, "chunk": 512},
+  "cases": [
+    {"id": "null_gaussian", "family": "sparse-scale", "params": {"sigma": 1.5, "sparse_dims": 1}, "null": true, "rounded": false, "orientations": ["raw", "rotated"]},
+    {"id": "null_rounded", "family": "sparse-scale", "params": {"sigma": 1.5, "sparse_dims": 1}, "null": true, "rounded": true, "orientations": ["raw"]},
+    {"id": "null_ar1", "family": "locshift", "params": {"rho": 0.6, "delta": 0.4}, "null": true, "rounded": false, "orientations": ["raw"]},
+    {"id": "alt_locshift", "family": "locshift", "params": {"rho": 0.6, "delta": 0.4}, "null": false, "rounded": false, "orientations": ["raw"], "matched_null": "null_ar1"},
+    {"id": "alt_sparse_scale", "family": "sparse-scale", "params": {"sigma": 1.5, "sparse_dims": 1}, "null": false, "rounded": false, "orientations": ["raw", "rotated"], "matched_null": "null_gaussian"},
+    {"id": "alt_gmm_matched", "family": "gmm-matched", "params": {"delta": 0.8, "sparse_dims": 2}, "null": false, "rounded": false, "orientations": ["raw"], "matched_null": "null_gaussian"}
+  ],
+  "analysis": {"null_family_size": 32, "null_family_alpha": 0.05, "null_upper_margin": 0.015, "primary_power_family_size": 48, "power_family_alpha": 0.05, "power_contrasts": "all six paired generator contrasts per alternative/dimension/orientation", "interval": "pointwise exact binomial; simultaneous one-sided null upper bounds", "failure_policy": "incomplete strata remain NA, no survivor rates", "runtime_policy": "fully standalone timings on fixed first 32 blocks per stratum; randomized generator order; no winner selection across N,K or subspace settings"},
+  "execution": {"cluster": "tub-math-hpc", "cpu_model": "AMD EPYC 7302 16-Core Processor", "cpus_per_task": 1, "gpus": 0, "memory_gib": 4, "qualification_wall_seconds": 300, "automatic_retries": false, "decision_scale_cpu_cap": null, "kernel_policy": "record full kernel; prospective pooling allowed only for EPYC7302/exact frozen Python/build/NumPy/SciPy cohort on TU kernels 6.12.110-1.el8.x86_64 or 6.12.111-1.el8.x86_64; stratify timing/effects by kernel and retain every complete paired block; this does not change the old campaign merger guard"}
+}
