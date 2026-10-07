@@ -1,6 +1,8 @@
 # Two-Sample Testing with Joint Comparison Ranks
 
-Research code and reproducibility material for the current synthetic-experiment manuscript. Suggested repository name: **joint-comparison-ranks**. This is a prepared, unpublished snapshot; the final submitted paper/arXiv identifier and GitHub owner must be bound before publication.
+Research code and reproducibility material for **Two-Sample Testing with Joint Comparison Ranks**.
+
+Repository: [ViktorAJStein/joint-comparison-ranks](https://github.com/ViktorAJStein/joint-comparison-ranks). The `reproducibility-20261007` snapshot covers the five verified synthetic studies mapped in `REPRODUCING.md`. Final submitted-paper binding, citation metadata and the arXiv identifier remain pending; this snapshot is not an `arxiv-v1` release.
 
 ## Reproduce the paper
 
@@ -16,6 +18,8 @@ The five retained studies are calibration/PCA, matched modern comparators, gener
 Install [uv](https://docs.astral.sh/uv/), then from the repository root:
 
 ```bash
+git clone https://github.com/ViktorAJStein/joint-comparison-ranks.git
+cd joint-comparison-ranks
 uv sync --locked --extra dev --extra plots --python 3.12
 uv run --locked python scripts/check_manifest.py
 OMP_NUM_THREADS=1 OPENBLAS_NUM_THREADS=1 MKL_NUM_THREADS=1 VECLIB_MAXIMUM_THREADS=1 \
@@ -28,9 +32,15 @@ OMP_NUM_THREADS=1 OPENBLAS_NUM_THREADS=1 MKL_NUM_THREADS=1 VECLIB_MAXIMUM_THREAD
 
 ### Reconstruct archived evidence
 
-Obtain the five `*-raw.tar.gz` files listed in `release-assets.json` from the **matching GitHub release** (publication pending), place them in `downloads/`, then:
+Download the five complete raw-data assets (~576 MB) from the [matching snapshot release](https://github.com/ViktorAJStein/joint-comparison-ranks/releases/tag/reproducibility-20261007). Asset filenames and SHA256 hashes are in `release-assets.json`.
 
 ```bash
+mkdir -p downloads
+for study in calibration comparator generator axis dependence; do
+  curl --fail --location --retry 2 \
+    --output "downloads/${study}-raw.tar.gz" \
+    "https://github.com/ViktorAJStein/joint-comparison-ranks/releases/download/reproducibility-20261007/${study}-raw.tar.gz" || exit 1
+done
 uv run --locked python scripts/verify_raw.py --assets downloads
 uv run --locked python scripts/plot_paper.py --out reproduced-figures
 ```
@@ -65,6 +75,6 @@ Preserve all negatives and inconclusive screens. The comparator d=20 pooled-infe
 
 ## Attribution and license
 
-Inherited source retains its original MIT notice in `LICENSE` and `snapshots/*/LICENSE`. It descends from `josemanuel22/ranktwosample`, source commit `42bbe058fb8b25188b30b61f52b61765506cbb0c`; the separate ICML repository is not modified by this release. See `THIRD_PARTY.md` for dependencies. Approval of licensing for newly added overlays and of public release remains a maintainer checklist item; inherited MIT terms do not automatically settle ownership of every new file. Do not redistribute third-party papers, images, datasets or private research logs.
+Inherited source retains its original MIT notice in `LICENSE` and `snapshots/*/LICENSE`. It descends from `josemanuel22/ranktwosample`, source commit `42bbe058fb8b25188b30b61f52b61765506cbb0c`; the separate ICML repository is not modified by this release. See `THIRD_PARTY.md` for dependencies. The inherited MIT notice is preserved. Licensing/ownership confirmation for newly added overlays, scripts and data remains a maintainer checklist item; publication does not invent that confirmation or automatically apply the inherited notice to every new file. Do not redistribute third-party papers, images, datasets or private research logs.
 
 Citation metadata will be added from the final author-approved paper and verified arXiv record, not guessed. Please cite that paper once available.

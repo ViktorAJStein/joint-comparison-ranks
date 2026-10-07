@@ -1,6 +1,8 @@
-# Maintainer publication checklist
+# Maintainer publication and final-paper checklist
 
-Prepared files are not a published repository. Do not push the project root, the September-only `main` branch, the ICML repository, or the research git history.
+The user authorizes publishing this experimental reproducibility snapshot under the active GitHub account `ViktorAJStein`, in a separate `joint-comparison-ranks` repository. The snapshot tag is `reproducibility-20261007`, not `arxiv-v1`; final-paper/citation/licensing and policy evidence below remains pending unless actually supplied. Public experimental code does not certify an anonymous submission or provide a final paper upload.
+
+Do not push the project root, the September-only `main` branch, the ICML repository, or the research git history.
 
 ## Upload these files
 
@@ -12,10 +14,10 @@ Upload all five `*-raw.tar.gz` assets described by `release-assets.json` to the 
 
 `.git` from research checkouts, `.venv`, caches, local paths/SSH config/credentials, cluster launch or authorization records, reviewer reports, rebuttals, private notes, session exports, unrelated projects, downloaded third-party papers, datasets, old withdrawn CSVs/figures, or logs. `private-build-provenance.json` is for local auditing only. Do not change `josemanuel22/ranktwosample`.
 
-## Required human decisions / final binding
+## Remaining human decisions / final binding
 
 - [ ] Confirm final submitted-paper contents match this empirical snapshot (source bound to8bb5c6c); update the release map if authors changed experiments.
-- [ ] Confirm GitHub owner/organization and name (`joint-comparison-ranks` suggested).
+- Destination for this user-requested snapshot: `ViktorAJStein/joint-comparison-ranks` (active authenticated personal account).
 - [ ] Approve public-release timing after submission and check anonymous-review/preprint/publicity policy; this package is not anonymized.
 - [ ] Approve licensing of new overlays/scripts/data, preserving upstream notice.
 - [ ] Bind exact title, full final author list, arXiv ID/version and verified `CITATION.cff`.
@@ -25,9 +27,9 @@ Upload all five `*-raw.tar.gz` assets described by `release-assets.json` to the 
 - [ ] Check release URLs signed out and download/verify all assets before any availability claim.
 - [ ] Create immutable `arxiv-v1` tag only after the final binding.
 
-## Creation commands (examples, not executed)
+## Commands for a future final-paper release
 
-After the decisions above, copy the staging payload to a clean repository directory and initialize it. Stage paths explicitly using the generated TSV, excluding output/cache paths. Review `git diff --cached --stat` before committing:
+The experimental snapshot uses the prepared clean repository and the explicit upload allowlist. For a future final-paper release, resolve the remaining decisions above first. Stage paths explicitly using the generated TSV, excluding output/cache paths. Review `git diff --cached --stat` before committing:
 
 ```bash
 git init -b main
